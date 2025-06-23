@@ -16,7 +16,7 @@ const users = [
     username: "심형섭",
     company: "충남대학교",
     position: "2학년 학부생",
-    img: "img/user/profile-licat.png",
+    img: "img/user/profile-max.png",
   },
 ];
 
