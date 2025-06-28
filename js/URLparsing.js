@@ -24,7 +24,7 @@ if (isLocal) {
   // 로컬 테스트 환경
 
   // 블로그 제목 설정
-  const $blogTitle = document.getElementById("blog-title");
+  const $blogTitle = document.getElementById("blog-logo");
   $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
 
   // 홈페이지 title을 제목으로 설정
