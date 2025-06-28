@@ -3,6 +3,7 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  filter: brightness(0.6) saturate(0.8);
 }
 
 #menu-button {
