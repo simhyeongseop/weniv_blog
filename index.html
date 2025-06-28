@@ -8,14 +8,13 @@
 
     <!-- marked -->
     <script src="./library/marked.min.js"></script>
-
     <!-- hightlight.js -->
     <link rel="stylesheet" href="./library/highlight_default.min.css" />
     <script src="./library/highlight_highlight.min.js"></script>
     <link rel="stylesheet" href="./library/highlight_ally-light.min.css" />
 
     <!-- custom css -->
-    <link rel="stylesheet" href=" style/style.css" />
+    <link rel="stylesheet" href="style/style.css" />
 
     <!-- tailwind -->
     <script src="./library/tailwind-3.4.1.js"></script>
@@ -39,8 +38,6 @@
         },
       };
     </script>
-    <!-- // tailwind -->
-
     <style>
       @keyframes slideDown {
         from {
@@ -59,42 +56,64 @@
     </style>
   </head>
   <body class="font-sans w-full text-surface">
-    <header class="relative bg-white mx-auto border-b border-gray-300">
+    <!-- ★ Liquid Glass 헤더 시작 -->
+    <header class="relative z-20">
       <nav
-        class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative"
+        class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative
+        bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4"
       >
         <!-- 블로그 제목 영역 -->
         <h1
           id="blog-title"
-          class="md:text-2xl text-lg leading-6 mr-auto font-semibold text-gray-900 cursor-pointer"
+          class="md:text-2xl text-lg leading-6 mr-auto font-semibold text-gray-900 cursor-pointer
+          bg-white/30 backdrop-blur-xl rounded-xl px-4 py-2 shadow-inner border border-white/30"
         >
           WENIVLOG
         </h1>
         <!-- // 블로그 제목 영역 -->
 
-        <!-- 메뉴 영역 -->
-        <div class="md:hidden w-6 h-6">
-          <button id="menu-button">
-            <span class="sr-only">메뉴 열기</span>
+        <!-- 햄버거 버튼 (모바일) -->
+        <div class="md:hidden w-10 h-10 flex items-center justify-center ml-2">
+          <button id="menu-button"
+            class="bg-white/30 backdrop-blur-xl border border-white/40 shadow-md rounded-full p-2 flex items-center justify-center"
+            aria-label="메뉴 열기"
+          >
+            <!-- SVG 햄버거 아이콘 -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="5" y="8" width="18" height="2.5" rx="1" fill="#888"/>
+              <rect x="5" y="13" width="18" height="2.5" rx="1" fill="#888"/>
+              <rect x="5" y="18" width="18" height="2.5" rx="1" fill="#888"/>
+            </svg>
           </button>
         </div>
 
-        <div id="menu" class="hidden md:flex items-center">
-          <!-- 메뉴 아이템들 -->
+        <!-- 네비게이션 메뉴 (데스크탑) -->
+        <div id="menu" class="hidden md:flex items-center gap-4
+            bg-white/20 backdrop-blur-xl border border-white/30 shadow-md rounded-xl px-4 py-2 ml-8">
+          <!-- 메뉴 아이템들은 JS에서 삽입됩니다 -->
         </div>
 
-        <button id="search-button" class="ml-10 md:hidden flex">
-          <span class="sr-only">검색창 열기</span>
+        <!-- 검색 버튼 (모바일) -->
+        <button id="search-button" class="ml-6 md:hidden flex
+          bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
+          aria-label="검색창 열기"
+        >
+          <!-- SVG 돋보기 아이콘 (예시) -->
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="10" cy="10" r="7" stroke="#888" stroke-width="2"/>
+            <rect x="15" y="15" width="5" height="2" rx="1" fill="#888" transform="rotate(45 15 15)"/>
+          </svg>
         </button>
 
+        <!-- 검색창 (데스크탑) -->
         <div
-          class="search-cont w-80 hidden md:block md:relative absolute z-10 rounded-2xl p-4 border border-graylv2 bottom-[-12px] right-2 xl:right-0 translate-y-full bg-background w-96 max-w-full box-border md:p-0 md:top-0 md:right-0 md:border-0 md:translate-y-0 md:w-80 md:ml-10"
+          class="search-cont w-80 hidden md:block md:relative absolute z-10 rounded-2xl p-4 border border-graylv2 bottom-[-12px] right-2 xl:right-0 translate-y-full bg-white/40 backdrop-blur-xl max-w-full box-border md:p-0 md:top-0 md:right-0 md:border-0 md:translate-y-0 md:w-80 md:ml-10"
         >
           <label for="search-input">
             <input
               type="text"
               id="search-input"
-              class="search-input bg-graylv1 rounded-[10px] px-5 py-2.5 placeholder:font-normal placehoder:text-graylv3 focus:outline-0 shadow-sm w-full"
+              class="search-input bg-white/70 backdrop-blur-xl rounded-[10px] px-5 py-2.5 placeholder:font-normal placeholder:text-graylv3 focus:outline-0 shadow-sm w-full"
               placeholder="Keyword"
           /></label>
           <div
@@ -108,15 +127,16 @@
             </button>
           </div>
         </div>
-        <!-- // 메뉴 영역 -->
+        <!-- // 검색창 -->
       </nav>
-      <!-- 모바일에서 메뉴 영역이 보이도록 하는 영역 -->
+      <!-- 모바일 메뉴 영역 -->
       <div
         id="mobileMenu"
-        class="absolute bg-background w-full max-w-[1190px] border-b border-graylv2 z-10 md:hidden"
+        class="absolute bg-white/70 backdrop-blur-xl w-full max-w-[1190px] border-b border-white/30 z-10 md:hidden rounded-b-2xl"
       ></div>
-      <!-- // 모바일에서 메뉴 영역이 보이도록 하는 영역 -->
+      <!-- // 모바일 메뉴 영역 -->
     </header>
+    <!-- ★ Liquid Glass 헤더 끝 -->
 
     <main class="container p-8 pb-4 w-full mx-auto max-w-[1190px] md:pt-[60px]">
       <!-- 블로그 포스트 리스트 영역 -->
