@@ -6,7 +6,7 @@ let blogMenu = [];
 
 async function initDataBlogList() {
   if (blogList.length > 0) return blogList;
-  const response = await fetch('/data/local_blogList.json');
+  const response = await fetch('/weniv_blog/data/local_blogList.json');
   if (!response.ok) {
     console.error('blogList JSON 로드 실패:', response.status);
     return [];
@@ -17,7 +17,7 @@ async function initDataBlogList() {
 
 async function initDataBlogMenu() {
   if (blogMenu.length > 0) return blogMenu;
-  const response = await fetch('/data/local_blogMenu.json');
+  const response = await fetch('/weniv_blog/data/local_blogMenu.json');
   if (!response.ok) {
     console.error('blogMenu JSON 로드 실패:', response.status);
     return [];
