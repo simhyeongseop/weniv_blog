@@ -59,22 +59,46 @@ const notebookcopyButtonStyle = `border border-lv2 copy-button bg-white rounded-
 const notebookdownloadButtonStyle = `download-button px-5 py-[11px] mb-4 text-sm font-medium text-white bg-primary rounded-[10px] hover:bg-primary`;
 
 // blog list cards
+// blog list cards (liquid glass 스타일 적용)
 const bloglistFirstCardStyle =
-  'col-span-2 row-span-2 min-h-[320px] md:min-h-[400px] relative flex flex-col justify-end overflow-hidden bg-white/40 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(31,38,135,0.18)] transition-transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/70 before:to-transparent';
-const bloglistFirstCardImgStyle = `w-full object-cover object-center rounded-2xl overflow-hidden md:h-auto h-[200px] md:w-[49%] lg:w-[52%] shrink-0 mr-8 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+  "col-span-2 row-span-2 min-h-[320px] md:min-h-[400px] relative flex flex-col justify-end overflow-hidden bg-white/40 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(31,38,135,0.18)] transition-transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/70 before:to-transparent";
+
+const bloglistCardStyle =
+  "flex flex-col justify-end overflow-hidden bg-white/30 backdrop-blur-md rounded-2xl border border-white/30 shadow-lg transition-transform hover:scale-105 hover:shadow-xl cursor-pointer relative";
+
+const bloglistFirstCardImgStyle =
+  "w-full h-2/3 object-cover rounded-t-3xl brightness-90 shadow-xl transition-transform duration-300 hover:scale-105 absolute top-0 left-0 z-0";
+
+const bloglistCardImgStyle =
+  "w-full h-48 object-cover rounded-t-2xl brightness-90 shadow transition-transform duration-300 hover:scale-105 absolute top-0 left-0 z-0";
+
+const bloglistCardBodyStyle =
+  "relative z-10 p-6 flex flex-col gap-3";
+
+const bloglistCardCategoryStyle =
+  "inline-block px-3 py-1 text-xs font-semibold rounded-full bg-white/60 backdrop-blur text-gray-700 shadow";
+
+const bloglistCardTitleStyle =
+  "text-lg md:text-xl font-bold text-gray-900 drop-shadow";
+
 const bloglistFirstCardDescriptionStyle =
   "mt-2 text-base md:text-lg text-gray-900/80 font-medium";
 
-const bloglistCardStyle = 'flex flex-col justify-end overflow-hidden bg-white/30 backdrop-blur-md rounded-2xl border border-white/30 shadow-lg transition-transform hover:scale-105 hover:shadow-xl cursor-pointer relative';
-const bloglistCardImgStyle = "w-full h-48 object-cover rounded-t-2xl brightness-90 shadow transition-transform duration-300 hover:scale-105 absolute top-0 left-0 z-0";
-const bloglistCardBodyStyle = "relative z-10 p-6 flex flex-col gap-3";
-const bloglistCardTitleStyle = "text-lg md:text-xl font-bold text-gray-900 drop-shadow";
-const bloglistCardCategoryStyle = "inline-block px-3 py-1 text-xs font-semibold rounded-full bg-white/60 backdrop-blur text-gray-700 shadow";
-const bloglistCardDescriptionStyle =  "mt-2 text-sm text-gray-900/70";
-const bloglistCardAuthorDivStyle = "flex items-center gap-2 mt-3";
-const bloglistCardAuthorImgStyle = "w-7 h-7 rounded-full border border-white/70 shadow";
-const bloglistCardAuthorStyle = "text-xs text-gray-800 font-medium";
-const bloglistCardDateStyle = "mt-1 text-xs text-gray-500";
+const bloglistCardDescriptionStyle =
+  "mt-2 text-sm text-gray-900/70";
+
+const bloglistCardAuthorDivStyle =
+  "flex items-center gap-2 mt-3";
+
+const bloglistCardAuthorImgStyle =
+  "w-7 h-7 rounded-full border border-white/70 shadow";
+
+const bloglistCardAuthorStyle =
+  "text-xs text-gray-800 font-medium";
+
+const bloglistCardDateStyle =
+  "mt-1 text-xs text-gray-500";
+
 
 // search input
 const searchInputStyle = `absolute top-20 right-8 w-[220px] h-10 border border-gray-300 pl-2 text-base font-bold text-gray-600 outline-none box-border bg-white bg-clip-padding rounded-full shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1:hover:shadow-xl`;
