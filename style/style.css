@@ -1,10 +1,32 @@
+/* style/style.css */
+/* 우선 기존 body 배경은 제거하고, pseudo-element 로 대체합니다. */
 body {
-  background-image: url('/weniv_blog/img/background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  filter: brightness(0.6) saturate(0.8);
+  position: relative;
+  overflow-x: hidden; /* 가끔 스크롤바 생기면 방지 */
 }
+
+/* background.jpg 를 pseudo-element 로 담당시키고 필터/overlay 적용 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0; /* top:0; left:0; right:0; bottom:0; */
+  /* 원래 배경 이미지 */
+  background: url('/weniv_blog/img/background.jpg') center/cover fixed;
+  /* 톤 다운용 블러 + 밝기 조절 */
+  filter: brightness(0.8) blur(1px);
+  z-index: -2; /* 모든 컨텐츠 뒤에 */
+}
+
+/* 그 위에 흰색 반투명 오버레이 */
+/* opacity 값으로 강도를 조절하세요 (0.3~0.6 사이 추천) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  z-index: -1;
+}
+
 
 #menu-button {
   width: 1.75rem;
