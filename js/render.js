@@ -1,12 +1,4 @@
 // 🟦 Liquid Glass 스타일 카드 클래스 정의
-const bloglistFirstCardStyle = `
-  col-span-2 row-span-2 min-h-[320px] md:min-h-[400px]
-  relative flex flex-col justify-end overflow-hidden
-  bg-white/40 backdrop-blur-2xl
-  rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(31,38,135,0.18)]
-  transition-transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer
-  before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/70 before:to-transparent
-`;
 
 const bloglistCardStyle = `
   flex flex-col justify-end overflow-hidden
