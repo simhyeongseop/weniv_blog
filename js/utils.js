@@ -43,7 +43,7 @@ function escapeHtml(text) {
 function extractFileInfo(filename) {
   // render.js에서 사용
   // 파일 이름에서 정보 추출하는 함수
-  if (typeof filename !== 'string') return null
+  if (typeof filename !== 'string') return null;
   // 정규 표현식을 사용하여 날짜, 제목, 카테고리, 썸네일, 저자 정보 추출
   const regex =
     /^\[(\d{8})\]_\[(.*?)\]_\[(.*?)\]_\[(.*?)\]_\[(.*?)\]_\[(.*?)\].(md|ipynb)$/;
