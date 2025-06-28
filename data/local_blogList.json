@@ -3,28 +3,28 @@
     "date": "2024-01-21",
     "title": "썸네일이 없는 테스트 파일",
     "category": "django",
-    "thumnail": "",
+    "thumbnail": "",
     "description": "이 파일은 테스트 파일입니다."
   },
   {
     "date": "2024-01-20",
     "title": "썸네일이 없는 테스트 파일",
     "category": "django",
-    "thumnail": "",
+    "thumbnail": "",
     "description": "이 파일은 테스트 파일입니다."
   },
   {
     "date": "2024-01-19",
     "title": "썸네일이 없는 테스트 파일",
     "category": "django",
-    "thumnail": "",
+    "thumbnail": "",
     "description": "이 파일은 테스트 파일입니다."
   },
   {
     "date": "2024-05-05",
     "title": "블로그 글 양식",
     "category": "markdown",
-    "thumnail": "test_1.jpg",
+    "thumbnail": "test_1.jpg",
     "description": "마크다운 양식입니다. 참고하여 블로그 글을 작성해주세요. 각 언어별 하이라이팅도 지원합니다."
   }
 ]
