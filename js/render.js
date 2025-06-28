@@ -1,4 +1,12 @@
 // 🟦 Liquid Glass 스타일 카드 클래스 정의
+const bloglistFirstCardStyle = 
+  col-span-2 row-span-2 min-h-[320px] md:min-h-[400px]
+  relative flex flex-col justify-end overflow-hidden
+  bg-white/40 backdrop-blur-2xl
+  rounded-3xl border border-white/50 shadow-[0_8px_32px_0_rgba(31,38,135,0.18)]
+  transition-transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer
+  before:absolute before:inset-0 before:bg-gradient-to-t before:from-white/70 before:to-transparent
+;
 
 const bloglistCardStyle = `
   flex flex-col justify-end overflow-hidden
@@ -234,11 +242,6 @@ function createCardElement(fileInfo, index) {
     정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
     */
   const card = document.createElement("div");
-  if (index === 0) {
-    card.classList.add(...bloglistFirstCardStyle.split(" "));
-  } else {
-    card.classList.add(...bloglistCardStyle.split(" "));
-  }
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
