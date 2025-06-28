@@ -261,3 +261,59 @@ body::after {
   mask-repeat: no-repeat;
   mask-position: center center;
 }/*# sourceMappingURL=style.css.map */
+
+
+/* Liquid Glass(글래스모피즘) & Glow 커스텀 */
+
+.liquid-glass {
+  background: rgba(255,255,255,0.28);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1.5px solid rgba(255,255,255,0.32);
+  position: relative;
+  overflow: hidden;
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.09) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.liquid-glass-glow {
+  /* 빛나는 효과 */
+  box-shadow: 0 4px 32px 0 rgba(100,149,237,0.25), 0 0 0 4px rgba(255,255,255,0.08) inset;
+  /* 약간의 네온 느낌 추가 가능 */
+  animation: glow-fade 3s infinite alternate;
+}
+
+@keyframes glow-fade {
+  from {
+    box-shadow: 0 4px 32px 0 rgba(100,149,237,0.30), 0 0 0 7px rgba(255,255,255,0.18) inset;
+  }
+  to {
+    box-shadow: 0 8px 42px 0 rgba(100,149,237,0.10), 0 0 0 1px rgba(255,255,255,0.06) inset;
+  }
+}
+
+.glass-title-glow {
+  text-shadow: 0 2px 8px rgba(65,131,255,0.25), 0 0 1px #fff;
+}
+
+.glass-blur-bg {
+  /* 카드 뒷배경에 흐림효과 + 밝은 그라데이션 */
+  background: linear-gradient(112deg, rgba(255,255,255,0.20) 0%, rgba(194,224,255,0.08) 100%);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+}
+
+/* 선택적으로 hover 시 더 강한 glass 효과 */
+.liquid-glass:hover {
+  box-shadow: 0 12px 44px 0 rgba(52,112,235,0.22), 0 0 0 6px rgba(255,255,255,0.12) inset;
+  border-color: rgba(255,255,255,0.45);
+}
