@@ -16,7 +16,7 @@
 
   <!-- 1) Tailwind CDN custom config -->
   <script>
-    tailwind.config = {
+    tailwind.config = {.
       theme: {
         extend: {
           colors: {
@@ -70,20 +70,44 @@
     }
     .markdown-cell > ul > li > p { display: inline-block; }
   </style>
-</head>
-<body class="font-sans w-full text-surface">
-  <header class="relative bg-white mx-auto border-b border-gray-300 rounded-lg shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl">
+    </head>
+    <body class="font-sans w-full text-surface">
+    <header
+      class="relative mx-auto w-full
+            bg-white/20 backdrop-blur-lg
+            border-t border-white/30
+            rounded-2xl shadow-lg
+            transform transition duration-300 ease-in-out
+            hover:bg-white/30"
+    >
     <nav class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative">
       <h1 id="blog-title" class="md:text-2xl text-lg leading-6 mr-auto font-semibold text-gray-900 cursor-pointer rounded-full px-4 py-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl">
         WENIVLOG
       </h1>
       <div class="md:hidden w-6 h-6">
-        <button id="menu-button" class="rounded-full p-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl animate-float">
+        <button
+          id="menu-button"
+          class="p-2 rounded-full
+                bg-white/20 backdrop-blur-md border border-white/25
+                shadow-md
+                transform transition duration-200 ease-in-out
+                hover:bg-white/30 hover:shadow-lg
+                animate-float"
+        >
           <span class="sr-only">메뉴 열기</span>
         </button>
       </div>
       <div id="menu" class="hidden md:flex items-center">
-        <a href="/" class="md:ml-10 text-base leading-snug text-surface font-medium capitalize rounded-full px-4 py-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl">Home</a>
+        <a
+          href="/"
+          class="md:ml-10 px-4 py-2 rounded-full
+                bg-white/10 backdrop-blur-sm border border-white/20
+                text-surface font-medium capitalize
+                transition duration-200 ease-in-out transform
+                hover:bg-white/20 hover:shadow-md"
+        >
+          Home
+        </a>
         <!-- ... 다른 메뉴 아이템도 동일하게 적용 -->
       </div>
       <button id="search-button" class="ml-10 md:hidden flex rounded-full p-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl animate-float">
