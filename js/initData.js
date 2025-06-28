@@ -1,4 +1,5 @@
 // initData.js
+<script>window.isInitData = false;</script>
 // 고정된 로컬 JSON을 사용하여 블로그 리스트 및 메뉴 데이터 가져오기
 let blogList = [];
 let blogMenu = [];

@@ -1,57 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- 0) 전역 stub 생성 (없으면 빈 객체라도 미리 만들어 줌) -->
+  <!-- 0) 전역 stub 생성 -->
   <script>window.tailwind = window.tailwind || {};</script>
-
   <!-- 1) 여러분의 커스텀 설정 (colors/fontFamily 등) -->
   <script>
-    tailwind.config = {
-      theme: { extend: { /* forest/sky/cloud, fontFamily, animation 등 */ } }
-    };
-  </script>
-
-  <!-- 2) CDN 번들 로드 -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="img/icon/favicon.svg" type="image/x-icon" />
-  <title>Weniv Blog</title>
-
-  <!-- marked -->
-  <script src="./library/marked.min.js"></script>
-
-  <!-- highlight.js -->
-  <link rel="stylesheet" href="./library/highlight_default.min.css" />
-  <script src="./library/highlight_highlight.min.js"></script>
-  <link rel="stylesheet" href="./library/highlight_ally-light.min.css" />
-
-  <!-- 1) Tailwind CDN custom config -->
-  <script>
-    window.tailwind = window.tailwind || {};
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary:    "#2e6ff2",   /* 기존 색상 유지 */
+            primary: "#2e6ff2",
             background: "#fff",
-            surface:    "#121314",
-            graylv1:    "#f3f5fa",
-            graylv2:    "#d9dbe0",
-            graylv3:    "#8d9299",
-            graylv4:    "#47494d",
-            error:      "#ff3440",
-            lowError:   "#ffc533",
+            surface: "#121314",
+            graylv1: "#f3f5fa",
+            graylv2: "#d9dbe0",
+            graylv3: "#8d9299",
+            graylv4: "#47494d",
+            error: "#ff3440",
+            lowError: "#ffc533",
             activation: "#dee8ff",
-            /* 새로 추가하는 색상 */
-            forest: "#2E8B57",   /* 숲의 짙은 녹색 */
-            sky:    "#7EC8E3",   /* 맑은 하늘색 */
-            cloud:  "#F8F8FF",   /* 구름 같은 은은한 흰색 */
+            forest: "#2E8B57",
+            sky: "#7EC8E3",
+            cloud: "#F8F8FF",
           },
-          borderRadius: {
-            pill: "9999px",
-          },
+          borderRadius: { pill: "9999px" },
           boxShadow: {
             soft: "8px 8px 16px rgba(0,0,0,0.08), -8px -8px 16px rgba(255,255,255,0.9)",
             glow: "0 4px 12px rgba(79,142,247,0.4)",
@@ -59,23 +31,22 @@
           keyframes: {
             float: {
               "0%, 100%": { transform: "translateY(0)" },
-              "50%":       { transform: "translateY(-6px)" },
+              "50%": { transform: "translateY(-6px)" },
             },
             pulseSoft: {
               "0%, 100%": { opacity: "1" },
-              "50%":       { opacity: ".8" },
+              "50%": { opacity: ".8" },
             },
           },
           animation: {
-            float:    "float 4s ease-in-out infinite",
-            pulseSoft:"pulseSoft 2.5s ease-in-out infinite",
+            float: "float 4s ease-in-out infinite",
+            pulseSoft: "pulseSoft 2.5s ease-in-out infinite",
           },
-        },
-      },
-    };
+        }
+      }
+    }
   </script>
-
-  <!-- 2) Official CDN bundle (this defines `tailwind`) -->
+  <!-- 2) CDN 번들 -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- custom CSS -->
@@ -100,14 +71,14 @@
     >
     <nav class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative">
       <!-- 기존 H1 삭제하고, 이 A 태그로 교체 -->
-      <a href="/" id="blog-logo" class="inline-block">
+      <a href="/" id="blog-title" class="inline-block">
         <img
           src="img/logo.png"
           alt="심형섭 블로그"
           class="h-8 md:h-10 w-auto object-contain"
         />
       </a>
-      <div class="md:hidden w-6 h-6">
+            <div class="md:hidden w-6 h-6">
         <button
           id="menu-button"
           class="p-2 rounded-full
