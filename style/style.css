@@ -1,3 +1,10 @@
+body {
+  background-image: url('/img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 #menu-button {
   width: 1.75rem;
   height: 1.75rem;
