@@ -16,20 +16,24 @@
 
   <!-- 1) Tailwind CDN custom config -->
   <script>
-    tailwind.config = {.
+    tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: "#2e6ff2",
+            primary:    "#2e6ff2",   /* 기존 색상 유지 */
             background: "#fff",
-            surface: "#121314",
-            graylv1: "#f3f5fa",
-            graylv2: "#d9dbe0",
-            graylv3: "#8d9299",
-            graylv4: "#47494d",
-            error: "#ff3440",
-            lowError: "#ffc533",
+            surface:    "#121314",
+            graylv1:    "#f3f5fa",
+            graylv2:    "#d9dbe0",
+            graylv3:    "#8d9299",
+            graylv4:    "#47494d",
+            error:      "#ff3440",
+            lowError:   "#ffc533",
             activation: "#dee8ff",
+            /* 새로 추가하는 색상 */
+            forest: "#2E8B57",   /* 숲의 짙은 녹색 */
+            sky:    "#7EC8E3",   /* 맑은 하늘색 */
+            cloud:  "#F8F8FF",   /* 구름 같은 은은한 흰색 */
           },
           borderRadius: {
             pill: "9999px",
@@ -41,21 +45,22 @@
           keyframes: {
             float: {
               "0%, 100%": { transform: "translateY(0)" },
-              "50%": { transform: "translateY(-6px)" },
+              "50%":       { transform: "translateY(-6px)" },
             },
             pulseSoft: {
               "0%, 100%": { opacity: "1" },
-              "50%": { opacity: ".8" },
+              "50%":       { opacity: ".8" },
             },
           },
           animation: {
-            float: "float 4s ease-in-out infinite",
-            pulseSoft: "pulseSoft 2.5s ease-in-out infinite",
+            float:    "float 4s ease-in-out infinite",
+            pulseSoft:"pulseSoft 2.5s ease-in-out infinite",
           },
         },
       },
     };
   </script>
+
 
   <!-- 2) Tailwind CDN script -->
   <script src="./library/tailwind-3.4.1.js"></script>
@@ -74,11 +79,11 @@
     <body class="font-sans w-full text-surface">
     <header
       class="relative mx-auto w-full
-            bg-white/20 backdrop-blur-lg
-            border-t border-white/30
+            bg-sky/20 backdrop-blur-lg
+            border-t border-sky/30
             rounded-2xl shadow-lg
             transform transition duration-300 ease-in-out
-            hover:bg-white/30"
+            hover:bg-sky/30"
     >
     <nav class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative">
       <h1 id="blog-title" class="md:text-2xl text-lg leading-6 mr-auto font-semibold text-gray-900 cursor-pointer rounded-full px-4 py-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl">
@@ -88,10 +93,10 @@
         <button
           id="menu-button"
           class="p-2 rounded-full
-                bg-white/20 backdrop-blur-md border border-white/25
+                bg-cloud/20 backdrop-blur-md border border-cloud/30
                 shadow-md
                 transform transition duration-200 ease-in-out
-                hover:bg-white/30 hover:shadow-lg
+                hover:bg-cloud/30 hover:shadow-lg
                 animate-float"
         >
           <span class="sr-only">메뉴 열기</span>
@@ -101,16 +106,25 @@
         <a
           href="/"
           class="md:ml-10 px-4 py-2 rounded-full
-                bg-white/10 backdrop-blur-sm border border-white/20
-                text-surface font-medium capitalize
+                bg-forest/20 backdrop-blur-sm border border-forest/30
+                text-cloud font-medium capitalize
                 transition duration-200 ease-in-out transform
-                hover:bg-white/20 hover:shadow-md"
+                hover:bg-forest/30 hover:shadow-md"
         >
           Home
         </a>
         <!-- ... 다른 메뉴 아이템도 동일하게 적용 -->
       </div>
-      <button id="search-button" class="ml-10 md:hidden flex rounded-full p-2 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl animate-float">
+      <button
+        id="search-button"
+        class="ml-10 md:hidden flex
+              p-2 rounded-full
+              bg-cloud/20 backdrop-blur-md border border-cloud/30
+              shadow-md
+              transform transition duration-200 ease-in-out
+              hover:bg-cloud/30 hover:shadow-lg
+              animate-float"
+      >
         <span class="sr-only">검색창 열기</span>
       </button>
       <div class="search-cont w-80 hidden md:block absolute z-10 rounded-2xl p-4 border border-graylv2 bg-background box-border md:relative md:p-0 md:border-0 md:w-80 md:ml-10 bottom-[-12px] right-2 xl:right-0 translate-y-full flex">
