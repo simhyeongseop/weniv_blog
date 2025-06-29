@@ -266,10 +266,10 @@ body::after {
 /* --- 상단 네비게이션 바 글래스 효과 수정 (index.html의 nav > div에 적용) --- */
 /* Tailwind CSS 클래스를 오버라이드하기 위해 !important를 사용했습니다. */
 nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 자식 div를 타겟팅 */
-    background: rgba(255, 255, 255, 0.08) !important; /* 더 맑고 투명하게 조정 */
-    backdrop-filter: blur(30px) saturate(200%) !important; /* 왜곡 및 선명도 더 강하게 (물방울 느낌) */
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* 테두리 더 얇고 투명하게 */
-    box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1) !important; /* 그림자 더 약하게 */
+    background: rgba(255, 255, 255, 0.05) !important; /* 투명도를 더 높여 더욱 맑게 */
+    backdrop-filter: blur(40px) saturate(250%) !important; /* 블러와 채도를 더 높여 강한 왜곡 및 물방울 느낌 강화 */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* 테두리 더 얇고 투명하게 */
+    box-shadow: 0 6px 25px 0 rgba(31, 38, 135, 0.12) !important; /* 그림자 더 은은하고 넓게 */
 }
 
 /* 완전 고도화된 Glassmorphism 카드 */
@@ -303,72 +303,3 @@ nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 �
 
 /* 내면 음영(Neumorphism 느낌) */
 .liquid-glass::after {
-  content: "";
-  position: absolute;
-  bottom: 6%; left: 8%; right: 8%; height: 22%;
-  background: linear-gradient(120deg, rgba(94,104,121,0.05) 0%, rgba(255,255,255,0.08) 80%);
-  border-radius: 50%;
-  filter: blur(10px);
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* 유리 스크래치/물방울 표현 */
-.liquid-glass-waterdrop {
-  position: absolute;
-  z-index: 3;
-  pointer-events: none;
-  width: 22px; height: 22px;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.27) 65%, rgba(200,255,255,0.01) 100%);
-  border-radius: 50%;
-  left: 13%; top: 17%;
-  opacity: 0.45;
-  animation: waterdrop-move 4s infinite alternate;
-}
-.liquid-glass-scratch {
-  position: absolute;
-  width: 70px; height: 2px;
-  left: 60%; top: 21%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.17) 0%, rgba(180,220,255,0.07) 100%);
-  border-radius: 8px;
-  z-index: 4;
-  pointer-events: none;
-  opacity: 0.7;
-  transform: rotate(-8deg);
-}
-
-/* highlight 효과(hover시 빛 움직임) */
-.liquid-glass:hover::before {
-  background: linear-gradient(95deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 100%); /* 호버 시 반사광도 더 은은하게 */
-  filter: blur(2px); /* 블러를 더 약하게 */
-}
-.liquid-glass:active {
-  transform: scale(0.98) translateY(2px);
-  box-shadow:
-    0 2px 20px 0 rgba(31,38,135,0.14),
-    0 1px 1.5px 0 rgba(255,255,255,0.19) inset,
-    0 0.5px 1.5px 0 rgba(100,149,237,0.14) inset;
-}
-
-/* Motion 효과 (hover/active scale) */
-.liquid-glass {
-  transition:
-    box-shadow 0.25s cubic-bezier(.2,.8,.3,1.1),
-    transform 0.16s cubic-bezier(.25,.8,.3,1.1);
-}
-.liquid-glass:hover {
-  transform: translateY(-2px) scale(1.025);
-  box-shadow:
-    0 10px 30px 0 rgba(31,38,135,0.18), /* 호버 시 그림자도 더 은은하게 */
-    0 2px 8px 0 rgba(255,255,255,0.15) inset; /* 호버 시 내부 그림자도 은은하게 */
-}
-
-/* 카드 뒷배경 그라데이션(빛 산란) */
-.liquid-glass-bg {
-  background: linear-gradient(120deg, rgba(186,212,255,0.05) 0%, rgba(255,255,255,0.1) 100%); /* 더 은은하게 */
-  z-index: 0;
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 2rem;
-}
