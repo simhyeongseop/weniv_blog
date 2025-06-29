@@ -58,24 +58,49 @@ const notebookcodeStyle = `font-mono text-base bg-graylv1`;
 const notebookcopyButtonStyle = `border border-lv2 copy-button bg-white rounded-[10px] opacity-70 absolute top-5 right-5 p-2 shadow-md`;
 const notebookdownloadButtonStyle = `download-button px-5 py-[11px] mb-4 text-sm font-medium text-white bg-primary rounded-[10px] hover:bg-primary`;
 
+// 🟦 blog list cards (메인카드: 3col 한줄, 내부 가로배치, glass, 불투명 메뉴 스타일)
 const bloglistFirstCardStyle =
-  "col-span-3 h-[260px] overflow-hidden flex flex-row cursor-pointer rounded-3xl bg-white/30 backdrop-blur-2xl border border-white/40 shadow-2xl relative transition-transform hover:scale-[1.01] hover:shadow-[0_12px_48px_0_rgba(31,38,135,0.15)]";
+  "col-span-3 h-[260px] flex flex-row items-stretch overflow-hidden rounded-3xl bg-white/70 backdrop-blur-xl shadow-2xl border border-white/40 transition-transform hover:scale-[1.01]";
 
+// 썸네일: 왼쪽 2/3, 세로가득, 둥근 모서리
 const bloglistFirstCardImgStyle =
-  "w-[340px] h-full object-cover object-center rounded-3xl m-0 shadow-lg";
+  "flex-[2] w-0 h-full object-cover object-center rounded-l-3xl";
+
+// 본문(제목/설명/작성자): 오른쪽 1/3, 불투명 배경, 세로 정렬, 메뉴 바 스타일
+const bloglistFirstCardBodyStyle =
+  "flex-[1] w-0 flex flex-col justify-center px-8 py-6 gap-2 bg-white/70 backdrop-blur-xl rounded-r-3xl";
+
+// 메인카드 내 세부 요소
+const bloglistFirstCardCategoryStyle =
+  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow";
+
+const bloglistFirstCardTitleStyle =
+  "font-bold text-2xl mb-2 text-gray-900";
 
 const bloglistFirstCardDescriptionStyle =
-  "text-gray-800 text-base font-normal leading-snug max-h-32 line-clamp-4 mb-3";
+  "text-gray-700 text-base font-normal leading-snug line-clamp-3 mb-2";
 
-// 카드 내부 텍스트 배경 (menu bar 스타일)
-const bloglistCardBodyStyle =
-  "flex-1 flex flex-col justify-between z-10 bg-white/70 backdrop-blur-xl rounded-2xl p-6 shadow-lg"; // 불투명 배경 추가!
+const bloglistFirstCardAuthorDivStyle =
+  "flex items-center gap-2 mt-auto";
 
+const bloglistFirstCardAuthorImgStyle =
+  "w-7 h-7 rounded-full object-cover border border-white/70 shadow";
+
+const bloglistFirstCardAuthorStyle =
+  "text-xs text-gray-800 font-medium";
+
+const bloglistFirstCardDateStyle =
+  "text-xs text-gray-400";
+
+// 🟦 일반카드 (아래쪽 리스트, glass 스타일)
 const bloglistCardStyle =
   "col-span-1 h-[260px] flex flex-col overflow-hidden cursor-pointer rounded-2xl bg-white/25 backdrop-blur-lg border border-white/30 shadow-xl relative transition-transform hover:scale-105 hover:shadow-2xl";
 
 const bloglistCardImgStyle =
   "w-full h-[130px] object-cover object-center rounded-t-2xl shadow-md";
+
+const bloglistCardBodyStyle =
+  "flex-1 flex flex-col justify-between z-10 bg-white/70 backdrop-blur-xl rounded-b-2xl p-6 shadow-lg";
 
 const bloglistCardTitleStyle =
   "font-bold text-lg mb-1 text-gray-900";
@@ -97,7 +122,6 @@ const bloglistCardAuthorStyle =
 
 const bloglistCardDateStyle =
   "text-xs text-gray-400";
-
 
 // search input
 const searchInputStyle = `absolute top-20 right-8 w-[220px] h-10 border border-gray-300 pl-2 text-base font-bold text-gray-600 outline-none box-border bg-white bg-clip-padding rounded-full shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1:hover:shadow-xl`;

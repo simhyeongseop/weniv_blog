@@ -169,20 +169,79 @@ async function renderMenu() {
 }
 
 function createCardElement(fileInfo, index) {
-  /*
-    정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
-    */
-  const card = document.createElement("div");
+  let card;
+  // 🟦 메인카드(첫번째)
+  if (index === 0) {
+    card = document.createElement("div");
+    card.classList.add(...bloglistFirstCardStyle.split(" "));
+
+    // 썸네일 (왼쪽 2/3)
+    if (fileInfo.thumbnail) {
+      const img = document.createElement("img");
+      img.src = fileInfo.thumbnail;
+      img.alt = fileInfo.title;
+      img.classList.add(...bloglistFirstCardImgStyle.split(" "));
+      card.appendChild(img);
+    }
+
+    // 본문(오른쪽 1/3, 불투명 메뉴bar 스타일)
+    const cardBody = document.createElement("div");
+    cardBody.classList.add(...bloglistFirstCardBodyStyle.split(" "));
+
+    // 카테고리
+    const category = document.createElement("span");
+    category.classList.add(...bloglistFirstCardCategoryStyle.split(" "));
+    category.textContent = fileInfo.category;
+    category.onclick = (event) => {
+      event.stopPropagation();
+      search(fileInfo.category, "category");
+    };
+    cardBody.appendChild(category);
+
+    // 제목
+    const title = document.createElement("h2");
+    title.classList.add(...bloglistFirstCardTitleStyle.split(" "));
+    title.textContent = fileInfo.title;
+    cardBody.appendChild(title);
+
+    // 설명
+    const description = document.createElement("p");
+    description.classList.add(...bloglistFirstCardDescriptionStyle.split(" "));
+    description.textContent = fileInfo.description;
+    cardBody.appendChild(description);
+
+    // 작성자
+    const authorDiv = document.createElement("div");
+    authorDiv.classList.add(...bloglistFirstCardAuthorDivStyle.split(" "));
+    const authorImg = document.createElement("img");
+    authorImg.src = users[fileInfo.author]["img"];
+    authorImg.alt = users[fileInfo.author]["username"];
+    authorImg.classList.add(...bloglistFirstCardAuthorImgStyle.split(" "));
+    authorDiv.appendChild(authorImg);
+    const author = document.createElement("p");
+    author.classList.add(...bloglistFirstCardAuthorStyle.split(" "));
+    author.textContent = users[fileInfo.author]["username"];
+    authorDiv.appendChild(author);
+    const date = document.createElement("p");
+    date.classList.add(...bloglistFirstCardDateStyle.split(" "));
+    date.textContent = formatDate(fileInfo.date);
+    authorDiv.appendChild(date);
+    cardBody.appendChild(authorDiv);
+
+    card.appendChild(cardBody);
+
+    return card;
+  }
+
+  // 🟦 일반 카드 (아래쪽 리스트)
+  card = document.createElement("div");
+  card.classList.add(...bloglistCardStyle.split(" "));
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
     img.alt = fileInfo.title;
-    if (index === 0) {
-      img.classList.add(...bloglistFirstCardImgStyle.split(" "));
-    } else {
-      img.classList.add(...bloglistCardImgStyle.split(" "));
-    }
+    img.classList.add(...bloglistCardImgStyle.split(" "));
     card.appendChild(img);
   }
 
@@ -192,14 +251,11 @@ function createCardElement(fileInfo, index) {
   const category = document.createElement("span");
   category.classList.add(...bloglistCardCategoryStyle.split(" "));
   category.textContent = fileInfo.category;
-  cardBody.appendChild(category);
-
-  // category 이벤트 생성으로 카테고리 클릭 시 해당 카테고리로 검색
   category.onclick = (event) => {
-    // 클릭했을 때 카드가 클릭되는 것이 아니라 카테고리가 클릭되게 해야함
     event.stopPropagation();
     search(fileInfo.category, "category");
   };
+  cardBody.appendChild(category);
 
   const title = document.createElement("h2");
   title.classList.add(...bloglistCardTitleStyle.split(" "));
@@ -207,33 +263,26 @@ function createCardElement(fileInfo, index) {
   cardBody.appendChild(title);
 
   const description = document.createElement("p");
-  if (index == 0) {
-    description.classList.add(...bloglistFirstCardDescriptionStyle.split(" "));
-  } else {
-    description.classList.add(...bloglistCardDescriptionStyle.split(" "));
-  }
+  description.classList.add(...bloglistCardDescriptionStyle.split(" "));
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
 
   const authorDiv = document.createElement("div");
   authorDiv.classList.add(...bloglistCardAuthorDivStyle.split(" "));
-  cardBody.appendChild(authorDiv);
-
   const authorImg = document.createElement("img");
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(...bloglistCardAuthorImgStyle.split(" "));
   authorDiv.appendChild(authorImg);
-
   const author = document.createElement("p");
   author.classList.add(...bloglistCardAuthorStyle.split(" "));
   author.textContent = users[fileInfo.author]["username"];
   authorDiv.appendChild(author);
-
   const date = document.createElement("p");
   date.classList.add(...bloglistCardDateStyle.split(" "));
   date.textContent = formatDate(fileInfo.date);
-  cardBody.appendChild(date);
+  authorDiv.appendChild(date);
+  cardBody.appendChild(authorDiv);
 
   card.appendChild(cardBody);
 
