@@ -23,6 +23,8 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
+  /* background-color: rgba(255, 255, 255, 0.4); 이 줄을 삭제하거나 */
+  background-color: rgba(255, 255, 255, 0); /* 또는 이렇게 투명도를 0으로 설정 */
   z-index: -1;
 }
 
@@ -36,240 +38,65 @@ body::after {
   -webkit-mask-image: url("../img/icon/icon-dropdown-menu.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-dropdown-menu.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#menu-button:hover, #menu-button.active {
-  background-color: #121314;
+  -webkit-mask-position: center;
 }
 
 #search-button {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
   align-items: center;
   background-color: #8d9299;
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-search.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#search-button:hover, #search-button.active {
-  background-color: #121314;
+  -webkit-mask-position: center;
 }
 
-.search-inp-btn {
-  width: 1.3125rem;
-  height: 1.3125rem;
+.search-cont .reset-inp-btn {
+  width: 1.75rem;
+  height: 1.75rem;
   display: flex;
   align-items: center;
   background-color: #d9dbe0;
+  -webkit-mask-image: url("../img/icon/icon-close.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.search-cont .search-inp-btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  background-color: #8d9299;
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-search.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-@media screen and (min-width: 768px) {
-  .search-inp-btn {
-    background-color: #47494d;
-  }
-}
-.search-inp-btn:hover, .search-inp-btn.active {
-  background-color: #47494d;
+  -webkit-mask-position: center;
 }
 
-.reset-inp-btn {
-  width: 1rem;
-  height: 1rem;
-  display: flex;
-  align-items: center;
-  background-color: #d9dbe0;
-  border-radius: 50%;
-}
-.reset-inp-btn::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: #f3f5fa;
-  -webkit-mask-image: url("../img/icon/icon-X.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-X.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-.reset-inp-btn:hover, .reset-inp-btn.active {
-  background-color: #47494d;
+
+/* 네비게이션 바 무지개 비눗방울 그라데이션 스타일 */
+.navbar-gradient {
+  /* 사용자가 생성한 그라데이션 코드 적용 */
+  background: linear-gradient(
+    37deg,
+    rgba(255, 255, 255, 0.4) 0%, /* 투명도를 0.4 정도로 낮춰 유리 느낌 유지 */
+    rgba(34, 193, 195, 0.4) 55%, /* 투명도 조절 */
+    rgba(134, 190, 127, 0.4) 82%, /* 투명도 조절 */
+    rgba(253, 187, 45, 0.4) 100% /* 투명도 조절 */
+  );
+  /* 기존의 Tailwind bg-white/20를 오버라이드. */
+  /* backdrop-filter는 배경 *뒤에* 적용되므로, 이 그라데이션 위에 유리 효과가 나타납니다. */
+  /* border, shadow 등 기존 스타일은 유지 */
+
+  /* 그라데이션과 기존 배경이 어떻게 혼합될지 결정합니다. (선택 사항) */
+  /* background-blend-mode: overlay; */ /* 오버레이 모드로 혼합 */
+  /* background-blend-mode: screen;  */ /* 스크린 모드로 혼합 (더 밝게) */
 }
 
-#copy-button {
-  width: 2.625rem;
-  height: 2.625rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#copy-button:hover::after, #copy-button.active::after {
-  background-color: #121314;
-}
-#copy-button::after {
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: #8d9299;
-  -webkit-mask-image: url("../img/icon/icon-copy.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-copy.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-
-#aside-button {
-  margin-left: auto;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#aside-button:active, #aside-button:focus {
-  outline: none;
-}
-#aside-button::after {
-  content: "";
-  width: 24px;
-  height: 24px;
-  margin: 13px;
-  border: 1px solid red;
-  background-color: #47494d;
-  -webkit-mask-image: url("../img/icon/icon-chapter.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-chapter.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-
-.active #aside-button::after {
-  background-color: #8d9299;
-  -webkit-mask-image: url("../img/icon/icon-side-close-right.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-side-close-right.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-
-#page-prev {
-  display: flex;
-}
-#page-prev::after {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background-color: #8d9299;
-  -webkit-mask-image: url("../img/icon/icon-prev.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-prev.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#page-prev:hover::after {
-  background-color: #47494d;
-  -webkit-mask-image: url("../img/icon/icon-prev.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-prev.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#page-prev:disabled::after {
-  background-color: #d9dbe0;
-  -webkit-mask-image: url("../img/icon/icon-prev.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-prev.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-
-#page-next {
-  display: flex;
-}
-#page-next::after {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background-color: #8d9299;
-  -webkit-mask-image: url("../img/icon/icon-next.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-next.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#page-next:hover::after {
-  background-color: #47494d;
-  -webkit-mask-image: url("../img/icon/icon-next.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-next.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}
-#page-next:disabled::after {
-  background-color: #d9dbe0;
-  -webkit-mask-image: url("../img/icon/icon-next.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-next.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}/*# sourceMappingURL=style.css.map */
-
-
-/* --- 상단 네비게이션 바 글래스 효과 수정 (index.html의 nav > div에 적용) --- */
-/* Tailwind CSS 클래스를 오버라이드하기 위해 !important를 사용했습니다. */
-nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 자식 div를 타겟팅 */
-    background: rgba(255, 255, 255, 0.05) !important; /* 투명도를 더 높여 더욱 맑게 */
-    backdrop-filter: blur(40px) saturate(250%) !important; /* 블러와 채도를 더 높여 강한 왜곡 및 물방울 느낌 강화 */
-    border: 1px solid rgba(255, 255, 255, 0.08) !important; /* 테두리 더 얇고 투명하게 */
-    box-shadow: 0 6px 25px 0 rgba(31, 38, 135, 0.12) !important; /* 그림자 더 은은하고 넓게 */
-}
 
 /* 완전 고도화된 Glassmorphism 카드 */
 .liquid-glass {
@@ -278,53 +105,109 @@ nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 �
   border-radius: 2rem;
   box-shadow:
     0 4px 16px 0 rgba(31,38,135,0.1), /* 그림자 더 약하게 */
-    0 1px 2px 0 rgba(255,255,255,0.1) inset; /* 내부 그림자도 약하게 */
-  backdrop-filter: blur(25px) saturate(180%); /* 왜곡 및 선명도 더 강하게 */
-  -webkit-backdrop-filter: blur(25px) saturate(180%);
-  border: none; /* 외곽선 완전히 제거 */
-  /* border-image는 외곽선 제거로 인해 불필요하므로 삭제 */
-  overflow: hidden;
-  transition: box-shadow 0.3s, transform 0.18s;
+    0 1px 1px 0 rgba(255,255,255,0.3) inset, /* 내부 그림자 더 부드럽게 */
+    0 -1px 1px 0 rgba(255,255,255,0.2) inset; /* 내부 그림자 더 부드럽게 */
+  border: 1px solid rgba(255,255,255,0.25); /* 테두리 더 얇고 투명하게 */
+  backdrop-filter: blur(20px) saturate(180%); /* 블러와 채도 더 높여 강한 왜곡 및 물방울 느낌 강화 */
+  -webkit-backdrop-filter: blur(20px) saturate(180%); /* 웹킷 브라우저 지원 */
+  overflow: hidden; /* 자식 요소가 넘치면 숨김 */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 부드러운 전환 효과 */
 }
 
-/* 빛 반사 하이라이트 (윗부분) - 완전히 제거 */
+/* Liquid Glass 카드 내부의 빛 반사 효과 (움직이는 물방울) */
 .liquid-glass::before {
-  content: "";
+  content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; height: 0%; /* 높이를 0으로 설정하여 제거 */
-  background: none; /* 배경색 제거 */
-  border-radius: 2rem 2rem 8rem 8rem / 2rem 2rem 4rem 4rem;
-  filter: blur(0px); /* 블러 제거 */
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.35) 0%, transparent 40%),
+              radial-gradient(circle at 90% 90%, rgba(255,255,255,0.35) 0%, transparent 40%);
+  opacity: 0.7;
+  pointer-events: none; /* 클릭 이벤트 방지 */
+  z-index: 1; /* 컨텐츠 위에 표시 */
+  animation: liquid-shine 8s infinite ease-in-out;
+}
+
+/* Liquid Glass 물방울 효과 (움직이는 물방울) */
+.liquid-glass-drop {
+  content: '';
+  position: absolute;
+  width: 50px; height: 50px;
+  background: radial-gradient(circle at 30% 35%, rgba(255,255,255,0.57) 0%, rgba(200,255,255,0.01) 100%);
+  border-radius: 50%;
+  left: 13%; top: 17%;
+  opacity: 0.45;
+  animation: waterdrop-move 4s infinite alternate;
+}
+.liquid-glass-scratch {
+  position: absolute;
+  width: 70px; height: 2px;
+  left: 60%; top: 21%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.17) 0%, rgba(180,220,255,0.07) 100%);
+  border-radius: 8px;
+  z-index: 4;
   pointer-events: none;
-  z-index: 2;
-  opacity: 0; /* 투명도 0으로 설정 */
+  opacity: 0.7;
+  transform: rotate(-8deg);
 }
 
-
-nav > div.bg-white\/20 {
-    background: rgba(255, 255, 255, 0.05) !important;
-    backdrop-filter: blur(40px) saturate(250%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 6px 25px 0 rgba(31, 38, 135, 0.12) !important;
+/* highlight 효과(hover시 빛 움직임) */
+.liquid-glass:hover::before {
+  background: linear-gradient(95deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.07) 100%);
+  filter: blur(3px);
 }
-*/
+.liquid-glass:active {
+  transform: scale(0.98) translateY(2px);
+  box-shadow:
+    0 2px 8px 0 rgba(31,38,135,0.1),
+    0 0 1px 0 rgba(255,255,255,0.3) inset,
+    0 0 1px 0 rgba(255,255,255,0.2) inset;
+}
 
-/* 네비게이션 바 무지개 비눗방울 그라데이션 스타일 */
-.navbar-gradient {
-  /* 비눗방울처럼 은은한 무지개 그라데이션 */
-  /* 각 색상의 rgba() 값에서 마지막 숫자(투명도)를 조절하여 강도를 조절하세요. */
-  /* backdrop-filter는 배경 *뒤에* 적용되므로, 이 그라데이션 위에 유리 효과가 나타납니다. */
-  background: linear-gradient(
-    90deg, /* 왼쪽에서 오른쪽으로 흐르는 그라데이션 */
-    rgba(255, 0, 0, 0.15),    /* Red - 약간의 투명도 */
-    rgba(255, 120, 0, 0.15),  /* Orange */
-    rgba(255, 200, 0, 0.15),  /* Yellow */
-    rgba(0, 200, 0, 0.15),    /* Green */
-    rgba(0, 120, 255, 0.15),  /* Blue */
-    rgba(100, 0, 200, 0.15),  /* Indigo/Violet */
-    rgba(255, 0, 200, 0.15)    /* Magenta/Pink */
-  );
-  /* 그라데이션과 기존 배경이 어떻게 혼합될지 결정합니다. (선택 사항) */
-  /* background-blend-mode: overlay; */ /* 오버레이 모드로 혼합 */
-  /* background-blend-mode: screen;  */ /* 스크린 모드로 혼합 (더 밝게) */
+/* 기타 Liquid Glass 애니메이션 키프레임 */
+@keyframes liquid-shine {
+  0%, 100% {
+    transform: translateX(-50%) translateY(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(50%) translateY(50%) rotate(180deg);
+  }
+}
+
+@keyframes waterdrop-move {
+  0% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(10px, -5px) scale(1.02); }
+  50% { transform: translate(20px, 0) scale(1); }
+  75% { transform: translate(10px, 5px) scale(0.98); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* mobile menu */
+#mobileMenu {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+/* blog list */
+.blog-list-card {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.blog-list-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.blog-list-card img {
+  border-radius: 8px;
+}
+
+/* aside */
+.category-aside aside ul li {
+  margin-bottom: 0.5rem;
+}
+
+.category-aside aside ul li:hover {
+  cursor: pointer;
+  color: var(--primary-color); /* mainColor 변수가 정의되었다고 가정 */
 }
