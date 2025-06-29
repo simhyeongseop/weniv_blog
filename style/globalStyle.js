@@ -58,70 +58,21 @@ const notebookcodeStyle = `font-mono text-base bg-graylv1`;
 const notebookcopyButtonStyle = `border border-lv2 copy-button bg-white rounded-[10px] opacity-70 absolute top-5 right-5 p-2 shadow-md`;
 const notebookdownloadButtonStyle = `download-button px-5 py-[11px] mb-4 text-sm font-medium text-white bg-primary rounded-[10px] hover:bg-primary`;
 
-// 🟦 blog list cards (메인카드: 3col 한줄, 내부 가로배치, glass, 불투명 메뉴 스타일)
-const bloglistFirstCardStyle =
-  "col-span-3 h-[260px] flex flex-row items-stretch overflow-hidden rounded-3xl bg-white/70 backdrop-blur-xl shadow-2xl border border-white/40 transition-transform hover:scale-[1.01]";
+// blog list cards (원래 레이아웃/스타일)
+const bloglistFirstCardStyle = `lg:col-span-3 md:col-span-2 col-span-1 h-auto overflow-hidden bg-white flex md:flex-row flex-col flex-1 md:mb-[20px] cursor-pointer rounded-lg shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistFirstCardImgStyle = `w-full object-cover object-center rounded-2xl overflow-hidden md:h-auto h-[200px] md:w-[49%] lg:w-[52%] shrink-0 mr-8 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistFirstCardDescriptionStyle = `text-graylv4 text-base font-normal leading-snug md:max-h-40 md:line-clamp-[7] line-clamp-3 mb-3`;
 
-// 썸네일: 왼쪽 2/3, 세로가득, 둥근 모서리
-const bloglistFirstCardImgStyle =
-  "flex-[2] w-0 h-full object-cover object-center rounded-l-3xl";
-
-// 본문(제목/설명/작성자): 오른쪽 1/3, 불투명 배경, 세로 정렬, 메뉴 바 스타일
-const bloglistFirstCardBodyStyle =
-  "flex-[1] w-0 flex flex-col justify-center px-8 py-6 gap-2 bg-white/70 backdrop-blur-xl rounded-r-3xl";
-
-// 메인카드 내 세부 요소
-const bloglistFirstCardCategoryStyle =
-  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap";
-
-const bloglistFirstCardTitleStyle =
-  "font-bold text-2xl mb-2 text-gray-900";
-
-const bloglistFirstCardDescriptionStyle =
-  "text-gray-700 text-base font-normal leading-snug line-clamp-3 mb-2";
-
-const bloglistFirstCardAuthorDivStyle =
-  "flex items-center gap-2 mt-auto";
-
-const bloglistFirstCardAuthorImgStyle =
-  "w-7 h-7 rounded-full object-cover border border-white/70 shadow";
-
-const bloglistFirstCardAuthorStyle =
-  "text-xs text-gray-800 font-medium";
-
-const bloglistFirstCardDateStyle =
-  "text-xs text-gray-400";
-
-// 🟦 일반카드 (아래쪽 리스트, glass 스타일)
-const bloglistCardStyle =
-  "col-span-1 min-h-[260px] flex flex-col overflow-hidden cursor-pointer rounded-2xl bg-white/25 backdrop-blur-lg border border-white/30 shadow-xl relative transition-transform hover:scale-105 hover:shadow-2xl";
-
-const bloglistCardImgStyle =
-  "w-full h-[130px] object-cover object-center rounded-t-2xl shadow-md";
-
-const bloglistCardBodyStyle =
-  "flex-1 flex flex-col justify-between z-10 bg-white/70 backdrop-blur-xl rounded-b-2xl p-6 shadow-lg";
-
-const bloglistCardTitleStyle =
-  "font-bold text-lg mb-1 text-gray-900";
-
-const bloglistCardCategoryStyle =
-  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap";
-
-const bloglistCardDescriptionStyle =
-  "text-gray-700 text-sm font-normal leading-snug line-clamp-2 mb-2";
-
-const bloglistCardAuthorDivStyle =
-  "flex items-center gap-2 mt-auto";
-
-const bloglistCardAuthorImgStyle =
-  "w-7 h-7 rounded-full object-cover object-center border border-white/60 shadow";
-
-const bloglistCardAuthorStyle =
-  "text-xs text-gray-800 font-medium";
-
-const bloglistCardDateStyle =
-  "text-xs text-gray-400";
+const bloglistCardStyle = `lg:max-w-sm overflow-hidden bg-white cursor-pointer col-span-1 w-auto rounded-lg shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardImgStyle = `w-full h-[200px] object-cover object-center rounded-2xl overflow-hidden shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardBodyStyle = `py-4`;
+const bloglistCardTitleStyle = `font-bold text-2xl mb-3`;
+const bloglistCardCategoryStyle = `inline-block bg-activation text-primary md:text-sm font-medium mb-3 px-3 py-1.5 tracking-wide rounded-full shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardDescriptionStyle = `text-graylv4 text-base font-normal leading-snug h-16 line-clamp-3 mb-3`;
+const bloglistCardAuthorDivStyle = `inline-block`;
+const bloglistCardAuthorImgStyle = `inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden`;
+const bloglistCardAuthorStyle = `inline text-sm font-semibold text-black mr-2`;
+const bloglistCardDateStyle = `text-graylv3 text-sm inline-block font-normal`;
 
 
 // search input
