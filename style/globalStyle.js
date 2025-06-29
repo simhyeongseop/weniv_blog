@@ -94,7 +94,7 @@ const bloglistFirstCardDateStyle =
 
 // 🟦 일반카드 (아래쪽 리스트, glass 스타일)
 const bloglistCardStyle =
-  "col-span-1 h-[260px] flex flex-col overflow-hidden cursor-pointer rounded-2xl bg-white/25 backdrop-blur-lg border border-white/30 shadow-xl relative transition-transform hover:scale-105 hover:shadow-2xl";
+  "col-span-1 min-h-[260px] flex flex-col overflow-hidden cursor-pointer rounded-2xl bg-white/25 backdrop-blur-lg border border-white/30 shadow-xl relative transition-transform hover:scale-105 hover:shadow-2xl";
 
 const bloglistCardImgStyle =
   "w-full h-[130px] object-cover object-center rounded-t-2xl shadow-md";
@@ -106,7 +106,7 @@ const bloglistCardTitleStyle =
   "font-bold text-lg mb-1 text-gray-900";
 
 const bloglistCardCategoryStyle =
-  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow";
+  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap"; // px-3로 padding 조절
 
 const bloglistCardDescriptionStyle =
   "text-gray-700 text-sm font-normal leading-snug line-clamp-2 mb-2";
