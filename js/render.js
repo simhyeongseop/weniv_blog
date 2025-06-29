@@ -1,3 +1,11 @@
+// render.js
+// URLparsing.js에 있는 origin과 isLocal 변수를 사용하기 위해 선언
+// (만약 다른 파일에서 import/export 방식으로 모듈화한다면 이 부분은 필요 없어집니다.)
+// 현재는 전역 변수로 가정하고 진행합니다.
+// const url = new URL(window.location.href);
+// const origin = url.origin + url.pathname;
+// const isLocal = url.hostname === "127.0.0.1" || url.hostname === "localhost";
+
 function search(keyword, kinds) {
   /*
     트러블슈팅: 실제 데이터가 없을 경우 API 호출을 한 번 실행.
@@ -94,7 +102,8 @@ function renderMenu() {
     liEl.onclick = () => {
       window.location.href = `?menu=${menu.name}`;
     };
-    liEl.innerText = menu.name;
+    // ★ .md 확장자 제거
+    liEl.innerText = menu.name.endsWith('.md') ? menu.name.slice(0, -3) : menu.name;
 
     if (mobileMenuEl) {
       mobileMenuEl.appendChild(liEl.cloneNode(true)); // 모바일 메뉴에 추가 (클론하여 독립적으로)
@@ -252,6 +261,7 @@ async function initialize() {
       );
   } else {
     // 기본적으로 첫 페이지의 블로그 포스트 렌더링
+    // postsPerPage와 currentPage는 전역 변수 또는 config.js에 정의되어야 합니다.
     renderBlogList(blogList.slice(0, postsPerPage));
     renderPagination(blogList.length, postsPerPage);
   }
