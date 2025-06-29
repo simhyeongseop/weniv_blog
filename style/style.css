@@ -23,18 +23,18 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  /* background-color: rgba(255, 255, 255, 0.4); 이 줄을 삭제하거나 */
-  background-color: rgba(255, 255, 255, 0); /* 또는 이렇게 투명도를 0으로 설정 */
+  background-color: rgba(255, 255, 255, 0); /* 투명도를 0으로 설정하여 오버레이 제거 */
   z-index: -1;
 }
 
-
+/* ★ 아이콘 배경색 수정: 아이콘이 검은색으로 보이는 문제 해결 */
 #menu-button {
   width: 1.75rem;
   height: 1.75rem;
   display: flex;
   align-items: center;
-  background-color: #8d9299;
+  /* background-color: #8d9299;  이전 색상 제거 */
+  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
   -webkit-mask-image: url("../img/icon/icon-dropdown-menu.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -46,7 +46,8 @@ body::after {
   height: 1.75rem;
   display: flex;
   align-items: center;
-  background-color: #8d9299;
+  /* background-color: #8d9299;  이전 색상 제거 */
+  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -58,7 +59,8 @@ body::after {
   height: 1.75rem;
   display: flex;
   align-items: center;
-  background-color: #d9dbe0;
+  /* background-color: #d9dbe0; 이전 색상 제거 */
+  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
   -webkit-mask-image: url("../img/icon/icon-close.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -70,15 +72,15 @@ body::after {
   height: 1.75rem;
   display: flex;
   align-items: center;
-  background-color: #8d9299;
+  /* background-color: #8d9299; 이전 색상 제거 */
+  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
 }
 
-
-/* 네비게이션 바 무지개 비눗방울 그라데이션 스타일 */
+/* ★ 네비게이션 바 무지개 비눗방울 그라데이션 스타일 */
 .navbar-gradient {
   /* 사용자가 생성한 그라데이션 코드 적용 */
   background: linear-gradient(
@@ -88,15 +90,8 @@ body::after {
     rgba(134, 190, 127, 0.4) 82%, /* 투명도 조절 */
     rgba(253, 187, 45, 0.4) 100% /* 투명도 조절 */
   );
-  /* 기존의 Tailwind bg-white/20를 오버라이드. */
   /* backdrop-filter는 배경 *뒤에* 적용되므로, 이 그라데이션 위에 유리 효과가 나타납니다. */
-  /* border, shadow 등 기존 스타일은 유지 */
-
-  /* 그라데이션과 기존 배경이 어떻게 혼합될지 결정합니다. (선택 사항) */
-  /* background-blend-mode: overlay; */ /* 오버레이 모드로 혼합 */
-  /* background-blend-mode: screen;  */ /* 스크린 모드로 혼합 (더 밝게) */
 }
-
 
 /* 완전 고도화된 Glassmorphism 카드 */
 .liquid-glass {
@@ -133,7 +128,7 @@ body::after {
   content: '';
   position: absolute;
   width: 50px; height: 50px;
-  background: radial-gradient(circle at 30% 35%, rgba(255,255,255,0.57) 0%, rgba(200,255,255,0.01) 100%);
+  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.57) 0%, rgba(200,255,255,0.01) 100%);
   border-radius: 50%;
   left: 13%; top: 17%;
   opacity: 0.45;

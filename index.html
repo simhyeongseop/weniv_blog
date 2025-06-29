@@ -55,44 +55,25 @@
     <header class="relative z-20">
       <nav
         class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative
-        bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4"
+        backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4 navbar-gradient"
       >
-        <h1
-          id="blog-title"
-          class="mr-auto cursor-pointer
-          bg-white/30 backdrop-blur-xl rounded-xl px-4 py-2 shadow-inner border border-white/30
-          flex items-center justify-center h-[56px] md:h-[64px]"
-        >
-          <img
-            src="img/logo.png"
-            alt="심형섭 블로그"
-            class="h-full w-auto max-w-full object-contain"
-          />
-        </h1>
-        <div class="md:hidden w-10 h-10 flex items-center justify-center ml-2">
-          <button id="menu-button"
-            class="bg-white/30 backdrop-blur-xl border border-white/40 shadow-md rounded-full p-2 flex items-center justify-center"
-            aria-label="메뉴 열기"
-          >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <rect x="5" y="8" width="18" height="2.5" rx="1" fill="#888"/>
-              <rect x="5" y="13" width="18" height="2.5" rx="1" fill="#888"/>
-              <rect x="5" y="18" width="18" height="2.5" rx="1" fill="#888"/>
-            </svg>
-          </button>
-        </div>
-
-        <div id="menu" class="hidden md:flex items-center gap-4
-            bg-white/20 backdrop-blur-xl border border-white/30 shadow-md rounded-xl px-4 py-2 ml-8">
-          </div>
-
-        <button id="search-button" class="ml-6 md:hidden flex
-          bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
+        <button
+          id="search-button"
+          class="ml-6 md:hidden flex
+                bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
           aria-label="검색창 열기"
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <circle cx="10" cy="10" r="7" stroke="#888" stroke-width="2"/>
-            <rect x="15" y="15" width="5" height="2" rx="1" fill="#888" transform="rotate(45 15 15)"/>
+            <circle cx="10" cy="10" r="7" stroke="#888" stroke-width="2" />
+            <rect
+              x="15"
+              y="15"
+              width="5"
+              height="2"
+              rx="1"
+              fill="#888"
+              transform="rotate(45 15 15)"
+            />
           </svg>
         </button>
 
@@ -112,7 +93,7 @@
             <button class="reset-inp-btn hidden">
               <span class="sr-only">검색어 초기화</span>
             </button>
-            <button class="search-inp-btn">
+            <button class="search-inp-btn" style="display: none;">
               <span class="sr-only">검색하기</span>
             </button>
           </div>
