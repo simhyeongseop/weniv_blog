@@ -6,13 +6,18 @@
     <link rel="shortcut icon" href="img/icon/favicon.svg" type="image/x-icon" />
     <title>Weniv Blog</title>
 
+    <!-- marked -->
     <script src="./library/marked.min.js"></script>
+
+    <!-- hightlight.js -->
     <link rel="stylesheet" href="./library/highlight_default.min.css" />
     <script src="./library/highlight_highlight.min.js"></script>
     <link rel="stylesheet" href="./library/highlight_ally-light.min.css" />
 
-    <link rel="stylesheet" href="style/style.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href=" style/style.css" />
 
+    <!-- tailwind -->
     <script src="./library/tailwind-3.4.1.js"></script>
     <script>
       tailwind.config = {
@@ -34,105 +39,107 @@
         },
       };
     </script>
+    <!-- // tailwind -->
+
     <style>
       @keyframes slideDown {
         from {
-          transform: translateY(-100%);
+          transition: all 1s;
+          height: 0px;
+          opacity: 0;
         }
         to {
-          transform: translateY(0);
+          opacity: 1;
+          height: 60px;
         }
+      }
+      .markdown-cell > ul > li > p {
+        display: inline-block;
       }
     </style>
   </head>
-  <body>
-    <header class="relative z-20">
+  <body class="font-sans w-full text-surface">
+    <header class="relative bg-white mx-auto border-b border-gray-300">
       <nav
-        class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative
-          backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4 navbar-gradient"
+        class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative"
       >
+        <!-- 블로그 제목 영역 -->
         <h1
           id="blog-title"
-          class="mr-auto cursor-pointer
-            bg-white/30 backdrop-blur-xl rounded-xl px-4 py-2 shadow-inner border border-white/30
-            flex items-center justify-center h-[56px] md:h-[64px]"
+          class="md:text-2xl text-lg leading-6 mr-auto font-semibold text-gray-900 cursor-pointer"
         >
-          <img
-            src="img/blog-logo.png"
-            alt="심형섭 블로그"
-            class="h-full w-auto max-w-full object-contain"
-          />
+          WENIVLOG
         </h1>
-        <div
-          class="md:hidden w-10 h-10 flex items-center justify-center ml-2"
-        >
-          <button id="menu-button" aria-label="메뉴 열기">
-            <span class="sr-only">메뉴</span>
+        <!-- // 블로그 제목 영역 -->
+
+        <!-- 메뉴 영역 -->
+        <div class="md:hidden w-6 h-6">
+          <button id="menu-button">
+            <span class="sr-only">메뉴 열기</span>
           </button>
         </div>
-        <div id="menu" class="hidden md:flex items-center gap-4">
-          </div>
-        <button
-          id="search-button"
-          class="ml-6 md:hidden flex
-            bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
-          aria-label="검색창 열기"
-        >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-            <circle cx="10" cy="10" r="7" stroke="#888" stroke-width="2" />
-            <rect
-              x="15"
-              y="15"
-              width="5"
-              height="2"
-              rx="1"
-              fill="#888"
-              transform="rotate(45 15 15)"
-            />
-          </svg>
+
+        <div id="menu" class="hidden md:flex items-center">
+          <!-- 메뉴 아이템들 -->
+        </div>
+
+        <button id="search-button" class="ml-10 md:hidden flex">
+          <span class="sr-only">검색창 열기</span>
         </button>
 
         <div
-          class="search-cont w-80 hidden md:block md:relative absolute z-10 rounded-2xl p-4 border border-graylv2 bottom-[-12px] right-2 xl:right-0 translate-y-full bg-white/40 backdrop-blur-xl max-w-full box-border md:p-0 md:top-0 md:right-0 md:border-0 md:translate-y-0 md:w-80 md:ml-10"
+          class="search-cont w-80 hidden md:block md:relative absolute z-10 rounded-2xl p-4 border border-graylv2 bottom-[-12px] right-2 xl:right-0 translate-y-full bg-background w-96 max-w-full box-border md:p-0 md:top-0 md:right-0 md:border-0 md:translate-y-0 md:w-80 md:ml-10"
         >
           <label for="search-input">
             <input
               type="text"
               id="search-input"
-              class="search-input bg-white/70 backdrop-blur-xl rounded-[10px] px-5 py-2.5 placeholder:font-normal placeholder:text-graylv3 focus:outline-0 shadow-sm w-full"
+              class="search-input bg-graylv1 rounded-[10px] px-5 py-2.5 placeholder:font-normal placehoder:text-graylv3 focus:outline-0 shadow-sm w-full"
               placeholder="Keyword"
           /></label>
           <div
-            class="btn-cont flex gap-2 justify-center items-center absolute top-1/2 md:right-4 right-8 -translate-y-1/2"
+            class="btn-cont flex gap-2 justify-cetner items-center absolute top-1/2 md:right-4 right-8 -translate-y-1/2"
           >
             <button class="reset-inp-btn hidden">
               <span class="sr-only">검색어 초기화</span>
             </button>
-            <button class="search-inp-btn md:hidden">
+            <button class="search-inp-btn">
               <span class="sr-only">검색하기</span>
             </button>
           </div>
         </div>
-        </nav>
+        <!-- // 메뉴 영역 -->
+      </nav>
+      <!-- 모바일에서 메뉴 영역이 보이도록 하는 영역 -->
       <div
         id="mobileMenu"
-        class="absolute bg-white/70 backdrop-blur-xl w-full max-w-[1190px] border-b border-white/30 z-10 md:hidden rounded-b-2xl"
+        class="absolute bg-background w-full max-w-[1190px] border-b border-graylv2 z-10 md:hidden"
       ></div>
+      <!-- // 모바일에서 메뉴 영역이 보이도록 하는 영역 -->
     </header>
+
     <main class="container p-8 pb-4 w-full mx-auto max-w-[1190px] md:pt-[60px]">
+      <!-- 블로그 포스트 리스트 영역 -->
       <div
         id="blog-posts"
         class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-[25px] lg:gap-y-10 gap-y-4 mb-20"
       ></div>
+      <!-- // 블로그 포스트 리스트 영역-->
+
+      <!-- contents 영역 -->
       <div
         id="contents"
-        class="mt-6 mb-28 max-w-[990px] mx-auto"
+        class="mt-6 mb-28 grid-cols-3 max-w-[990px] mx-auto"
       ></div>
+      <!-- // contents 영역-->
+
+      <!-- pagination -->
       <div id="pagination"></div>
     </main>
 
+    <!-- category 검색 영역 -->
     <section
-      class="category-aside hidden md:flex flex-col border border-graylv2 bg-white rounded-[10px] fixed top-32 right-8 overflow-y-auto w-fit h-fit"
+      class="category-aside hidden md:flex flex-col border border-graylv2 bg-white rounded-[10px] fixed top-24 right-8 overflow-y-auto w-fit h-fit"
     >
       <header class="flex items-center">
         <h2 class="aside-tit sr-only text-sm font-semibold ml-5">content</h2>
@@ -142,30 +149,27 @@
       </header>
       <aside></aside>
     </section>
+    <!-- // category 검색 영역 -->
+
+    <!-- utils -->
     <script src="js/utils.js"></script>
+    <!-- convert ipynb to html -->
     <script src="style/convertIpynbToHtml.js"></script>
 
+    <!-- style -->
     <script src="style/globalStyle.js"></script>
     <script src="style/blogContentsStyle.js"></script>
 
-    <script>
-      const menuButton = document.getElementById("menu-button");
-      const mobileMenu = document.getElementById("mobileMenu");
+    <!-- mobile menu toggle -->
+    <script src="js/mobileMenuToggle.js"></script>
 
-      // 초기 상태: 모바일 메뉴 숨김
-      mobileMenu.style.display = "none";
-
-      menuButton.addEventListener("click", () => {
-        if (mobileMenu.style.display === "none") {
-          mobileMenu.style.display = "block";
-        } else {
-          mobileMenu.style.display = "none";
-        }
-      });
-    </script>
+    <!-- lender -->
     <script src="config.js"></script>
+    <script src="js/URLparsing.js"></script>
     <script src="js/initData.js"></script>
     <script src="js/render.js"></script>
-    <script src="js/URLparsing.js"></script>
-    </body>
+
+    <!-- registry -->
+    <script src="js/registry.js"></script>
+  </body>
 </html>
