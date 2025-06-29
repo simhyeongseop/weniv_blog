@@ -170,10 +170,23 @@ async function renderMenu() {
 
 function createCardElement(fileInfo, index) {
   let card;
-  // 🟦 메인카드(첫 번째)
+  // 🟦 메인카드(첫번째)
   if (index === 0) {
     card = document.createElement("div");
     card.classList.add(...bloglistFirstCardStyle.split(" "), "liquid-glass");
+
+    // Glass 배경/반사/물방울/스크래치
+    const glassBg = document.createElement('div');
+    glassBg.className = 'liquid-glass-bg';
+    card.appendChild(glassBg);
+
+    const waterdrop = document.createElement('div');
+    waterdrop.className = 'liquid-glass-waterdrop';
+    card.appendChild(waterdrop);
+
+    const scratch = document.createElement('div');
+    scratch.className = 'liquid-glass-scratch';
+    card.appendChild(scratch);
 
     // 썸네일
     if (fileInfo.thumbnail) {
@@ -237,6 +250,19 @@ function createCardElement(fileInfo, index) {
   card = document.createElement("div");
   card.classList.add(...bloglistCardStyle.split(" "), "liquid-glass");
 
+  // Glass 배경/반사/물방울/스크래치
+  const glassBg = document.createElement('div');
+  glassBg.className = 'liquid-glass-bg';
+  card.appendChild(glassBg);
+
+  const waterdrop = document.createElement('div');
+  waterdrop.className = 'liquid-glass-waterdrop';
+  card.appendChild(waterdrop);
+
+  const scratch = document.createElement('div');
+  scratch.className = 'liquid-glass-scratch';
+  card.appendChild(scratch);
+
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
@@ -288,7 +314,6 @@ function createCardElement(fileInfo, index) {
 
   return card;
 }
-
 
 function renderBlogList(searchResult = null, currentPage = 1) {
   /*
