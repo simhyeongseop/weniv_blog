@@ -11,7 +11,7 @@ const siteConfig = {
 // 여러명의 저자가 글을 쓸 경우 프로필 설정, default는 0번째 사용자
 // 저자는 파일에서 숫자로 사용해야 함
 const users = [
-  {\
+  {
     id: 0, // default author
     username: "심형섭",
     company: "충남대학교",
