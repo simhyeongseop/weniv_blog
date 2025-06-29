@@ -35,7 +35,6 @@ body::after {
   align-items: center;
   /* background-color: #8d9299;  이전 색상 제거 */
   background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
-  -webkit-mask-image: url("../img/icon/icon-dropdown-menu.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -48,7 +47,6 @@ body::after {
   align-items: center;
   /* background-color: #8d9299;  이전 색상 제거 */
   background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
-  -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -61,7 +59,6 @@ body::after {
   align-items: center;
   /* background-color: #d9dbe0; 이전 색상 제거 */
   background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
-  -webkit-mask-image: url("../img/icon/icon-close.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -74,7 +71,6 @@ body::after {
   align-items: center;
   /* background-color: #8d9299; 이전 색상 제거 */
   background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
-  -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center;
