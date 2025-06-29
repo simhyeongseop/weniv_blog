@@ -262,6 +262,7 @@ body::after {
   mask-position: center center;
 }/*# sourceMappingURL=style.css.map */
 
+
 /* 완전 고도화된 Glassmorphism 카드 */
 .liquid-glass {
   position: relative;
@@ -365,3 +366,4 @@ body::after {
   pointer-events: none;
   border-radius: 2rem;
 }
+
