@@ -263,6 +263,15 @@ body::after {
 }/*# sourceMappingURL=style.css.map */
 
 
+/* --- 상단 네비게이션 바 글래스 효과 수정 (index.html의 nav > div에 적용) --- */
+/* Tailwind CSS 클래스를 오버라이드하기 위해 !important를 사용했습니다. */
+nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 자식 div를 타겟팅 */
+    background: rgba(255, 255, 255, 0.08) !important; /* 더 맑고 투명하게 조정 */
+    backdrop-filter: blur(30px) saturate(200%) !important; /* 왜곡 및 선명도 더 강하게 (물방울 느낌) */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* 테두리 더 얇고 투명하게 */
+    box-shadow: 0 4px 20px 0 rgba(31, 38, 135, 0.1) !important; /* 그림자 더 약하게 */
+}
+
 /* 완전 고도화된 Glassmorphism 카드 */
 .liquid-glass {
   position: relative;
