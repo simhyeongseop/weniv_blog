@@ -1,204 +1,233 @@
-/* style/style.css */
-/* 우선 기존 body 배경은 제거하고, pseudo-element 로 대체합니다. */
-body {
-  position: relative;
-  overflow-x: hidden; /* 가끔 스크롤바 생기면 방지 */
-}
-
-/* background.jpg 를 pseudo-element 로 담당시키고 필터/overlay 적용 */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0; /* top:0; left:0; right:0; bottom:0; */
-  /* 원래 배경 이미지 */
-  background: url('/weniv_blog/img/background.jpg') center/cover fixed;
-  /* 톤 다운용 블러 + 밝기 조절 */
-  filter: brightness(0.8) blur(1px);
-  z-index: -2; /* 모든 컨텐츠 뒤에 */
-}
-
-/* 그 위에 흰색 반투명 오버레이 */
-/* opacity 값으로 강도를 조절하세요 (0.3~0.6 사이 추천) */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-color: rgba(255, 255, 255, 0); /* 투명도를 0으로 설정하여 오버레이 제거 */
-  z-index: -1;
-}
-
-/* ★ 아이콘 배경색 수정: 아이콘이 검은색으로 보이는 문제 해결 */
 #menu-button {
   width: 1.75rem;
   height: 1.75rem;
   display: flex;
   align-items: center;
-  /* background-color: #8d9299;  이전 색상 제거 */
-  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-dropdown-menu.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-dropdown-menu.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}
+#menu-button:hover, #menu-button.active {
+  background-color: #121314;
 }
 
 #search-button {
-  width: 1.75rem;
-  height: 1.75rem;
-  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
   align-items: center;
-  /* background-color: #8d9299;  이전 색상 제거 */
-  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-search.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}
+#search-button:hover, #search-button.active {
+  background-color: #121314;
 }
 
-.search-cont .reset-inp-btn {
-  width: 1.75rem;
-  height: 1.75rem;
+.search-inp-btn {
+  width: 1.3125rem;
+  height: 1.3125rem;
   display: flex;
   align-items: center;
-  /* background-color: #d9dbe0; 이전 색상 제거 */
-  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
+  background-color: #d9dbe0;
+  -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-search.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}
+@media screen and (min-width: 768px) {
+  .search-inp-btn {
+    background-color: #47494d;
+  }
+}
+.search-inp-btn:hover, .search-inp-btn.active {
+  background-color: #47494d;
 }
 
-.search-cont .search-inp-btn {
-  width: 1.75rem;
-  height: 1.75rem;
+.reset-inp-btn {
+  width: 1rem;
+  height: 1rem;
   display: flex;
   align-items: center;
-  /* background-color: #8d9299; 이전 색상 제거 */
-  background-color: transparent; /* 아이콘 자체 배경을 투명하게 */
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-}
-
-/* ★ 네비게이션 바 무지개 비눗방울 그라데이션 스타일 */
-.navbar-gradient {
-  /* 사용자가 생성한 그라데이션 코드 적용 */
-  background: linear-gradient(
-    37deg,
-    rgba(255, 255, 255, 0.4) 0%, /* 투명도를 0.4 정도로 낮춰 유리 느낌 유지 */
-    rgba(34, 193, 195, 0.4) 55%, /* 투명도 조절 */
-    rgba(134, 190, 127, 0.4) 82%, /* 투명도 조절 */
-    rgba(253, 187, 45, 0.4) 100% /* 투명도 조절 */
-  );
-  /* backdrop-filter는 배경 *뒤에* 적용되므로, 이 그라데이션 위에 유리 효과가 나타납니다. */
-}
-
-/* 완전 고도화된 Glassmorphism 카드 */
-.liquid-glass {
-  position: relative;
-  background: rgba(255,255,255,0.1); /* 더 맑고 투명하게 조정 */
-  border-radius: 2rem;
-  box-shadow:
-    0 4px 16px 0 rgba(31,38,135,0.1), /* 그림자 더 약하게 */
-    0 1px 1px 0 rgba(255,255,255,0.3) inset, /* 내부 그림자 더 부드럽게 */
-    0 -1px 1px 0 rgba(255,255,255,0.2) inset; /* 내부 그림자 더 부드럽게 */
-  border: 1px solid rgba(255,255,255,0.25); /* 테두리 더 얇고 투명하게 */
-  backdrop-filter: blur(20px) saturate(180%); /* 블러와 채도 더 높여 강한 왜곡 및 물방울 느낌 강화 */
-  -webkit-backdrop-filter: blur(20px) saturate(180%); /* 웹킷 브라우저 지원 */
-  overflow: hidden; /* 자식 요소가 넘치면 숨김 */
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 부드러운 전환 효과 */
-}
-
-/* Liquid Glass 카드 내부의 빛 반사 효과 (움직이는 물방울) */
-.liquid-glass::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.35) 0%, transparent 40%),
-              radial-gradient(circle at 90% 90%, rgba(255,255,255,0.35) 0%, transparent 40%);
-  opacity: 0.7;
-  pointer-events: none; /* 클릭 이벤트 방지 */
-  z-index: 1; /* 컨텐츠 위에 표시 */
-  animation: liquid-shine 8s infinite ease-in-out;
-}
-
-/* Liquid Glass 물방울 효과 (움직이는 물방울) */
-.liquid-glass-drop {
-  content: '';
-  position: absolute;
-  width: 50px; height: 50px;
-  background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.57) 0%, rgba(200,255,255,0.01) 100%);
+  background-color: #d9dbe0;
   border-radius: 50%;
-  left: 13%; top: 17%;
-  opacity: 0.45;
-  animation: waterdrop-move 4s infinite alternate;
 }
-.liquid-glass-scratch {
-  position: absolute;
-  width: 70px; height: 2px;
-  left: 60%; top: 21%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.17) 0%, rgba(180,220,255,0.07) 100%);
-  border-radius: 8px;
-  z-index: 4;
-  pointer-events: none;
-  opacity: 0.7;
-  transform: rotate(-8deg);
+.reset-inp-btn::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #f3f5fa;
+  -webkit-mask-image: url("../img/icon/icon-X.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-X.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
-
-/* highlight 효과(hover시 빛 움직임) */
-.liquid-glass:hover::before {
-  background: linear-gradient(95deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.07) 100%);
-  filter: blur(3px);
-}
-.liquid-glass:active {
-  transform: scale(0.98) translateY(2px);
-  box-shadow:
-    0 2px 8px 0 rgba(31,38,135,0.1),
-    0 0 1px 0 rgba(255,255,255,0.3) inset,
-    0 0 1px 0 rgba(255,255,255,0.2) inset;
+.reset-inp-btn:hover, .reset-inp-btn.active {
+  background-color: #47494d;
 }
 
-/* 기타 Liquid Glass 애니메이션 키프레임 */
-@keyframes liquid-shine {
-  0%, 100% {
-    transform: translateX(-50%) translateY(-50%) rotate(0deg);
-  }
-  50% {
-    transform: translateX(50%) translateY(50%) rotate(180deg);
-  }
+#copy-button {
+  width: 2.625rem;
+  height: 2.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#copy-button:hover::after, #copy-button.active::after {
+  background-color: #121314;
+}
+#copy-button::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-copy.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-copy.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
 
-@keyframes waterdrop-move {
-  0% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(10px, -5px) scale(1.02); }
-  50% { transform: translate(20px, 0) scale(1); }
-  75% { transform: translate(10px, 5px) scale(0.98); }
-  100% { transform: translate(0, 0) scale(1); }
+#aside-button {
+  margin-left: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#aside-button:active, #aside-button:focus {
+  outline: none;
+}
+#aside-button::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  margin: 13px;
+  border: 1px solid red;
+  background-color: #47494d;
+  -webkit-mask-image: url("../img/icon/icon-chapter.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-chapter.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
 
-/* mobile menu */
-#mobileMenu {
-  animation: slideDown 0.3s ease-out forwards;
+.active #aside-button::after {
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-side-close-right.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-side-close-right.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
 
-/* blog list */
-.blog-list-card {
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+#page-prev {
+  display: flex;
+}
+#page-prev::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-prev.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-prev.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}
+#page-prev:hover::after {
+  background-color: #47494d;
+  -webkit-mask-image: url("../img/icon/icon-prev.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-prev.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}
+#page-prev:disabled::after {
+  background-color: #d9dbe0;
+  -webkit-mask-image: url("../img/icon/icon-prev.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-prev.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
 
-.blog-list-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+#page-next {
+  display: flex;
 }
-
-.blog-list-card img {
-  border-radius: 8px;
+#page-next::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #8d9299;
+  -webkit-mask-image: url("../img/icon/icon-next.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-next.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
-
-/* aside */
-.category-aside aside ul li {
-  margin-bottom: 0.5rem;
+#page-next:hover::after {
+  background-color: #47494d;
+  -webkit-mask-image: url("../img/icon/icon-next.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-next.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
-
-.category-aside aside ul li:hover {
-  cursor: pointer;
-  color: var(--primary-color); /* mainColor 변수가 정의되었다고 가정 */
-}
+#page-next:disabled::after {
+  background-color: #d9dbe0;
+  -webkit-mask-image: url("../img/icon/icon-next.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-next.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+}/*# sourceMappingURL=style.css.map */
