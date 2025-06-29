@@ -58,21 +58,22 @@ const notebookcodeStyle = `font-mono text-base bg-graylv1`;
 const notebookcopyButtonStyle = `border border-lv2 copy-button bg-white rounded-[10px] opacity-70 absolute top-5 right-5 p-2 shadow-md`;
 const notebookdownloadButtonStyle = `download-button px-5 py-[11px] mb-4 text-sm font-medium text-white bg-primary rounded-[10px] hover:bg-primary`;
 
-// blog list cards (원래 레이아웃/스타일)
-const bloglistFirstCardStyle = `lg:col-span-3 md:col-span-2 col-span-1 h-auto overflow-hidden bg-white flex md:flex-row flex-col flex-1 md:mb-[20px] cursor-pointer rounded-lg shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
-const bloglistFirstCardImgStyle = `w-full object-cover object-center rounded-2xl overflow-hidden md:h-auto h-[200px] md:w-[49%] lg:w-[52%] shrink-0 mr-8 shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+// blog list cards (최소화, 오리지널 스타일)
+const bloglistFirstCardStyle = `lg:col-span-3 md:col-span-2 col-span-1 h-auto overflow-hidden bg-white flex md:flex-row flex-col flex-1 md:mb-[20px] cursor-pointer rounded-2xl shadow-lg transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistFirstCardImgStyle = `w-full object-cover object-center rounded-2xl overflow-hidden md:h-auto h-[200px] md:w-[49%] lg:w-[52%] shrink-0 mr-8 shadow-lg transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
 const bloglistFirstCardDescriptionStyle = `text-graylv4 text-base font-normal leading-snug md:max-h-40 md:line-clamp-[7] line-clamp-3 mb-3`;
 
-const bloglistCardStyle = `lg:max-w-sm overflow-hidden bg-white cursor-pointer col-span-1 w-auto rounded-lg shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
-const bloglistCardImgStyle = `w-full h-[200px] object-cover object-center rounded-2xl overflow-hidden shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardStyle = `lg:max-w-sm overflow-hidden bg-white cursor-pointer col-span-1 w-auto rounded-2xl shadow-lg transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardImgStyle = `w-full h-[200px] object-cover object-center rounded-2xl overflow-hidden shadow-lg transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
 const bloglistCardBodyStyle = `py-4`;
 const bloglistCardTitleStyle = `font-bold text-2xl mb-3`;
-const bloglistCardCategoryStyle = `inline-block bg-activation text-primary md:text-sm font-medium mb-3 px-3 py-1.5 tracking-wide rounded-full shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
+const bloglistCardCategoryStyle = `inline-block bg-activation text-primary md:text-sm font-medium mb-3 px-3 py-1.5 tracking-wide rounded-full shadow-lg transition duration-200 ease-in-out hover:-translate-y-1 hover:shadow-xl`;
 const bloglistCardDescriptionStyle = `text-graylv4 text-base font-normal leading-snug h-16 line-clamp-3 mb-3`;
 const bloglistCardAuthorDivStyle = `inline-block`;
 const bloglistCardAuthorImgStyle = `inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden`;
 const bloglistCardAuthorStyle = `inline text-sm font-semibold text-black mr-2`;
 const bloglistCardDateStyle = `text-graylv3 text-sm inline-block font-normal`;
+
 
 
 // search input
