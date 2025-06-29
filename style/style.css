@@ -288,17 +288,17 @@ nav > div.bg-white\/20 { /* div.bg-white/20 클래스를 가진 nav의 직계 �
   transition: box-shadow 0.3s, transform 0.18s;
 }
 
-/* 빛 반사 하이라이트 (윗부분) - 더 얇게 수정하거나 제거 */
+/* 빛 반사 하이라이트 (윗부분) - 완전히 제거 */
 .liquid-glass::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; height: 10%; /* 높이를 얇게 조정 */
-  background: linear-gradient(115deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 80%); /* 투명도를 더 높여 은은하게 */
+  top: 0; left: 0; right: 0; height: 0%; /* 높이를 0으로 설정하여 제거 */
+  background: none; /* 배경색 제거 */
   border-radius: 2rem 2rem 8rem 8rem / 2rem 2rem 4rem 4rem;
-  filter: blur(1px); /* 블러를 더 약하게 */
+  filter: blur(0px); /* 블러 제거 */
   pointer-events: none;
   z-index: 2;
-  opacity: 0.7; /* 투명도 조절 */
+  opacity: 0; /* 투명도 0으로 설정 */
 }
 
 /* 내면 음영(Neumorphism 느낌) */
