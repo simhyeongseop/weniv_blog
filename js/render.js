@@ -170,12 +170,12 @@ async function renderMenu() {
 
 function createCardElement(fileInfo, index) {
   let card;
-  // 🟦 메인카드(첫번째)
+  // 🟦 메인카드(첫 번째)
   if (index === 0) {
     card = document.createElement("div");
     card.classList.add(...bloglistFirstCardStyle.split(" "), "liquid-glass");
 
-    // Glass 배경/반사/물방울/스크래치
+    // Glass 효과는 메인카드에만
     const glassBg = document.createElement('div');
     glassBg.className = 'liquid-glass-bg';
     card.appendChild(glassBg);
@@ -250,18 +250,20 @@ function createCardElement(fileInfo, index) {
   card = document.createElement("div");
   card.classList.add(...bloglistCardStyle.split(" "), "liquid-glass");
 
-  // Glass 배경/반사/물방울/스크래치
-  const glassBg = document.createElement('div');
-  glassBg.className = 'liquid-glass-bg';
-  card.appendChild(glassBg);
+  // 랜덤 30% 확률로 효과 추가
+  if (Math.random() < 0.3) {
+    const glassBg = document.createElement('div');
+    glassBg.className = 'liquid-glass-bg';
+    card.appendChild(glassBg);
 
-  const waterdrop = document.createElement('div');
-  waterdrop.className = 'liquid-glass-waterdrop';
-  card.appendChild(waterdrop);
+    const waterdrop = document.createElement('div');
+    waterdrop.className = 'liquid-glass-waterdrop';
+    card.appendChild(waterdrop);
 
-  const scratch = document.createElement('div');
-  scratch.className = 'liquid-glass-scratch';
-  card.appendChild(scratch);
+    const scratch = document.createElement('div');
+    scratch.className = 'liquid-glass-scratch';
+    card.appendChild(scratch);
+  }
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
