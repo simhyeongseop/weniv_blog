@@ -37,30 +37,45 @@
     <style>
       @keyframes slideDown {
         from {
-          transition: all 1s;
-          height: 0px;
-          opacity: 0;
+          transform: translateY(-100%);
         }
         to {
-          opacity: 1;
-          height: 60px;
+          transform: translateY(0);
         }
-      }
-      .markdown-cell > ul > li > p {
-        display: inline-block;
       }
     </style>
   </head>
-  <body class="font-sans w-full text-surface">
+  <body>
     <header class="relative z-20">
       <nav
         class="container max-w-[1190px] mx-auto md:p-[19px] p-4 flex items-center relative
-        backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4 navbar-gradient"
+          backdrop-blur-xl border border-white/30 shadow-lg rounded-2xl mt-4 navbar-gradient"
       >
+        <h1
+          id="blog-title"
+          class="mr-auto cursor-pointer
+            bg-white/30 backdrop-blur-xl rounded-xl px-4 py-2 shadow-inner border border-white/30
+            flex items-center justify-center h-[56px] md:h-[64px]"
+        >
+          <img
+            src="img/블로그 이름-001 (1).png"
+            alt="심형섭 블로그"
+            class="h-full w-auto max-w-full object-contain"
+          />
+        </h1>
+        <div
+          class="md:hidden w-10 h-10 flex items-center justify-center ml-2"
+        >
+          <button id="menu-button" aria-label="메뉴 열기">
+            <span class="sr-only">메뉴</span>
+          </button>
+        </div>
+        <div id="menu" class="hidden md:flex items-center gap-4">
+          </div>
         <button
           id="search-button"
           class="ml-6 md:hidden flex
-                bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
+            bg-white/30 backdrop-blur-xl border border-white/30 shadow rounded-full p-2"
           aria-label="검색창 열기"
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -88,12 +103,12 @@
               placeholder="Keyword"
           /></label>
           <div
-            class="btn-cont flex gap-2 justify-cetner items-center absolute top-1/2 md:right-4 right-8 -translate-y-1/2"
+            class="btn-cont flex gap-2 justify-center items-center absolute top-1/2 md:right-4 right-8 -translate-y-1/2"
           >
             <button class="reset-inp-btn hidden">
               <span class="sr-only">검색어 초기화</span>
             </button>
-            <button class="search-inp-btn" style="display: none;">
+            <button class="search-inp-btn md:hidden">
               <span class="sr-only">검색하기</span>
             </button>
           </div>
@@ -103,7 +118,7 @@
         id="mobileMenu"
         class="absolute bg-white/70 backdrop-blur-xl w-full max-w-[1190px] border-b border-white/30 z-10 md:hidden rounded-b-2xl"
       ></div>
-      </header>
+    </header>
     <main class="container p-8 pb-4 w-full mx-auto max-w-[1190px] md:pt-[60px]">
       <div
         id="blog-posts"
@@ -111,7 +126,7 @@
       ></div>
       <div
         id="contents"
-        class="mt-6 mb-28 grid-cols-3 max-w-[990px] mx-auto"
+        class="mt-6 mb-28 max-w-[990px] mx-auto"
       ></div>
       <div id="pagination"></div>
     </main>
@@ -133,13 +148,25 @@
     <script src="style/globalStyle.js"></script>
     <script src="style/blogContentsStyle.js"></script>
 
-    <script src="js/mobileMenuToggle.js"></script>
+    <script>
+      const menuButton = document.getElementById("menu-button");
+      const mobileMenu = document.getElementById("mobileMenu");
 
+      // 초기 상태: 모바일 메뉴 숨김
+      mobileMenu.style.display = "none";
+
+      menuButton.addEventListener("click", () => {
+        if (mobileMenu.style.display === "none") {
+          mobileMenu.style.display = "block";
+        } else {
+          mobileMenu.style.display = "none";
+        }
+      });
+    </script>
     <script src="config.js"></script>
-    <script src="js/URLparsing.js"></script>
     <script src="js/initData.js"></script>
     <script src="js/render.js"></script>
-
-    <script src="js/registry.js"></script>
+    <script src="js/URLparsing.js"></script>
+    <script src="js/search.js"></script>
   </body>
 </html>
