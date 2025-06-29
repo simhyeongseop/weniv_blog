@@ -281,31 +281,6 @@ body::after {
   transition: box-shadow 0.3s, transform 0.18s;
 }
 
-/* 빛 반사 하이라이트 (윗부분) */
-.liquid-glass::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 30%;
-  background: linear-gradient(115deg, rgba(255,255,255,0.27) 0%, rgba(255,255,255,0.04) 80%);
-  border-radius: 2rem 2rem 8rem 8rem / 2rem 2rem 4rem 4rem;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.86;
-}
-
-/* 내면 음영(Neumorphism 느낌) */
-.liquid-glass::after {
-  content: "";
-  position: absolute;
-  bottom: 6%; left: 8%; right: 8%; height: 22%;
-  background: linear-gradient(120deg, rgba(94,104,121,0.05) 0%, rgba(255,255,255,0.08) 80%);
-  border-radius: 50%;
-  filter: blur(10px);
-  z-index: 2;
-  pointer-events: none;
-}
-
 /* 유리 스크래치/물방울 표현 */
 .liquid-glass-waterdrop {
   position: absolute;
