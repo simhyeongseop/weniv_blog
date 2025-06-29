@@ -72,7 +72,7 @@ const bloglistFirstCardBodyStyle =
 
 // 메인카드 내 세부 요소
 const bloglistFirstCardCategoryStyle =
-  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow";
+  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap";
 
 const bloglistFirstCardTitleStyle =
   "font-bold text-2xl mb-2 text-gray-900";
@@ -106,7 +106,7 @@ const bloglistCardTitleStyle =
   "font-bold text-lg mb-1 text-gray-900";
 
 const bloglistCardCategoryStyle =
-  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap"; // px-3로 padding 조절
+  "inline-block bg-white/60 backdrop-blur px-3 py-1 text-primary text-xs font-semibold mb-2 rounded-full shadow whitespace-nowrap";
 
 const bloglistCardDescriptionStyle =
   "text-gray-700 text-sm font-normal leading-snug line-clamp-2 mb-2";
@@ -122,6 +122,7 @@ const bloglistCardAuthorStyle =
 
 const bloglistCardDateStyle =
   "text-xs text-gray-400";
+
 
 // search input
 const searchInputStyle = `absolute top-20 right-8 w-[220px] h-10 border border-gray-300 pl-2 text-base font-bold text-gray-600 outline-none box-border bg-white bg-clip-padding rounded-full shadow-lg transform transition duration-200 ease-in-out hover:-translate-y-1:hover:shadow-xl`;
