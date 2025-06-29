@@ -173,9 +173,22 @@ function createCardElement(fileInfo, index) {
   // 🟦 메인카드(첫번째)
   if (index === 0) {
     card = document.createElement("div");
-    card.classList.add(...bloglistFirstCardStyle.split(" "));
+    card.classList.add(...bloglistFirstCardStyle.split(" "), "liquid-glass");
 
-    // 썸네일 (왼쪽 2/3)
+    // Glass 배경/반사/물방울/스크래치
+    const glassBg = document.createElement('div');
+    glassBg.className = 'liquid-glass-bg';
+    card.appendChild(glassBg);
+
+    const waterdrop = document.createElement('div');
+    waterdrop.className = 'liquid-glass-waterdrop';
+    card.appendChild(waterdrop);
+
+    const scratch = document.createElement('div');
+    scratch.className = 'liquid-glass-scratch';
+    card.appendChild(scratch);
+
+    // 썸네일
     if (fileInfo.thumbnail) {
       const img = document.createElement("img");
       img.src = fileInfo.thumbnail;
@@ -184,7 +197,7 @@ function createCardElement(fileInfo, index) {
       card.appendChild(img);
     }
 
-    // 본문(오른쪽 1/3, 불투명 메뉴bar 스타일)
+    // 본문
     const cardBody = document.createElement("div");
     cardBody.classList.add(...bloglistFirstCardBodyStyle.split(" "));
 
@@ -235,7 +248,20 @@ function createCardElement(fileInfo, index) {
 
   // 🟦 일반 카드 (아래쪽 리스트)
   card = document.createElement("div");
-  card.classList.add(...bloglistCardStyle.split(" "));
+  card.classList.add(...bloglistCardStyle.split(" "), "liquid-glass");
+
+  // Glass 배경/반사/물방울/스크래치
+  const glassBg = document.createElement('div');
+  glassBg.className = 'liquid-glass-bg';
+  card.appendChild(glassBg);
+
+  const waterdrop = document.createElement('div');
+  waterdrop.className = 'liquid-glass-waterdrop';
+  card.appendChild(waterdrop);
+
+  const scratch = document.createElement('div');
+  scratch.className = 'liquid-glass-scratch';
+  card.appendChild(scratch);
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
@@ -288,6 +314,7 @@ function createCardElement(fileInfo, index) {
 
   return card;
 }
+
 
 function renderBlogList(searchResult = null, currentPage = 1) {
   /*
