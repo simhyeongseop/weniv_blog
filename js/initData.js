@@ -22,7 +22,7 @@ async function initDataBlogList() {
     if (isLocal) {
         // 로컬 환경
         const response = await fetch(
-            url.origin + "/data/local_blogList.json"
+            origin + "/data/local_blogList.json"
         );
         blogList = await response.json();
     } else {
@@ -46,22 +46,30 @@ async function initDataBlogList() {
         } else {
             // 배포 상태에서 Local data를 사용(이용자가 많을 때)
             response = await fetch(
-                url.origin + `/${siteConfig.repositoryName}/data/local_blogList.json`
+                origin + `data/local_blogList.json` // origin이 이미 /weniv_blog/ 까지 포함하므로 /data/ 로 시작합니다.
             );
         }
-        // 배포 상태에서 Local data를 사용(이용자가 많을 때)
-        blogList = await response.json();
-    }
 
-    // console.log(blogList);
-
-    // 정규표현식에 맞지 않는 파일은 제외하여 blogList에 재할당
-    blogList = blogList.filter((post) => {
-        const postInfo = extractFileInfo(post.name);
-        if (postInfo) {
-            return post;
+        // GitHub API 응답 처리 (배포 상태)
+        if (!localDataUsing && response.ok) {
+            const data = await response.json();
+            blogList = data
+                .filter((file) => file.name.endsWith(".md") || file.name.endsWith(".ipynb"))
+                .map((file) => ({
+                    name: file.name,
+                    path: file.path,
+                    date: new Date().toISOString().slice(0, 10), // GitHub API에서 파일 생성 날짜를 직접 얻기 어려우므로 임시 값
+                    thumbnail: `img/thumbnail/${file.name.replace(/\.(md|ipynb)$/, '')}.png`, // 썸네일 경로 규칙에 따라
+                    author: 0, // 기본 작성자 ID
+                    category: "미분류", // 기본 카테고리
+                }));
+        } else if (localDataUsing && response.ok) {
+             blogList = await response.json();
+        } else {
+            console.error("Failed to fetch blog list data.");
+            blogList = []; // 데이터 로드 실패 시 빈 배열로 초기화
         }
-    });
+    }
 
     blogList.sort(function (a, b) {
         return b.name.localeCompare(a.name);
@@ -78,7 +86,7 @@ async function initDataBlogMenu() {
     if (isLocal) {
         // 로컬환경
         const response = await fetch(
-            url.origin + "/data/local_blogMenu.json"
+            origin + "/data/local_blogMenu.json"
         );
         blogMenu = await response.json();
     } else {
@@ -102,10 +110,37 @@ async function initDataBlogMenu() {
         } else {
             // 배포 상태에서 Local data를 사용(이용자가 많을 때)
             response = await fetch(
-                url.origin + `/${siteConfig.repositoryName}/data/local_blogMenu.json`
+                origin + `data/local_blogMenu.json`
             );
         }
-        blogMenu = await response.json();
+
+        // GitHub API 응답 처리 (배포 상태)
+        if (!localDataUsing && response.ok) {
+            const data = await response.json();
+            blogMenu = data
+                .filter((file) => file.name.endsWith(".md"))
+                .map((file) => ({ name: file.name, path: file.path }));
+        } else if (localDataUsing && response.ok) {
+            blogMenu = await response.json();
+        } else {
+            console.error("Failed to fetch blog menu data.");
+            blogMenu = []; // 데이터 로드 실패 시 빈 배열로 초기화
+        }
     }
     return blogMenu;
+}
+
+// GitHub Pages URL에서 사용자 이름과 저장소 이름 추출 (이 부분은 유지)
+function extractFromUrl() {
+  const pathParts = url.pathname.split("/").filter((part) => part.length > 0);
+  let username = "";
+  let repositoryName = "";
+
+  if (url.hostname.endsWith("github.io")) {
+    if (pathParts.length > 0) {
+      username = url.hostname.split(".")[0];
+      repositoryName = pathParts[0];
+    }
+  }
+  return { username, repositoryName };
 }

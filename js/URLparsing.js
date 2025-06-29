@@ -13,21 +13,24 @@ if (isLocal) {
     origin = url.origin; 
 } else {
     // GitHub Pages 배포 환경: 예를 들어 https://simhyeongseop.github.io/weniv_blog/
-    // pathParts의 첫 번째 부분이 저장소 이름이 됩니다.
-    // window.location.pathname 은 /weniv_blog/ 또는 /weniv_blog/index.html
     const pathSegments = url.pathname.split('/').filter(segment => segment.length > 0);
-    // 만약 pathSegments에 'index.html'이 있으면 제거
+    
+    // '/weniv_blog/index.html' -> ['weniv_blog', 'index.html']
+    // '/weniv_blog/' -> ['weniv_blog']
+    
+    // 만약 pathSegments에 'index.html'이 있으면 제거하여 기본 경로만 남김
     if (pathSegments.length > 0 && pathSegments[pathSegments.length - 1].endsWith('.html')) {
         pathSegments.pop();
     }
-    // 기본 경로를 구성합니다.
+    
+    // 최종 origin 경로 구성 (예: 'https://simhyeongseop.github.io/weniv_blog/')
     origin = url.origin + '/' + pathSegments.join('/') + '/';
 }
 
-
 // console.log("Calculated Origin:", origin); // 디버깅을 위해 추가
 
-// 현재 URL에서 "index.html"을 제거하고자 할 때 (이 부분은 유지합니다)
+// 현재 URL에서 "index.html"을 제거하고자 할 때
+// 이 부분은 기존 로직을 유지합니다. URL 표시를 깔끔하게 하기 위함입니다.
 if (window.location.pathname.endsWith("/index.html")) {
   let newPath = window.location.pathname.replace(/index\\.html$/, "");
   history.replaceState(null, "", newPath);
@@ -36,33 +39,25 @@ if (window.location.pathname.endsWith("/index.html")) {
 
 if (isLocal) {
   // 로컬 테스트 환경
-
-  // 블로그 제목 설정
   const $blogTitle = document.getElementById("blog-title");
-  $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
-
-  // 홈페이지 title을 제목으로 설정
+  if ($blogTitle) {
+      $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
+      $blogTitle.addEventListener("click", () => {
+          window.location.href = origin;
+      });
+  }
   document.title = siteConfig.blogTitle || defaultTitle;
-
-  // 클릭했을 때 메인페이지로 이동
-  $blogTitle.addEventListener("click", () => {
-    window.location.href = origin;
-  });
 
 } else {
   // GitHub 배포 환경
-
-  // 블로그 제목 설정
   const $blogTitle = document.getElementById("blog-title");
-  $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
-
-  // 홈페이지 title을 제목으로 설정
+  if ($blogTitle) {
+      $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
+      $blogTitle.addEventListener("click", () => {
+          window.location.href = origin; // GitHub Pages는 서브디렉토리에 배포되므로, origin을 사용
+      });
+  }
   document.title = siteConfig.blogTitle || defaultTitle;
-
-  // 클릭했을 때 메인페이지로 이동 (GitHub Pages는 서브디렉토리에 배포되므로, origin을 사용)
-  $blogTitle.addEventListener("click", () => {
-    window.location.href = origin;
-  });
 }
 
 // 파일 정보 추출 함수 (기존과 동일)

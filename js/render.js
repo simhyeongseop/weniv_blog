@@ -25,14 +25,19 @@ function search(keyword, kinds) {
   } else {
     if (!keyword) {
       const searchInput = document.getElementById("search-input");
-      const searchKeyword = searchInput.value.toLowerCase(); // 검색어를 소문자로 변환
-      const searchResult = blogList.filter((post) => {
-        // 대소문자 가리지 않고 검색
-        if (post.name.toLowerCase().includes(searchKeyword)) {
-          return post;
-        }
-      });
-      renderBlogList(searchResult);
+      if (searchInput) { // searchInput이 존재하는지 확인
+          const searchKeyword = searchInput.value.toLowerCase(); // 검색어를 소문자로 변환
+          const searchResult = blogList.filter((post) => {
+            // 대소문자 가리지 않고 검색
+            if (post.name.toLowerCase().includes(searchKeyword)) {
+              return post;
+            }
+          });
+          renderBlogList(searchResult);
+      } else {
+          // 검색 입력창이 없으면 전체 목록 렌더링 (예외 처리)
+          renderBlogList(blogList);
+      }
     } else {
       // 만약 kinds가 있을 경우 해당 종류대로 검색(카테고리면 카테고리, 이름이면 이름)
       if (kinds) {
@@ -66,9 +71,10 @@ function search(keyword, kinds) {
 
 function renderBlogList(blogList) {
   const blogListEl = document.getElementById("blog-posts");
+  if (!blogListEl) return; // 요소가 없으면 함수 종료
+
   blogListEl.innerHTML = ""; // 기존 목록 초기화
   blogList.forEach((post) => {
-    // console.log(post)
     const liEl = document.createElement("div");
     liEl.classList = bloglistCardStyle;
     liEl.onclick = () => {
@@ -132,6 +138,8 @@ function renderCategory(blogList) {
   });
 
   const asideEl = document.querySelector(".category-aside aside");
+  if (!asideEl) return; // 요소가 없으면 함수 종료
+
   asideEl.innerHTML = ""; // 기존 카테고리 목록 초기화
 
   const ulEl = document.createElement("ul");
@@ -153,19 +161,22 @@ function styleMarkdown(type, markdown, postInfo) {
   // 마크다운을 HTML로 변환
   let contentHtml = marked.parse(markdown);
 
+  const targetEl = document.getElementById("contents");
+  if (!targetEl) return; // 요소가 없으면 함수 종료
+
   if (type === "post") {
-    const targetEl = document.getElementById("contents");
+    // author가 문자열일 경우 숫자로 변환하여 users 배열에 접근
+    const authorName = users[Number(postInfo.author)] ? users[Number(postInfo.author)].username : 'Unknown Author';
     targetEl.innerHTML = `
             <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="${bloglistCardImgStyle}">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
-                <span class="mr-4">${users[Number(postInfo.author)].username}</span>
+                <span class="mr-4">${authorName}</span>
                 <span>${postInfo.date}</span>
             </div>
             <div class="prose max-w-none">${contentHtml}</div>
         `;
   } else if (type === "menu") {
-    const targetEl = document.getElementById("contents");
     targetEl.innerHTML = `<div class="prose max-w-none">${contentHtml}</div>`;
   }
 
@@ -178,19 +189,22 @@ function styleMarkdown(type, markdown, postInfo) {
 function styleJupyter(type, ipynbJson, postInfo) {
   let contentHtml = convertIpynbToHtml(ipynbJson);
 
+  const targetEl = document.getElementById("contents");
+  if (!targetEl) return; // 요소가 없으면 함수 종료
+
   if (type === "post") {
-    const targetEl = document.getElementById("contents");
+    // author가 문자열일 경우 숫자로 변환하여 users 배열에 접근
+    const authorName = users[Number(postInfo.author)] ? users[Number(postInfo.author)].username : 'Unknown Author';
     targetEl.innerHTML = `
             <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="${bloglistCardImgStyle}">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
-                <span class="mr-4">${users[Number(postInfo.author)].username}</span>
+                <span class="mr-4">${authorName}</span>
                 <span>${postInfo.date}</span>
             </div>
             <div class="prose max-w-none">${contentHtml}</div>
         `;
   } else if (type === "menu") {
-    const targetEl = document.getElementById("contents");
     targetEl.innerHTML = `<div class="prose max-w-none">${contentHtml}</div>`;
   }
 
@@ -202,6 +216,8 @@ function styleJupyter(type, ipynbJson, postInfo) {
 
 function renderPagination(totalPosts, postsPerPage) {
   const paginationEl = document.getElementById("pagination");
+  if (!paginationEl) return; // 요소가 없으면 함수 종료
+  
   paginationEl.innerHTML = ""; // 기존 페이지네이션 초기화
 
   const totalPages = Math.ceil(totalPosts / postsPerPage);
@@ -247,8 +263,17 @@ async function initialize() {
   } else if (url.searchParams.has("menu")) {
     const menuName = decodeURI(url.searchParams.get("menu"));
     fetch(origin + "menu/" + menuName)
-      .then((response) => response.text())
-      .then((text) => styleMarkdown("menu", text));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Failed to load menu: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then((text) => styleMarkdown("menu", text))
+      .catch(error => {
+        console.error("Error loading menu file:", error);
+        document.getElementById("contents").innerHTML = `<div class="p-4 text-red-500">메뉴 파일을 불러오는 데 실패했습니다: ${menuName}</div>`;
+      });
   } else if (url.searchParams.has("post")) {
     const postName = decodeURI(url.searchParams.get("post")).replaceAll(
       "+",
@@ -256,15 +281,23 @@ async function initialize() {
     );
     const postInfo = extractFileInfo(postName);
     fetch(origin + "blog/" + postName)
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Failed to load post: ${response.statusText}`);
+        }
+        return response.text();
+      })
       .then((text) =>
         postInfo.fileType === "md"
           ? styleMarkdown("post", text, postInfo)
           : styleJupyter("post", text, postInfo)
-      );
+      )
+      .catch(error => {
+        console.error("Error loading post file:", error);
+        document.getElementById("contents").innerHTML = `<div class="p-4 text-red-500">게시물 파일을 불러오는 데 실패했습니다: ${postName}</div>`;
+      });
   } else {
     // 기본적으로 첫 페이지의 블로그 포스트 렌더링
-    // postsPerPage와 currentPage는 전역 변수 또는 config.js에 정의되어야 합니다.
     renderBlogList(blogList.slice(0, postsPerPage));
     renderPagination(blogList.length, postsPerPage);
   }
