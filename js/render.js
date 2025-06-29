@@ -175,19 +175,6 @@ function createCardElement(fileInfo, index) {
     card = document.createElement("div");
     card.classList.add(...bloglistFirstCardStyle.split(" "), "liquid-glass");
 
-    // Glass 효과는 메인카드에만
-    const glassBg = document.createElement('div');
-    glassBg.className = 'liquid-glass-bg';
-    card.appendChild(glassBg);
-
-    const waterdrop = document.createElement('div');
-    waterdrop.className = 'liquid-glass-waterdrop';
-    card.appendChild(waterdrop);
-
-    const scratch = document.createElement('div');
-    scratch.className = 'liquid-glass-scratch';
-    card.appendChild(scratch);
-
     // 썸네일
     if (fileInfo.thumbnail) {
       const img = document.createElement("img");
@@ -249,21 +236,6 @@ function createCardElement(fileInfo, index) {
   // 🟦 일반 카드 (아래쪽 리스트)
   card = document.createElement("div");
   card.classList.add(...bloglistCardStyle.split(" "), "liquid-glass");
-
-  // 랜덤 30% 확률로 효과 추가
-  if (Math.random() < 0.3) {
-    const glassBg = document.createElement('div');
-    glassBg.className = 'liquid-glass-bg';
-    card.appendChild(glassBg);
-
-    const waterdrop = document.createElement('div');
-    waterdrop.className = 'liquid-glass-waterdrop';
-    card.appendChild(waterdrop);
-
-    const scratch = document.createElement('div');
-    scratch.className = 'liquid-glass-scratch';
-    card.appendChild(scratch);
-  }
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
