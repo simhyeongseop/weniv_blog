@@ -74,9 +74,12 @@ function renderBlogList(blogList) {
     liEl.onclick = () => {
       window.location.href = `?post=${post.name}`;
     };
+    // post.author를 숫자로 변환하여 users 배열에 접근
+    const authorId = Number(post.author); 
+    const authorName = users[authorId] ? users[authorId].username : 'Unknown Author'; // users 배열에 해당 authorId가 없으면 'Unknown Author'로 표시
     liEl.innerHTML = `
             <img src="${post.thumbnail}" alt="${post.name}" class="${bloglistCardImgStyle}">
-            <p class="${bloglistCardAuthorStyle}">${users[post.author].username}</p>
+            <p class="${bloglistCardAuthorStyle}">${authorName}</p>
             <h2 class="bloglist-card-title text-xl font-bold text-gray-800">${post.name}</h2>
             <p class="${bloglistCardDateStyle}">${post.date}</p>
         `;
@@ -102,7 +105,7 @@ function renderMenu() {
     liEl.onclick = () => {
       window.location.href = `?menu=${menu.name}`;
     };
-    // ★ .md 확장자 제거
+    // .md 확장자 제거
     liEl.innerText = menu.name.endsWith('.md') ? menu.name.slice(0, -3) : menu.name;
 
     if (mobileMenuEl) {
@@ -156,7 +159,7 @@ function styleMarkdown(type, markdown, postInfo) {
             <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="w-full h-auto max-h-[400px] object-cover rounded-xl mb-8">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
-                <span class="mr-4">${users[postInfo.author].username}</span>
+                <span class="mr-4">${users[Number(postInfo.author)].username}</span>
                 <span>${postInfo.date}</span>
             </div>
             <div class="prose max-w-none">${contentHtml}</div>
@@ -181,7 +184,7 @@ function styleJupyter(type, ipynbJson, postInfo) {
             <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="w-full h-auto max-h-[400px] object-cover rounded-xl mb-8">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
-                <span class="mr-4">${users[postInfo.author].username}</span>
+                <span class="mr-4">${users[Number(postInfo.author)].username}</span>
                 <span>${postInfo.date}</span>
             </div>
             <div class="prose max-w-none">${contentHtml}</div>
