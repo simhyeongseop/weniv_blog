@@ -156,7 +156,7 @@ function styleMarkdown(type, markdown, postInfo) {
   if (type === "post") {
     const targetEl = document.getElementById("contents");
     targetEl.innerHTML = `
-            <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="w-full h-auto max-h-[400px] object-cover rounded-xl mb-8">
+            <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="${bloglistCardImgStyle}">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
                 <span class="mr-4">${users[Number(postInfo.author)].username}</span>
@@ -181,7 +181,7 @@ function styleJupyter(type, ipynbJson, postInfo) {
   if (type === "post") {
     const targetEl = document.getElementById("contents");
     targetEl.innerHTML = `
-            <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="w-full h-auto max-h-[400px] object-cover rounded-xl mb-8">
+            <img src="${postInfo.thumbnail}" alt="${postInfo.name}" class="${bloglistCardImgStyle}">
             <h1 class="${posth1Style}">${postInfo.name}</h1>
             <div class="flex items-center text-graylv3 mb-6">
                 <span class="mr-4">${users[Number(postInfo.author)].username}</span>
