@@ -232,6 +232,8 @@
   mask-position: center center;
 }/*# sourceMappingURL=style.css.map */
 
+
+/* ── 배경 이미지 적용 ── */
 /* ── 배경 이미지 고정 & 꽉 채우기 ── */
 body {
   background-image: url("../img/background.jpg");
@@ -271,8 +273,4 @@ header::after {
 header:hover::after {
   width: 150%;
   animation: sparkle 3.2s ease-in-out;
-}
-
-#blog-title img {
-  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.4));
 }
