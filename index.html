@@ -42,17 +42,6 @@
     <!-- // tailwind -->
 
     <style>
-      @keyframes slideDown {
-        from {
-          transition: all 1s;
-          height: 0px;
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-          height: 60px;
-        }
-      }
       .markdown-cell > ul > li > p {
         display: inline-block;
       }
@@ -161,13 +150,12 @@
             rounded-tr-lg rounded-br-lg"
     >
       <header class="flex items-center">
-        <h2 class="aside-tit sr-only text-sm font-semibold ml-5">content</h2>
-        <button id="aside-button">
+        <h2 class="aside-tit sr-only text-lg font-bold ml-5">content</h2>        <button id="aside-button">
           <span class="sr-only">카테고리 열기</span>
         </button>
       </header>
       <aside
-        class="bg-white/20 backdrop-blur-sm border border-white/30
+        class="bg-transparent backdrop-blur-sm border border-white/30
               rounded-lg p-4 mt-2 space-y-2"
       >
         <!-- 여기 renderBlogCategory()가 카테고리 아이템을 append -->

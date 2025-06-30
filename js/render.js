@@ -465,15 +465,15 @@ function renderBlogCategory() {
     if (categoryList[category]) {
       categoryItem.classList.add(
         ...categoryItemStyle.split(" "),
-        "bg-white/15",            // 반투명 바탕
-        "backdrop-blur-sm",       // 가벼운 블러
-        "border",                 // 테두리
-        "border-white/25",        // 연한 화이트 테두리
-        "rounded-lg",             // 모서리 라운드
-        "p-3",                    // 패딩 축소
-        "mb-3",                   // 아래 여백 축소
-        "text-base",              // 글자 크기 확대
-        "font-semibold"           // 볼드체
+        "bg-transparent",     // 기본 투명
++    "border",             // 테두리
++    "border-white/25",
++    "rounded-lg",
++    "p-3",
++    "mb-3",
++    "text-base",          // 글자 크기↑
++    "font-semibold",      // 볼드체
++    "hover:bg-white"      // hover 시 흰색 배경
       );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
