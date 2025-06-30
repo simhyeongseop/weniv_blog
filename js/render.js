@@ -486,19 +486,19 @@ function renderBlogCategory() {
       categoryCount.textContent = `(${categoryList[category]})`;
     } else {
       categoryItem.classList.add(
-        ...categoryItemStyle.split(" "),
-        "bg-transparent",         // 기본엔 투명
-        "border",                 // 1px 테두리
-        "border-white/25",
-        "rounded-lg",
-        "p-3",
-        "mb-3",
-        "text-base",
-        "font-semibold",
-        "hover:bg-white",         // hover 시 흰 배경
-        "transition-colors",      // 배경 색 부드럽게 전환
-        "duration-200"
-      );
+      ...categoryItemStyle.split(" "),
+      "bg-transparent",         // 기본엔 투명
+      "border",                 // 1px 테두리
+      "border-white/25",
+      "rounded-lg",
+      "p-3",
+      "mb-3",
+      "text-base",
+      "font-semibold",
+      "hover:bg-white",         // hover 시 흰 배경
+      "transition-colors",      // 배경 색 부드럽게 전환
+      "duration-200"
+    );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
         search();
