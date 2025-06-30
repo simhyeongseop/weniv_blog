@@ -463,7 +463,19 @@ function renderBlogCategory() {
     const categoryCount = document.createElement("span");
 
     if (categoryList[category]) {
-      categoryItem.classList.add(...categoryItemStyle.split(" "));
+      categoryItem.classList.add(
+        ...categoryItemStyle.split(" "),
+        "bg-white/15",            // 반투명 바탕
+        "backdrop-blur-sm",       // 가벼운 블러
+        "border",                 // 1px 테두리
+        "border-white/25",        // 연한 화이트 테두리
+        "rounded-lg",             // 모서리 라운드
+        "p-4",                    // 패딩
+        "mb-4",                   // 아래 마진
+        "transition",             // 부드러운 변화
+        "hover:bg-white/20",      // hover 시 밝기 ↑
+        "hover:backdrop-blur-md"  // hover 시 블러 ↑
+      );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
         search(category, "category");
@@ -472,7 +484,19 @@ function renderBlogCategory() {
       categoryCount.classList.add(...categoryItemCountStyle.split(" "));
       categoryCount.textContent = `(${categoryList[category]})`;
     } else {
-      categoryItem.classList.add(...categoryItemStyle.split(" "));
+      categoryItem.classList.add(
+        ...categoryItemStyle.split(" "),
+        "bg-white/15",            // 반투명 바탕
+        "backdrop-blur-sm",       // 가벼운 블러
+        "border",                 // 1px 테두리
+        "border-white/25",        // 연한 화이트 테두리
+        "rounded-lg",             // 모서리 라운드
+        "p-4",                    // 패딩
+        "mb-4",                   // 아래 마진
+        "transition",             // 부드러운 변화
+        "hover:bg-white/20",      // hover 시 밝기 ↑
+        "hover:backdrop-blur-md"  // hover 시 블러 ↑
+      );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
         search();
