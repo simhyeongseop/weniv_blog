@@ -25,7 +25,6 @@ if (isLocal) {
 
   // 블로그 제목 설정
   const $blogTitle = document.getElementById("blog-title");
-  $blogTitle.innerText = siteConfig.blogTitle || defaultTitle;
 
   // 홈페이지 title을 제목으로 설정
   document.title = siteConfig.blogTitle || defaultTitle;
