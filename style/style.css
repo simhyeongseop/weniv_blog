@@ -237,6 +237,8 @@
 body {
   /* img 폴더에 있는 background.jpg 사용 */
   background-image: url("../img/background.jpg");
-  background-size: cover;        /* 화면을 꽉 채우도록 */
-  background-position: center;   /* 이미지 중앙을 기준으로 */
+  background-repeat: no-repeat;   /* 타일링 없이 단일 이미지 */
+  background-position: center;    /* 중앙 정렬 */
+  background-size: auto;          /* 원본 크기 유지 (확대 안 함) */
+  background-color: #f5f5f5;
 }
