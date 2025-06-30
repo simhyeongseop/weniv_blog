@@ -69,7 +69,12 @@ async function renderMenu() {
     link.href = menu.download_url;
     // 확장자를 제외하고 이름만 innerText로 사용
     const menuName = menu.name.split(".")[0];
-    link.innerText = menuName;
+    link.innerHTML = `
+      <img src="img/icon/${menuName.toLowerCase()}.svg"
+          alt="${menuName}"
+          class="inline-block w-5 h-5 mr-2 align-middle">
+      <span class="align-middle">${menuName}</span>
+    `;
 
     link.onclick = (event) => {
       // 메뉴 링크 클릭 시 이벤트 중지 후 menu 내용을 읽어와 contents 영역에 렌더링
