@@ -66,10 +66,9 @@ async function renderMenu() {
     link.classList.add(
       ...menuListStyle.split(" "),
       `${menu.name}`,                    // 기존 메뉴명 클래스
-      "inline-flex",                     // 수평 → 플렉스 컨테이너
-      "items-center",                    // 수직 중앙 정렬
-      "space-x-1",                       // 아이콘↔텍스트 간격
-      "whitespace-nowrap",               // 줄바꿈 방지
+      "flex",              // 수직 스택용 flex 컨테이너
+      "flex-col",          // 위 ↓ 아래 방향
+      "items-center",      // 수평 중앙 정렬             // 줄바꿈 방지
       "text-sm",                         // 글자 크기 축소
       "font-bold",                       // 볼드체
       "text-gray-800",                   // 기본 텍스트 색
@@ -82,7 +81,7 @@ async function renderMenu() {
     link.innerHTML = `
       <img src="img/icon/${menuName.toLowerCase()}.svg"
             alt="${menuName}"
-            class="w-5 h-5">            <!-- 아이콘 크기 20×20px -->
+            class="w-8 h-8">            <!-- 아이콘 크기 20×20px -->
       <span>${menuName}</span>
     `;
 
