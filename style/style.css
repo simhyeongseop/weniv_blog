@@ -232,16 +232,15 @@
   mask-position: center center;
 }/*# sourceMappingURL=style.css.map */
 
-
-/* ── 배경 이미지 적용 ── */
+/* ── 배경 이미지 고정 & 꽉 채우기 ── */
 body {
-  /* img 폴더에 있는 background.jpg 사용 */
-  background-image: url("img/background.jpg");
+  background-image: url("../img/background.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
+
 
 /* ── Header Sparkle Animation ── */
 @keyframes sparkle {
