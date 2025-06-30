@@ -63,17 +63,27 @@ async function renderMenu() {
     const link = document.createElement("a");
 
     // (static) index.html: <div id="contents" class="mt-6 grid-cols-3"></div>
-    link.classList.add(...menuListStyle.split(" "));
-    link.classList.add(`${menu.name}`);
+    link.classList.add(
+      ...menuListStyle.split(" "),
+      `${menu.name}`,                    // 기존 메뉴명 클래스
+      "inline-flex",                     // 수평 → 플렉스 컨테이너
+      "items-center",                    // 수직 중앙 정렬
+      "space-x-1",                       // 아이콘↔텍스트 간격
+      "whitespace-nowrap",               // 줄바꿈 방지
+      "text-sm",                         // 글자 크기 축소
+      "font-bold",                       // 볼드체
+      "text-gray-800",                   // 기본 텍스트 색
+      "hover:text-primary"               // 호버 시 primary 컬러
+    );
 
     link.href = menu.download_url;
     // 확장자를 제외하고 이름만 innerText로 사용
     const menuName = menu.name.split(".")[0];
     link.innerHTML = `
       <img src="img/icon/${menuName.toLowerCase()}.svg"
-          alt="${menuName}"
-          class="inline-block w-5 h-5 mr-2 align-middle">
-      <span class="align-middle">${menuName}</span>
+            alt="${menuName}"
+            class="w-5 h-5">            <!-- 아이콘 크기 20×20px -->
+      <span>${menuName}</span>
     `;
 
     link.onclick = (event) => {
