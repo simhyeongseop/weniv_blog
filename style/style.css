@@ -242,3 +242,34 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* ── Header Sparkle Animation ── */
+@keyframes sparkle {
+  0%   { transform: translateX(-100%) skewX(-20deg); }
+  50%  { transform: translateX(200%) skewX(-20deg); }
+  100% { transform: translateX(200%) skewX(-20deg); }
+}
+
+header {
+  position: relative;    /* ::after 절대위치 기준 */
+  overflow: hidden;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.5),
+    transparent
+  );
+  transform: skewX(-20deg);
+}
+
+header:hover::after {
+  width: 150%;
+  animation: sparkle 1.2s ease-in-out;
+}
