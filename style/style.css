@@ -236,7 +236,7 @@
 /* ── 배경 이미지 적용 ── */
 body {
   /* img 폴더에 있는 background.jpg 사용 */
-  background-image: url("../img/background.jpg");
+  background-image: url("img/blog-logo.png");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
