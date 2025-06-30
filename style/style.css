@@ -271,5 +271,5 @@ header::after {
 
 header:hover::after {
   width: 150%;
-  animation: sparkle 1.2s ease-in-out;
+  animation: sparkle 3.2s ease-in-out;
 }
