@@ -144,19 +144,13 @@
 
     <!-- category 검색 영역 -->
     <section
-      class="category-aside hidden md:flex flex-col
-            fixed top-24 right-8 overflow-y-auto w-fit h-fit
-            bg-white/20 backdrop-blur-md border border-white/30
-            rounded-xl p-4 shadow-2xl border-l-4 border-primary/50
+      class="category-aside md:flex flex-col fixed top-24 right-8 overflow-y-auto w-fit h-fit
+            bg-transparent backdrop-blur-sm hover:backdrop-blur-md transition-all duration-300
+            border border-white/30 rounded-xl p-4 shadow-2xl border-l-4 border-primary/50
             rounded-tr-lg rounded-br-lg"
     >
-      <header class="flex items-center">
-        <h2 class="aside-tit sr-only text-lg font-bold ml-5">content</h2>        <button id="aside-button">
-          <span class="sr-only">카테고리 열기</span>
-        </button>
-      </header>
       <aside
-        class="bg-transparent backdrop-blur-sm border border-white/30
+        class="bg-transparent border border-white/30
               rounded-lg p-4 mt-2 space-y-2"
       >
         <!-- 여기 renderBlogCategory()가 카테고리 아이템을 append -->
