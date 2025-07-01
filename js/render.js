@@ -762,7 +762,7 @@ initialize();
       }
     }
     // 카드 리스트가 겹칠 때
-    if (postsEl && shouldHide) {
+    if (postsEl && !shouldHide) {
       const pRect = postsEl.getBoundingClientRect();
       if (rectsIntersect(sbRect, pRect)) {
         shouldHide = true;
