@@ -73,7 +73,7 @@ const bloglistCardDateStyle = `text-graylv3 text-sm inline-block font-normal`;
 const searchInputStyle = `absolute top-20 right-8 w-[220px] h-10 rounded-md border border-gray-300 pl-2 text-base font-bold text-gray-600 outline-none box-border transition duration-300 ease-in-out shadow-none bg-white bg-clip-padding`;
 
 // category 스타일
-const categoryContainerStyle = `hidden md:flex flex-col md:w-[220px] overflow-y-auto rounded-md bg-transparent shadow-none z-10`;
+const categoryContainerStyle = `flex flex-col md:w-[220px] overflow-y-auto rounded-md bg-transparent shadow-none z-10`;
 const categoryItemStyle = `bg-transparent border border-white/25 rounded-lg p-3 mb-3 text-base font-semibold transition-colors duration-200 hover:bg-white`;
 const categoryItemCountStyle = `text-base font-normal text-graylv3 ml-1`;
 

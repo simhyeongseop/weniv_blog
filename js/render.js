@@ -776,3 +776,13 @@ initialize();
   // 최초 한 번 실행
   checkSidebarVisibility();
 })();
+
+(function() {
+  const sb = document.querySelector(".category-aside");
+  const hd = document.querySelector("header");
+  function updateTop() {
+    if (sb && hd) sb.style.top = hd.offsetHeight + "px";
+  }
+  window.addEventListener("resize", updateTop);
+  updateTop();
+})();
