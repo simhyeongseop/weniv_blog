@@ -726,3 +726,54 @@ async function initialize() {
 }
 
 initialize();
+
+(function() {
+  const sidebarEl = document.querySelector(".category-aside");
+  const contentsEl  = document.getElementById("contents");
+  const postsEl     = document.getElementById("blog-posts");
+
+  if (!sidebarEl) return;
+
+  // 두 DOMRect 가 겹치는지 여부
+  function rectsIntersect(r1, r2) {
+    return !(
+      r2.top    > r1.bottom ||
+      r2.bottom < r1.top    ||
+      r2.left   > r1.right  ||
+      r2.right  < r1.left
+    );
+  }
+
+  function checkSidebarVisibility() {
+    // 작은 화면(모바일)에서는 무조건 숨김
+    if (window.innerWidth < 768) {
+      sidebarEl.style.display = "none";
+      return;
+    }
+
+    const sbRect = sidebarEl.getBoundingClientRect();
+    let shouldHide = false;
+
+    // 포스트 상세 컨텐츠가 겹칠 때
+    if (contentsEl) {
+      const cRect = contentsEl.getBoundingClientRect();
+      if (rectsIntersect(sbRect, cRect)) {
+        shouldHide = true;
+      }
+    }
+    // 카드 리스트가 겹칠 때
+    if (postsEl && shouldHide) {
+      const pRect = postsEl.getBoundingClientRect();
+      if (rectsIntersect(sbRect, pRect)) {
+        shouldHide = true;
+      }
+    }
+
+    sidebarEl.style.display = shouldHide ? "none" : "";
+  }
+
+  window.addEventListener("scroll",  checkSidebarVisibility);
+  window.addEventListener("resize", checkSidebarVisibility);
+  // 초기 한 번 실행
+  checkSidebarVisibility();
+})();
