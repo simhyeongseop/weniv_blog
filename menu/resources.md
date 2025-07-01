@@ -1,5 +1,3 @@
-# hello
+# Resources
 
-* hello world
-* hello world
-* hello world
+* 이곳은 그동한 학습한 내용을 정리하는 공간입니다.

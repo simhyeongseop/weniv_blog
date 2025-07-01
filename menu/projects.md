@@ -1,5 +1,3 @@
-# hello
+# My Projects
 
-* hello world
-* hello world
-* hello world
+* 이곳은 그동안 진행한 프로젝트를 정리한 공간입니다.
