@@ -72,8 +72,11 @@
           <img
             src="/weniv_blog/img/blog-logo.png"
             alt="심형섭 블로그"
-            class="h-8 w-auto drop-shadow(0 1px 2px rgba(0,0,0,0.4))"
+            class="max-h-12 md:max-h-16 w-auto
+                  filter drop-shadow-lg brightness-110"
           />
+          <!-- 텍스트는 screen-reader 전용으로만 남겨둡니다 -->
+          <span class="sr-only">심형섭 블로그</span>
         </h1>
 
         <!-- 메뉴 영역 -->
@@ -144,7 +147,7 @@
 
     <!-- category 검색 영역 -->
     <section
-      class="category-aside hidden md:flex flex-col fixed top-24 right-8 overflow-y-auto w-fit h-fit
+      class="category-aside hidden md:flex flex-col fixed top-20 right-8 overflow-y-auto w-fit h-fit
             bg-transparent backdrop-blur-sm hover:backdrop-blur-md transition-all duration-300
             border border-white/30 rounded-xl p-4 shadow-2xl border-l-4 border-primary/50
             rounded-tr-lg rounded-br-lg"
