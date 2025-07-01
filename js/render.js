@@ -727,14 +727,12 @@ async function initialize() {
 
 initialize();
 
-(function() {
+;(function() {
   const sidebarEl = document.querySelector(".category-aside");
   const contentsEl  = document.getElementById("contents");
   const postsEl     = document.getElementById("blog-posts");
-
   if (!sidebarEl) return;
 
-  // 두 DOMRect 가 겹치는지 여부
   function rectsIntersect(r1, r2) {
     return !(
       r2.top    > r1.bottom ||
@@ -745,7 +743,7 @@ initialize();
   }
 
   function checkSidebarVisibility() {
-    // 작은 화면(모바일)에서는 무조건 숨김
+    // 1) 작은 화면(<768px)이면 무조건 숨긴다
     if (window.innerWidth < 768) {
       sidebarEl.style.display = "none";
       return;
@@ -754,26 +752,27 @@ initialize();
     const sbRect = sidebarEl.getBoundingClientRect();
     let shouldHide = false;
 
-    // 포스트 상세 컨텐츠가 겹칠 때
+    // 2) 포스트 상세 컨텐츠와 겹치는지 체크
     if (contentsEl) {
       const cRect = contentsEl.getBoundingClientRect();
-      if (rectsIntersect(sbRect, cRect)) {
-        shouldHide = true;
-      }
+      if (rectsIntersect(sbRect, cRect)) shouldHide = true;
     }
-    // 카드 리스트가 겹칠 때
+    // 3) 카드 리스트와 겹치는지 체크 (포스트와 안 겹칠 때만)
     if (postsEl && !shouldHide) {
       const pRect = postsEl.getBoundingClientRect();
-      if (rectsIntersect(sbRect, pRect)) {
-        shouldHide = true;
-      }
+      if (rectsIntersect(sbRect, pRect)) shouldHide = true;
     }
 
+    // 4) 최종 결과 반영
     sidebarEl.style.display = shouldHide ? "none" : "";
   }
 
+  // 이벤트 바인딩
   window.addEventListener("scroll",  checkSidebarVisibility);
   window.addEventListener("resize", checkSidebarVisibility);
-  // 초기 한 번 실행
+  // (선택) orientation change 대응
+  window.addEventListener("orientationchange", checkSidebarVisibility);
+
+  // 최초 한 번 실행
   checkSidebarVisibility();
 })();
