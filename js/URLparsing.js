@@ -48,7 +48,8 @@ if (isLocal) {
 
   // 블로그 제목 설정
   const $blogTitle = document.getElementById("blog-title");
-  $blogTitle.innerText = siteConfig.blogTitle;
+  // 블로그 제목을 텍스트로 $blogTitle.innerText = siteConfig.blogTitle;
+  $blogTitle.innerHTML = `<img src="img/blog-logo.png" alt="심형섭 블로그 로고" class="h-8 inline-block mr-2"/>${siteConfig.blogTitle}`;
 
   // 홈페이지 title을 제목으로 설정
   document.title = siteConfig.blogTitle || defaultTitle;
