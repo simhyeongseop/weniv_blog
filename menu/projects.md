@@ -49,20 +49,6 @@
     * [cite_start]**촬영 가이드 화면**: 해당 장소의 날씨와 시간대를 포함한 촬영 팁을 제시하는 화면[cite: 10].
     * [cite_start]**촬영 화면**: AI 기반의 구도 가이드를 통해 사용자의 촬영을 실시간으로 지원하는 화면[cite: 10].
     * [cite_start]**촬영 피드백 화면**: 촬영 사진을 바탕으로 AI가 분석하여 수정 사항을 제공하는 화면[cite: 10].
-* **개발 결과 (스크린샷)**:
-    * [cite_start]**어플 진입 화면**: ![ShotSpot App Entry Screen](assets/images/shotspot_entry.png) [cite: 17]
-    * [cite_start]**로그인 화면**: ![Login Screen](assets/images/shotspot_login.png) [cite: 21]
-    * [cite_start]**현위치 분석 화면**: ![Current Location Analysis Screen](assets/images/shotspot_location_analysis.png) [cite: 35]
-    * [cite_start]**홈 화면 (카드 리스트 형)**: ![Home Screen Card List](assets/images/shotspot_home_card.png) [cite: 36]
-    * [cite_start]**지도 화면 (기본 현위치 화면)**: ![Map Screen Basic](assets/images/shotspot_map_basic.png) [cite: 67]
-    * [cite_start]**지도 화면 (장소 검색 결과 화면)**: ![Map Screen Search Result](assets/images/shotspot_map_search_result.png) [cite: 78]
-    * [cite_start]**지도 화면 (해시태그 검색 결과 화면)**: ![Map Screen Hashtag Search Result](assets/images/shotspot_map_hashtag_result.png) [cite: 78]
-    * [cite_start]**장소 상세 페이지 (한밭수목원)**: ![Place Detail Hanbat Arboretum](assets/images/shotspot_detail_hanbat.png) [cite: 113]
-    * [cite_start]**장소 상세 페이지 (대전역)**: ![Place Detail Daejeon Station](assets/images/shotspot_detail_daejeon.png) [cite: 113]
-    * [cite_start]**장소 상세 페이지 (성심당)**: ![Place Detail Seongsimdang](assets/images/shotspot_detail_seongsimdang.png) [cite: 113]
-    * [cite_start]**촬영 가이드 (AI 촬영 팁)**: ![Shooting Guide AI Tips](assets/images/shotspot_guide_tips.png) [cite: 141]
-    * [cite_start]**촬영 가이드 (AI 가이드라인)**: ![Shooting Guide AI Guideline](assets/images/shotspot_guide_guideline.png) [cite: 141]
-    * [cite_start]**촬영 가이드 (AI 피드백)**: ![Shooting Guide AI Feedback](assets/images/shotspot_guide_feedback.png) [cite: 141]
-* **GitHub Repository**: (프로젝트의 실제 GitHub Repository 링크를 여기에 넣어주세요. 예: `https://github.com/simhyeongseop/ShotSpot`)
+* **GitHub Repository**: 
 
 ---
