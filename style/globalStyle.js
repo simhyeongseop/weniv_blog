@@ -44,12 +44,14 @@ const postauthorImgStyle = 'inline w-8 h-8 rounded-full object-cover object-cent
 const postauthorStyle = 'inline text-sm font-semibold text-black mr-2';
 const postdateStyle = 'inline-block text-graylv3 text-sm font-normal';
 const postimgtitleStyle = 'w-full max-h-[520px] object-cover object-center my-4 rounded-2xl mx-auto block max-w-full align-middle';
-const postsectionStyle = 'w-full mb-10 md:mb-[60px] max-w-full h-auto align-middle';
+
+// 상세 본문 섹션 스타일
+const postsectionStyle = 'w-full mb-10 md:mb-[60px] max-w-full h-auto align-middle bg-white/70 backdrop-blur-sm rounded-lg p-8 shadow-lg';
 
 // notebook에 code cell을 표시하는 부분
 const notebookpreStyle = 'relative bg-graylv1 p-8 rounded-[10px] mb-6 text-base font-medium overflow-auto whitespace-pre-wrap break-words text-justify max-w-full h-auto align-middle';
 const notebookcodeStyle = 'font-mono text-base bg-graylv1';
-const notebookcopyButtonStyle = 'border border-lv2 copy-button bg-white rounded-[10px] opacity-70 absolute top-5 right-5 p-2 shadow-md';
+const notebookcopyButtonStyle = 'border border-graylv2 copy-button bg-white rounded-[10px] opacity-70 absolute top-5 right-5 p-2 shadow-md';
 const notebookdownloadButtonStyle = 'download-button px-5 py-[11px] mb-4 text-sm font-medium text-white bg-primary rounded-[10px] hover:bg-primary';
 
 // bloglist 목록 스타일
@@ -67,16 +69,16 @@ const bloglistCardDescriptionStyle = 'text-white text-base font-normal leading-s
 const bloglistCardAuthorDivStyle = 'inline-block';
 const bloglistCardAuthorImgStyle = 'inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden';
 const bloglistCardAuthorStyle = 'inline text-sm font-semibold text-black mr-2';
-const bloglistCardDateStyle = 'text-white text-sm inline-block font-normal' ;
+const bloglistCardDateStyle = 'text-white text-sm inline-block font-normal';
 
-// pagination 관련 스타일 (render.js의 initPagination에서 사용)
+// pagination 관련 스타일
 const paginationStyle       = 'mt-20 mb-[132px] flex justify-center items-center gap-8';
 const pageMoveButtonStyle   = 'relative flex inline-flex items-center rounded-[10px] p-[11px] text-graylv2 hover:text-graylv4 bg-graylv1';
 const pageNumberListStyle   = 'flex items-center justify-center gap-1';
 const pageNumberStyle       = 'relative inline-flex items-center w-10 h-10 px-4 py-2 text-md font-normal text-graylv3';
 const pageNumberActiveStyle = 'text-primary font-bold';
 
-// category 검색 영역 스타일 (renderBlogCategory에서 사용)
+// category 검색 영역 스타일
 const categoryContainerStyle = 'hidden flex-col md:w-[220px] overflow-y-auto rounded-md bg-white shadow-sm z-10';
 const categoryItemStyle      = 'text-base font-normal px-5 py-[9px] cursor-pointer hover:bg-graylv1 transition duration-200 ease-in-out';
 const categoryItemCountStyle = 'text-base font-normal text-graylv3 ml-1';
