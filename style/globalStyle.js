@@ -44,7 +44,7 @@ const postauthorImgStyle = `inline w-8 h-8 rounded-full object-cover object-cent
 const postauthorStyle = `inline text-sm font-semibold text-black mr-2`;
 const postdateStyle = `inline-block text-graylv3 text-sm font-normal`;
 const postimgtitleStyle = `w-full max-h-[520px] object-cover object-center my-4 rounded-2xl mx-auto block max-w-full align-middle`;
-const postsectionStyle = `w-full mb-10 md:mb-[60px] max-w-full h-auto align-middle`;
+const postsectionStyle = `w-full mb-10 md:mb-[60px] max-w-full h-auto align-middle bg-white/70 backdrop-blur-sm rounded-lg p-8 shadow-lg`;
 
 // notebook에 code cell을 표시하는 부분
 const notebookpreStyle = `relative bg-graylv1 p-8 rounded-[10px] mb-6 text-base font-medium overflow-auto whitespace-pre-wrap break-words text-justify max-w-full h-auto align-middle`;
