@@ -68,3 +68,11 @@ const bloglistCardAuthorDivStyle = 'inline-block';
 const bloglistCardAuthorImgStyle = 'inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden';
 const bloglistCardAuthorStyle = 'inline text-sm font-semibold text-black mr-2';
 const bloglistCardDateStyle = 'text-graylv3 text-sm inline-block font-normal' ;
+
+// pagination 관련 스타일 (render.js의 initPagination에서 사용)
+const paginationStyle       = 'mt-20 mb-[132px] flex justify-center items-center gap-8';
+const pageMoveButtonStyle   = 'relative flex inline-flex items-center rounded-[10px] p-[11px] text-graylv2 hover:text-graylv4 bg-graylv1';
+const pageNumberListStyle   = 'flex items-center justify-center gap-1';
+const pageNumberStyle       = 'relative inline-flex items-center w-10 h-10 px-4 py-2 text-md font-normal text-graylv3';
+const pageNumberActiveStyle = 'text-primary font-bold';
+
