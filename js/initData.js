@@ -24,6 +24,8 @@ async function initDataBlogList() {
          `https://api.github.com/repos/${siteConfig.username}/${siteConfig.repositoryName}/contents/blog`
      );
      blogList = await response.json();
+     
+     blogList = blogList.filter(post => extractFileInfo(post.name));
 
     blogList.sort((a,b) => new Date(extractFileInfo(b.name).date) - new Date(extractFileInfo(a.name).date));
     return blogList;
