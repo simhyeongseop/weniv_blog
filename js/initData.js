@@ -6,25 +6,36 @@ let blogMenu = [];
 let isInitData = false;
 
 async function initDataBlogList() {
-    /*
-    blogList를 초기화 하기 위한 함수
-    if 로컬이라면 blogList = /data/local_blogList.json 데이터 할당
-    else if 배포상태이면 blogList = GitHub에 API 데이터 할당
-    */
+    // ① 이미 로드된 적 있으면 재사용
     if (blogList.length > 0) {
-        // blogList 데이터가 이미 있을 경우 다시 로딩하지 않기 위함(API 호출 최소화)
         return blogList;
     }
-
-    // 데이터 초기화를 한 번 했다는 것을 알리기 위한 변수
     isInitData = true;
 
-    // 로컬이든 프로덕션이든 항상 GitHub API에서 최신 목록 조회
-    const response = await fetch(
-      `https://api.github.com/repos/${siteConfig.username}/${siteConfig.repositoryName}/contents/blog`
-    );
+    // ② 로컬이면 JSON, 아니면 GitHub API 호출
+    let response;
+    if (isLocal) {
+        response = await fetch(url.origin + "/data/local_blogList.json");
+    } else {
+        response = await fetch(
+            `https://api.github.com/repos/${siteConfig.username}/${siteConfig.repositoryName}/contents/blog`
+        );
+    }
     blogList = await response.json();
 
+    // ③ 파일명 패턴이 유효한 게시물만 걸러내기
+    blogList = blogList.filter(post => Boolean(extractFileInfo(post.name)));
+
+    // ④ 날짜(YYYYMMDD 또는 YYYY-MM-DD) 기준 내림차순 정렬
+    blogList.sort((a, b) => {
+        const dA = extractFileInfo(a.name).date;
+        const dB = extractFileInfo(b.name).date;
+        // YYYYMMDD → YYYY-MM-DD 포맷 보정
+        const norm = s => s.includes("-")
+            ? s
+            : s.replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3");
+        return new Date(norm(dB)) - new Date(norm(dA));
+    });
     return blogList;
 }
 
