@@ -19,35 +19,12 @@ async function initDataBlogList() {
     // 데이터 초기화를 한 번 했다는 것을 알리기 위한 변수
     isInitData = true;
 
-    // ① 로컬일 땐 JSON, 아니면 GitHub API 호출
-     let response;
-     if (isLocal) {
-       response = await fetch(url.origin + "/data/local_blogList.json");
-     } else {
-       response = await fetch(
-         `https://api.github.com/repos/${siteConfig.username}/${siteConfig.repositoryName}/contents/blog`
-       );
-     }
-     blogList = await response.json();
+    // 로컬이든 프로덕션이든 항상 GitHub API에서 최신 목록 조회
+    const response = await fetch(
+      `https://api.github.com/repos/${siteConfig.username}/${siteConfig.repositoryName}/contents/blog`
+    );
+    blogList = await response.json();
 
-     // ② 파일명 패턴(extractFileInfo)이 통과한 게시물만 남기기
-     blogList = blogList.filter((post) => {
-       return Boolean(extractFileInfo(post.name));
-     });
-
-     // ③ 날짜 기준 내림차순 정렬
-     blogList.sort((a, b) => {
-       const dateA = extractFileInfo(a.name).date;
-       const dateB = extractFileInfo(b.name).date;
-       // YYYYMMDD 형태라면 YYYY-MM-DD 로 바꿔 Date 파싱
-       const normA = dateA.includes("-")
-         ? dateA
-         : dateA.replace(/(\\d{4})(\\d{2})(\\d{2})/, "$1-$2-$3");
-       const normB = dateB.includes("-")
-         ? dateB
-         : dateB.replace(/(\\d{4})(\\d{2})(\\d{2})/, "$1-$2-$3");
-       return new Date(normB) - new Date(normA);
-     });
     return blogList;
 }
 
