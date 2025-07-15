@@ -79,6 +79,6 @@ const pageNumberStyle       = 'relative inline-flex items-center w-10 h-10 px-4 
 const pageNumberActiveStyle = 'text-primary font-bold';
 
 // category 검색 영역 스타일
-const categoryContainerStyle = 'hidden flex-col md:w-[220px] overflow-y-auto rounded-md bg-white shadow-sm z-10';
+const categoryContainerStyle = 'flex-col md:w-[220px] overflow-y-auto rounded-md bg-white shadow-sm z-10';
 const categoryItemStyle      = 'text-base font-normal px-5 py-[9px] cursor-pointer hover:bg-graylv1 transition duration-200 ease-in-out';
 const categoryItemCountStyle = 'text-base font-normal text-graylv3 ml-1';
