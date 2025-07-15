@@ -5,7 +5,7 @@ const siteConfig = {
   repositoryName: "weniv_blog", // <<--- 'weniv_blog'로 정확히 입력!
   mainColor: "#3498db",
   textColor: "#333333",
-  blogTitle: "심형섭 블로그",
+  blogTitle: "심형섭 개발 블로그",
 };
 
 const users = [
