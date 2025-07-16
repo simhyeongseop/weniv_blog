@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { /* 기존 색상들 유지 */ },
-        fontFamily: {
-          ChosunGu: ['ChosunGu'],
-        }
-      }
-    }
-  };
-</script>
-
 <html lang="ko">
   <head>
     <meta charset="UTF-8"/>
@@ -48,6 +34,30 @@
               error: "#ff3440",
               lowError: "#ffc533",
               activation: "#dee8ff",
+            },
+          },
+        },
+      };
+    </script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2e6ff2",
+              background: "#fff",
+              surface: "#121314",
+              graylv1: "#f3f5fa",
+              graylv2: "#d9dbe0",
+              graylv3: "#8d9299",
+              graylv4: "#47494d",
+              error: "#ff3440",
+              lowError: "#ffc533",
+              activation: "#dee8ff",
+            },
+            fontFamily: {
+              ChosunGu: ['ChosunGu'],
             },
           },
         },
