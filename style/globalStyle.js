@@ -63,12 +63,12 @@ const bloglistCardStyle = 'w-full lg:max-w-sm overflow-hidden bg-white/30 hover:
 const bloglistCardImgStyle = 'w-full h-[200px] object-cover object-center overflow-hidden';
 
 const bloglistCardBodyStyle = 'px-5 py-4';
-const bloglistCardTitleStyle = 'text-gray-800 font-bold text-2xl mb-3';
+const bloglistCardTitleStyle = 'text-gray-600 font-bold text-2xl mb-3';
 const bloglistCardCategoryStyle = 'inline-block bg-activation text-primary md:text-sm font-medium mb-3 px-3 py-1.5 rounded-lg transition duration-200 ease-in-out hover:bg-blue-400 hover:text-white';
 const bloglistCardDescriptionStyle = 'text-white text-base font-normal leading-snug h-auto md:h-16 line-clamp-3 mb-3';
 const bloglistCardAuthorDivStyle = 'inline-block';
 const bloglistCardAuthorImgStyle = 'inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden';
-const bloglistCardAuthorStyle = 'inline text-sm font-semibold text-gray-800 mr-2';
+const bloglistCardAuthorStyle = 'inline text-sm font-semibold text-white mr-2';
 const bloglistCardDateStyle = 'text-white text-sm inline-block font-normal';
 
 // pagination 관련 스타일
