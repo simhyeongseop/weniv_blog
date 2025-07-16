@@ -7,9 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        ChosunGu: ['ChosunGu'],
-      },
       colors: {
         primary: "#4F8EF7",
         background: "#F5F7FA",
