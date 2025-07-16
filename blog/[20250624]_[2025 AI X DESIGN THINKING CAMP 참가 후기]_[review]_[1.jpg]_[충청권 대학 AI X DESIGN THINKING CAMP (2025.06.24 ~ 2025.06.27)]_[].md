@@ -1,5 +1,6 @@
 # 충청권 대학 AI X DESIGN THINKING CAMP 참가 후기 (2025.06.24 ~ 2025.06.27)
 
+[충청권 대학 AI X DESIGN THINKING CAMP](simhyeongseop/weniv_blog/img/2025-summer-AI CAMP/1.jpg)
 2025년 6월 24일부터 27일까지 3박 4일간 **충청권 대학 AI X DESIGN THINKING CAMP**에 참가하였다.  
 충청권 지역의 타대학 학생들과 함께 **3인 1조로 팀을 구성**하여 캠프에 참여했다.
 
@@ -45,6 +46,7 @@
 ### 성과
 
 - **동상 수상** (아쉬운 결과)
+(simhyeongseop/weniv_blog/img/2025-summer-AI CAMP/1.jpg)
 
 ### AI 활용에 대한 인사이트
 
@@ -65,6 +67,7 @@
 
 > ⚠️ 주의: 팀 프로젝트에서는 **주제와 취지에 맞는 전략 수립**이 중요하며, 팀장과 팀원 간의 **원활한 소통과 조율 능력**이 성공의 열쇠임
 
+(img/2025-summer-AI CAMP/5.jpg)
 ## 마무리 소감
 
 이번 AI X 디자인씽킹 캠프는 단순한 기술 활용을 넘어,  
