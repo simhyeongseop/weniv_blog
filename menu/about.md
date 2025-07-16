@@ -1,4 +1,4 @@
-![심형섭]](https://simhyeongseop.github.io/weniv_blog/img/profile.jpg)
+![심형섭](https://simhyeongseop.github.io/weniv_blog/img/profile.jpg)
 
 ### About Me: 심형섭의 코딩 여정 기록
 
