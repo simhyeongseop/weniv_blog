@@ -39,14 +39,6 @@ module.exports = {
 
 // 폰트 등
 module.exports = {
-  content: [
-    './index.html',
-    './js/**/*.js',
-    './blog/**/*.md',
-    './menu/**/*.md',
-    './style/**/*.js',
-    './*.html',
-  ],
   theme: {
     extend: {
       fontFamily: {
@@ -54,6 +46,13 @@ module.exports = {
       },
     },
   },
+  content: [
+    './index.html',
+    './js/**/*.js',
+    './blog/**/*.md',
+    './menu/**/*.md',
+    './style/**/*.js',
+  ],
   plugins: [],
-}
+};
 
