@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        ChosunGu: ['ChosunGu'],
+      },
       colors: {
         primary: "#4F8EF7",
         background: "#F5F7FA",
@@ -36,23 +39,3 @@ module.exports = {
   },
   plugins: [],
 }
-
-// 폰트 등
-module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        ChosunGu: ['ChosunGu'],
-      },
-    },
-  },
-  content: [
-    './index.html',
-    './js/**/*.js',
-    './blog/**/*.md',
-    './menu/**/*.md',
-    './style/**/*.js',
-  ],
-  plugins: [],
-};
-
