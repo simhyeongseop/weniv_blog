@@ -4,7 +4,7 @@ const siteConfig = {
   username: "simhyeongseop", // <<--- 'simhyeongseop'으로 정확히 입력!
   repositoryName: "weniv_blog", // <<--- 'weniv_blog'로 정확히 입력!
   mainColor: "#3498db",
-  textColor: "#333333",
+  textColor: "#1F2937",
   blogTitle: "심형섭 블로그",
 };
 
