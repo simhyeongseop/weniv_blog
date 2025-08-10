@@ -2,20 +2,20 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport"content="width=device-width, initial-scale=1.0"/>
-    <link rel="shortcut icon"href="img/icon/favicon.svg"type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="img/icon/favicon.svg" type="image/x-icon"/>
     <title>Weniv Blog</title>
 
     <!-- marked -->
     <script src="./library/marked.min.js"></script>
 
     <!-- hightlight.js -->
-    <link rel="stylesheet"href="./library/highlight_default.min.css"/>
+    <link rel="stylesheet" href="./library/highlight_default.min.css"/>
     <script src="./library/highlight_highlight.min.js"></script>
-    <link rel="stylesheet"href="./library/highlight_ally-light.min.css"/>
+    <link rel="stylesheet" href="./library/highlight_ally-light.min.css"/>
 
     <!-- custom css -->
-    <link rel="stylesheet"href="style/style.css"/>
+    <link rel="stylesheet" href="style/style.css"/>
 
     <style>
       @font-face {
@@ -116,15 +116,20 @@
           </button>
         </div>
 
-        <div id="menu"class="hidden md:flex items-center justify-center gap-6">
+        <div id="menu" class="hidden md:flex items-center justify-center gap-6">
           <!-- 메뉴 아이템들 -->
         </div>
 
-        <button id="search-button"class="ml-10 md:hidden flex">
+        <button id="search-button" class="ml-4 md:hidden flex">
           <span class="sr-only">검색창 열기</span>
+        </button>
+        
+        <button id="category-toggle" class="ml-4 lg:hidden flex">
+          <span class="sr-only">카테고리 메뉴 열기</span>
         </button>
 
         <div
+          id="search-container"
           class="search-cont w-80 hidden md:block md:relative absolute z-10 rounded-2xl p-4 border border-graylv2 bottom-[-12px] right-2 xl:right-0 translate-y-full bg-white/80 backdrop-blur-sm w-96 max-w-full box-border md:p-0 md:top-0 md:right-0 md:border-0 md:translate-y-0 md:w-80 md:ml-10"
         >
           <label for="search-input">
@@ -153,13 +158,20 @@
         class="absolute bg-background w-full max-w-[1190px] border-b border-graylv2 z-10 md:hidden p-4"
       ></div>
       <!-- // 모바일에서 메뉴 영역이 보이도록 하는 영역 -->
+      
+      <!-- 모바일에서 카테고리 영역이 보이도록 하는 영역 -->
+      <div
+        id="mobileCategory"
+        class="absolute bg-background w-full max-w-[1190px] border-b border-graylv2 z-10 lg:hidden p-4"
+      ></div>
+      <!-- // 모바일에서 카테고리 영역이 보이도록 하는 영역 -->
     </header>
 
     <main class="container p-4 md:p-8 pb-4 w-full mx-auto max-w-[1190px] md:pt-[60px]">
       <!-- 블로그 포스트 리스트 영역 -->
       <div
         id="blog-posts"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 justify-items-center mx-auto px-4 md:px-0"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch mx-auto px-4 md:px-0"
       ></div>
       <!-- // 블로그 포스트 리스트 영역-->
 
@@ -176,7 +188,7 @@
 
     <!-- category 검색 영역 -->
     <section
-      class="category-aside hidden md:flex flex-col fixed top-32 right-8 overflow-y-auto w-fit h-fit bg-transparent backdrop-blur-sm hover:backdrop-blur-md transition-all duration-300 border border-white/30 rounded-xl p-4 shadow-2xl border-l-4 border-primary/50 rounded-tr-lg rounded-br-lg"
+      class="category-aside hidden lg:flex flex-col fixed top-32 right-8 overflow-y-auto w-fit h-fit bg-transparent backdrop-blur-sm hover:backdrop-blur-md transition-all duration-300 border border-white/30 rounded-xl p-4 shadow-2xl border-l-4 border-primary/50 rounded-tr-lg rounded-br-lg z-20"
     >
       <aside class="bg-transparent border border-white/30 rounded-lg p-4 mt-2 space-y-2"
       >
