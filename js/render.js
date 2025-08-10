@@ -90,6 +90,9 @@ async function renderMenu() {
       event.preventDefault();
 
       if (menu.name === "blog.md") {
+        // contents 영역 숨기기
+        document.getElementById("contents").style.display = "none";
+        
         if (blogList.length === 0) {
           // 블로그 리스트 로딩
           initDataBlogList().then(() => {
@@ -291,6 +294,10 @@ function renderBlogList(searchResult = null, currentPage = 1) {
           // blog-posts 영역을 보이지 않게 처리
           document.getElementById("blog-posts").style.display = "none";
           document.getElementById("pagination").style.display = "none";
+          
+          // contents 영역 내용 초기화
+          document.getElementById("contents").innerHTML = "";
+          
           fetch(post.download_url)
             .then((response) => response.text())
             .then((text) =>
@@ -338,6 +345,9 @@ function renderBlogList(searchResult = null, currentPage = 1) {
           // blog-posts 영역을 보이지 않게 처리
           document.getElementById("blog-posts").style.display = "none";
           document.getElementById("pagination").style.display = "none";
+          
+          // contents 영역 내용 초기화
+          document.getElementById("contents").innerHTML = "";
 
           // console.log(post)
           // console.log(post.download_url)
@@ -380,7 +390,11 @@ function renderOtherContents(menu) {
     */
   // main 영역에 blog.md를 제외한 다른 파일을 렌더링
   document.getElementById("blog-posts").style.display = "none";
+  document.getElementById("pagination").style.display = "none";
   document.getElementById("contents").style.display = "block";
+  
+  // contents 영역 내용 초기화
+  document.getElementById("contents").innerHTML = "";
 
   // 만약 menu가 string type 이라면 download_url, name을 menu로 설정
   if (typeof menu === "string") {

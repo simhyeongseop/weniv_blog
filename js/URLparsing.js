@@ -76,12 +76,15 @@ window.addEventListener("popstate", (event) => {
 
   if (!url.search.split("=")[1] || url.search.split("=")[1] === "blog.md") {
     // 블로그 리스트 로딩
+    document.getElementById("contents").style.display = "none";
     renderBlogList();
   } else if (url.search.split("=")[0] === "?menu") {
     // 메뉴 상세 정보 로딩
     // console.log('menu', url.search.split("=")[1])
     document.getElementById("blog-posts").style.display = "none";
+    document.getElementById("pagination").style.display = "none";
     document.getElementById("contents").style.display = "block";
+    document.getElementById("contents").innerHTML = "";
     // console.log(origin + "menu/" + url.search.split("=")[1])
     fetch(origin + "menu/" + url.search.split("=")[1])
       .then((response) => response.text())
@@ -91,26 +94,20 @@ window.addEventListener("popstate", (event) => {
       });
   } else if (url.search.split("=")[0] === "?post") {
     // 블로그 상세 정보 로딩
-    if (url.search.split("=")[0] === "?menu") {
-      document.getElementById("blog-posts").style.display = "none";
-      document.getElementById("contents").style.display = "block";
-      fetch(origin + "menu/" + url.search.split("=")[1])
-        .then((response) => response.text())
-        .then((text) => styleMarkdown("menu", text));
-    } else if (url.search.split("=")[0] === "?post") {
-      document.getElementById("contents").style.display = "block";
-      document.getElementById("blog-posts").style.display = "none";
-      postNameDecode = decodeURI(url.search.split("=")[1]).replaceAll("+", " ");
-      // console.log(postNameDecode);
-      postInfo = extractFileInfo(postNameDecode);
-      fetch(origin + "blog/" + postNameDecode)
-        .then((response) => response.text())
-        .then((text) =>
-          postInfo.fileType === "md"
-            ? styleMarkdown("post", text, postInfo)
-            : styleJupyter("post", text, postInfo)
-        );
-    }
+    document.getElementById("contents").style.display = "block";
+    document.getElementById("blog-posts").style.display = "none";
+    document.getElementById("pagination").style.display = "none";
+    document.getElementById("contents").innerHTML = "";
+    postNameDecode = decodeURI(url.search.split("=")[1]).replaceAll("+", " ");
+    // console.log(postNameDecode);
+    postInfo = extractFileInfo(postNameDecode);
+    fetch(origin + "blog/" + postNameDecode)
+      .then((response) => response.text())
+      .then((text) =>
+        postInfo.fileType === "md"
+          ? styleMarkdown("post", text, postInfo)
+          : styleJupyter("post", text, postInfo)
+      );
   } else {
     alert("잘못된 URL입니다.");
   }

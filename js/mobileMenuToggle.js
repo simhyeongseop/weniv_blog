@@ -67,6 +67,9 @@ window.addEventListener("click", (event) => {
         event.preventDefault();
 
         if (event.target.innerText + ".md" === "blog.md") {
+            // contents 영역 숨기기
+            document.getElementById("contents").style.display = "none";
+            
             if (blogList.length === 0) {
                 // 블로그 리스트 로딩
                 initDataBlogList().then(() => {
