@@ -62,7 +62,7 @@
   </head>
   <body class="font-suite text-gray w-full text-surface">
     <header
-      class="relative bg-white/70 backdrop-blur-md mx-auto border-b border-gray-300"
+      class="sticky top-0 z-50 bg-white/80 backdrop-blur-md mx-auto border-b border-gray-300 shadow-sm"
       style="
         /* 반투명도 0.2: 20% 불투명한 유리 느낌 */
         background: linear-gradient(
@@ -156,10 +156,16 @@
     </header>
 
     <main class="container p-4 md:p-8 pb-4 w-full mx-auto max-w-[1190px] md:pt-[60px]">
+      <!-- 히어로 섹션 -->
+      <section id="hero" class="mb-10 md:mb-14 rounded-2xl p-8 md:p-12 bg-white/70 backdrop-blur-sm border border-graylv2 shadow-lg text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">심형섭 블로그</h2>
+        <p class="mt-3 text-base md:text-lg text-graylv4">개발 기록과 학습 노트를 담는 공간입니다.</p>
+        <a id="hero-cta" href="#blog-posts" class="mt-6 inline-flex items-center px-5 py-3 rounded-xl bg-primary text-white hover:opacity-90">글 보러가기</a>
+      </section>
       <!-- 블로그 포스트 리스트 영역 -->
       <div
         id="blog-posts"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 justify-items-center mx-auto px-4 md:px-0"
+        class="scroll-mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 justify-items-center mx-auto px-4 md:px-0"
       ></div>
       <!-- // 블로그 포스트 리스트 영역-->
 
