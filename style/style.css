@@ -433,9 +433,13 @@ body {
 
 /* ── Right Category Menu Styling ── */
 .category-aside {
-  z-index: 30 !important;
+  z-index: 50 !important;
   max-height: 80vh;
   overflow-y: auto;
+  position: fixed !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 2rem !important;
 }
 
 .category-aside::-webkit-scrollbar {
@@ -497,7 +501,7 @@ body {
 .windows-tile-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-auto-rows: minmax(350px, auto);
+  grid-auto-rows: minmax(300px, auto);
   grid-gap: 2rem;
   width: 100%;
   max-height: calc(100vh - 300px);
@@ -506,27 +510,12 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Random layout variations */
-.blog-card:nth-child(3n) {
-  grid-row: span 1;
+/* Dynamic height based on column count */
+.windows-tile-layout {
+  grid-auto-rows: 1fr;
 }
 
-.blog-card:nth-child(3n+1) {
-  grid-row: span 2;
-}
-
-.blog-card:nth-child(3n+2) {
-  grid-row: span 1;
-}
-
-.blog-card:nth-child(5n) {
-  grid-row: span 3;
-}
-
-.blog-card:nth-child(7n) {
-  grid-row: span 2;
-}
-
+/* Scrollbar styling */
 .windows-tile-layout::-webkit-scrollbar {
   height: 8px;
 }
@@ -545,10 +534,10 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* ── Large Card Layout ── */
+/* Adjust card height based on content */
 .blog-card {
   width: 100%;
-  min-height: 350px;
+  min-height: 300px;
   height: auto;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -564,15 +553,15 @@ body {
 
 .blog-card .card-image {
   width: 100%;
-  height: 250px;
+  height: 200px;
   object-fit: cover;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .blog-card .card-content {
   height: auto;
-  min-height: 200px;
-  padding: 2rem;
+  min-height: 150px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

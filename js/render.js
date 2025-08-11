@@ -165,10 +165,6 @@ function createCardElement(fileInfo, index) {
   prismOverlay.classList.add("prism-overlay");
   cardElement.appendChild(prismOverlay);
 
-  // Add random height for masonry effect
-  const randomHeight = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
-  cardElement.style.gridRow = `span ${randomHeight}`;
-
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
@@ -322,13 +318,30 @@ function showSearchPopup(searchTerm, postInfo) {
 
 // 포스트 내용 렌더링
 function renderPostContent(postInfo) {
+  // postInfo null 체크
+  if (!postInfo) {
+    alert("잘못된 포스트입니다.");
+    return;
+  }
+
+  // download_url 체크
+  if (!postInfo.download_url) {
+    alert("포스트 URL을 찾을 수 없습니다.");
+    return;
+  }
+
   document.getElementById("contents").style.display = "block";
   document.getElementById("blog-posts").style.display = "none";
   
   document.getElementById("contents").innerHTML = "";
   
   fetch(postInfo.download_url)
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Post not found');
+      }
+      return response.text();
+    })
     .then((text) =>
       postInfo.fileType === "md"
         ? styleMarkdown("post", text, postInfo)
@@ -352,6 +365,14 @@ function renderPostContent(postInfo) {
       const url = new URL(origin);
       url.searchParams.set("post", postInfo.name);
       window.history.pushState({}, "", url);
+    })
+    .catch((error) => {
+      console.error('Error loading post:', error);
+      alert("포스트를 불러올 수 없습니다.");
+      // 오류 발생 시 메인 페이지로 리다이렉트
+      const mainUrl = new URL(window.location.origin + window.location.pathname);
+      window.history.pushState({}, "", mainUrl);
+      renderBlogList();
     });
 }
 
@@ -800,10 +821,12 @@ function ellipsisPagination(pageList, totalPage, targetList = null) {
 function initWheelScroll() {
   const blogPosts = document.getElementById("blog-posts");
   
-  blogPosts.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    blogPosts.scrollLeft += e.deltaY;
-  });
+  if (blogPosts) {
+    blogPosts.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      blogPosts.scrollLeft += e.deltaY;
+    });
+  }
 }
 
 // 초기화 함수에 휠 스크롤 추가
