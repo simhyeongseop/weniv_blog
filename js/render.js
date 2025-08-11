@@ -62,21 +62,23 @@ async function renderMenu() {
     // 메뉴 링크 생성
     const link = document.createElement("a");
 
-    // iMac style bottom menu bar styling
+    // iMac style left menu bar styling
     link.classList.add(
-      "flex",              // 가로 배치용 flex 컨테이너
-      "items-center",      // 수직 중앙 정렬
-      "space-x-2",         // 아이콘과 텍스트 사이 간격
-      "px-3",              // 좌우 패딩
-      "py-2",              // 상하 패딩
-      "rounded-xl",        // 둥근 모서리
-      "text-xs",           // 작은 글자 크기
-      "font-medium",       // 중간 굵기
-      "text-text",         // 기본 텍스트 색
+      "menu-item",          // 메뉴 아이템 클래스
+      "flex",               // 세로 배치용 flex 컨테이너
+      "flex-col",           // 위 ↓ 아래 방향
+      "items-center",       // 수평 중앙 정렬
+      "space-y-1",          // 아이콘과 텍스트 사이 간격
+      "px-2",               // 좌우 패딩
+      "py-2",               // 상하 패딩
+      "rounded-xl",         // 둥근 모서리
+      "text-xs",            // 작은 글자 크기
+      "font-medium",        // 중간 굵기
+      "text-text",          // 기본 텍스트 색
       "hover:text-primary", // 호버 시 primary 컬러
-      "transition-all",    // 부드러운 전환
-      "duration-200",      // 전환 시간
-      "cursor-pointer"     // 커서 포인터
+      "transition-all",     // 부드러운 전환
+      "duration-200",       // 전환 시간
+      "cursor-pointer"      // 커서 포인터
     );
 
     link.href = menu.download_url;
@@ -85,8 +87,8 @@ async function renderMenu() {
     link.innerHTML = `
       <img src="img/icon/${menuName.toLowerCase()}.svg"
             alt="${menuName}"
-            class="w-5 h-5 opacity-80">  <!-- 아이콘 크기 축소 -->
-      <span class="hidden sm:inline">${menuName}</span>  <!-- 모바일에서는 텍스트 숨김 -->
+            class="w-6 h-6 opacity-80">  <!-- 아이콘 크기 -->
+      <span class="text-center">${menuName}</span>  <!-- 텍스트 -->
     `;
 
     link.onclick = (event) => {
@@ -142,10 +144,11 @@ function createCardElement(fileInfo, index) {
     정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
     */
   const card = document.createElement("div");
-  
-  // iMac style card styling
+   
+  // iMac style card styling for horizontal layout
   card.classList.add(
     "blog-card",           // 호버 효과용 클래스
+    "horizontal",          // 가로 레이아웃용 클래스
     "bg-card",             // 아이맥 스타일 배경
     "backdrop-blur-sm",    // 글래스 효과
     "border",              // 테두리
@@ -157,19 +160,18 @@ function createCardElement(fileInfo, index) {
     "transition-all",      // 부드러운 전환
     "duration-300"         // 전환 시간
   );
-  
-  if (index === 0) {
-    card.classList.add("md:col-span-2", "md:row-span-2"); // 첫 번째 카드는 더 크게
-  }
+
+  // Prism overlay 추가
+  const prismOverlay = document.createElement("div");
+  prismOverlay.classList.add("prism-overlay");
+  card.appendChild(prismOverlay);
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
     img.alt = fileInfo.title;
     img.classList.add(
-      "w-full",
-      "h-48",
-      "object-cover",
+      "card-image",
       "transition-transform",
       "duration-300",
       "hover:scale-105"
@@ -179,23 +181,19 @@ function createCardElement(fileInfo, index) {
 
   const cardBody = document.createElement("div");
   cardBody.classList.add(
-    "p-6",
-    "flex",
-    "flex-col",
-    "h-full"
+    "card-content"
   );
 
   const category = document.createElement("span");
   category.classList.add(
     "inline-block",
-    "px-3",
+    "px-2",
     "py-1",
     "bg-primary/10",
     "text-primary",
     "text-xs",
     "font-medium",
     "rounded-full",
-    "mb-3",
     "self-start",
     "cursor-pointer",
     "hover:bg-primary/20",
@@ -214,10 +212,9 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-lg",
+    "text-sm",
     "font-semibold",
     "text-text",
-    "mb-2",
     "line-clamp-2",
     "hover:text-primary",
     "transition-colors",
@@ -229,9 +226,8 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-sm",
-    "line-clamp-3",
-    "mb-4",
+    "text-xs",
+    "line-clamp-2",
     "flex-grow"
   );
   description.textContent = fileInfo.description;
@@ -244,14 +240,13 @@ function createCardElement(fileInfo, index) {
     "space-x-2",
     "mt-auto"
   );
-  cardBody.appendChild(authorDiv);
 
   const authorImg = document.createElement("img");
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(
-    "w-6",
-    "h-6",
+    "w-4",
+    "h-4",
     "rounded-full",
     "object-cover"
   );
@@ -273,8 +268,9 @@ function createCardElement(fileInfo, index) {
     "ml-auto"
   );
   date.textContent = formatDate(fileInfo.date);
-  cardBody.appendChild(date);
+  authorDiv.appendChild(date);
 
+  cardBody.appendChild(authorDiv);
   card.appendChild(cardBody);
 
   return card;
@@ -284,22 +280,17 @@ function renderBlogList(searchResult = null, currentPage = 1) {
   /*
     blog의 main 영역에 블로그 포스트 목록을 렌더링
     1. 검색 키워드 없이 대부분 renderBlogList()로 사용.
-    2. 검색을 했을 때에만 searchResult에 목록이 담겨 들어옴
+    2. 검색을 했을 때만 searchResult에 목록이 담겨 들어옴
     */
-  const pageUnit = 10;
+  const postsToRender = searchResult || blogList;
 
   if (searchResult) {
     // 검색 keyword가 있을 경우
-    document.getElementById("blog-posts").style.display = "grid";
+    document.getElementById("blog-posts").style.display = "flex";
     document.getElementById("blog-posts").innerHTML = "";
+    document.getElementById("pagination").style.display = "none";
 
-    const totalPage = Math.ceil(searchResult.length / pageUnit);
-    initPagination(totalPage);
-    renderPagination(totalPage, 1, searchResult);
-
-    const startIndex = (currentPage - 1) * pageUnit;
-    const endIndex = currentPage * pageUnit;
-    searchResult.slice(startIndex, endIndex).forEach((post, index) => {
+    postsToRender.forEach((post, index) => {
       const postInfo = extractFileInfo(post.name);
       if (postInfo) {
         const cardElement = createCardElement(postInfo, index);
@@ -311,7 +302,6 @@ function renderBlogList(searchResult = null, currentPage = 1) {
           document.getElementById("contents").style.display = "block";
           // blog-posts 영역을 보이지 않게 처리
           document.getElementById("blog-posts").style.display = "none";
-          document.getElementById("pagination").style.display = "none";
           
           // contents 영역 내용 초기화
           document.getElementById("contents").innerHTML = "";
@@ -337,22 +327,13 @@ function renderBlogList(searchResult = null, currentPage = 1) {
     document.getElementById("contents").style.display = "none";
   } else {
     // 검색 keyword가 없을 경우
-    document.getElementById("blog-posts").style.display = "grid";
-    document.getElementById("pagination").style.display = "flex";
+    document.getElementById("blog-posts").style.display = "flex";
+    document.getElementById("pagination").style.display = "none";
     document.getElementById("blog-posts").innerHTML = "";
 
-    const totalPage = Math.ceil(blogList.length / pageUnit);
-    initPagination(totalPage);
-    renderPagination(totalPage, 1);
-
-    const startIndex = (currentPage - 1) * pageUnit;
-    const endIndex = currentPage * pageUnit;
-
-    // console.log("blogList", blogList);
-    blogList.slice(startIndex, endIndex).forEach((post, index) => {
+    postsToRender.forEach((post, index) => {
       const postInfo = extractFileInfo(post.name);
       if (postInfo) {
-        // console.log(postInfo)
         const cardElement = createCardElement(postInfo, index);
 
         cardElement.onclick = (event) => {
@@ -362,13 +343,10 @@ function renderBlogList(searchResult = null, currentPage = 1) {
           document.getElementById("contents").style.display = "block";
           // blog-posts 영역을 보이지 않게 처리
           document.getElementById("blog-posts").style.display = "none";
-          document.getElementById("pagination").style.display = "none";
           
           // contents 영역 내용 초기화
           document.getElementById("contents").innerHTML = "";
 
-          // console.log(post)
-          // console.log(post.download_url)
           let postDownloadUrl;
           if (!isLocal && localDataUsing) {
             postDownloadUrl = `${url.origin}/${siteConfig.repositoryName}${post.download_url}`;
@@ -841,6 +819,61 @@ async function initialize() {
 }
 
 initialize();
+
+// 드래그 스크롤 기능 추가
+function initDragScroll() {
+  const blogPosts = document.getElementById("blog-posts");
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  blogPosts.addEventListener("mousedown", (e) => {
+    isDown = true;
+    blogPosts.style.cursor = "grabbing";
+    startX = e.pageX - blogPosts.offsetLeft;
+    scrollLeft = blogPosts.scrollLeft;
+  });
+
+  blogPosts.addEventListener("mouseleave", () => {
+    isDown = false;
+    blogPosts.style.cursor = "grab";
+  });
+
+  blogPosts.addEventListener("mouseup", () => {
+    isDown = false;
+    blogPosts.style.cursor = "grab";
+  });
+
+  blogPosts.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - blogPosts.offsetLeft;
+    const walk = (x - startX) * 2; // 스크롤 속도 조정
+    blogPosts.scrollLeft = scrollLeft - walk;
+  });
+
+  // 터치 디바이스 지원
+  blogPosts.addEventListener("touchstart", (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - blogPosts.offsetLeft;
+    scrollLeft = blogPosts.scrollLeft;
+  });
+
+  blogPosts.addEventListener("touchend", () => {
+    isDown = false;
+  });
+
+  blogPosts.addEventListener("touchmove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - blogPosts.offsetLeft;
+    const walk = (x - startX) * 2;
+    blogPosts.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// 드래그 스크롤 초기화
+initDragScroll();
 
 ;(function() {
   const sidebarEl = document.querySelector(".category-aside");

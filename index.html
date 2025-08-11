@@ -99,10 +99,23 @@
     </header>
 
     <main class="container p-4 md:p-8 pb-24 w-full mx-auto max-w-[1190px] pt-8">
+      <!-- 좌측 고정 메뉴 -->
+      <div class="fixed left-6 top-1/2 transform -translate-y-1/2 z-50">
+        <div class="bg-glass backdrop-blur-xl border border-border/30 rounded-2xl px-4 py-3 shadow-2xl">
+          <div class="flex flex-col items-center space-y-3">
+            <!-- Menu Items -->
+            <div id="menu" class="flex flex-col items-center space-y-2">
+              <!-- Menu items will be rendered here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 블로그 포스트 리스트 영역 -->
       <div
         id="blog-posts"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch mx-auto px-4 md:px-0"
+        class="flex overflow-x-auto gap-6 pb-6 mx-auto px-4 md:px-0 scrollbar-hide ml-20"
+        style="scrollbar-width: none; -ms-overflow-style: none;"
       ></div>
       <!-- // 블로그 포스트 리스트 영역-->
 
@@ -113,22 +126,14 @@
       ></div>
       <!-- // contents 영역-->
 
-      <!-- pagination -->
-      <div id="pagination"></div>
+      <!-- pagination (hidden for horizontal layout) -->
+      <div id="pagination" class="hidden"></div>
     </main>
 
     <!-- iMac Style Bottom Menu Bar -->
     <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
       <div class="bg-glass backdrop-blur-xl border border-border/30 rounded-2xl px-6 py-3 shadow-2xl">
         <div class="flex items-center space-x-6">
-          <!-- Menu Items -->
-          <div id="menu" class="flex items-center space-x-4">
-            <!-- Menu items will be rendered here -->
-          </div>
-          
-          <!-- Divider -->
-          <div class="w-px h-6 bg-border/50"></div>
-          
           <!-- Search Container -->
           <div class="relative">
             <input
