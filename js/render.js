@@ -145,14 +145,14 @@ function createCardElement(fileInfo, index) {
     */
   const card = document.createElement("div");
    
-  // iMac style card styling for masonry layout
+  // Windows 8 style card styling
   card.classList.add(
     "blog-card",           // 호버 효과용 클래스
     "bg-card",             // 아이맥 스타일 배경
     "backdrop-blur-sm",    // 글래스 효과
     "border",              // 테두리
     "border-border/20",    // 테두리 색상
-    "rounded-2xl",         // 둥근 모서리
+    "rounded-lg",          // 둥근 모서리
     "shadow-lg",           // 그림자
     "overflow-hidden",     // 오버플로우 숨김
     "cursor-pointer",      // 커서 포인터
@@ -186,11 +186,11 @@ function createCardElement(fileInfo, index) {
   const category = document.createElement("span");
   category.classList.add(
     "inline-block",
-    "px-3",
-    "py-1.5",
+    "px-2",
+    "py-1",
     "bg-primary/10",
     "text-primary",
-    "text-sm",
+    "text-xs",
     "font-medium",
     "rounded-full",
     "self-start",
@@ -198,7 +198,7 @@ function createCardElement(fileInfo, index) {
     "hover:bg-primary/20",
     "transition-colors",
     "duration-200",
-    "mb-3"
+    "mb-2"
   );
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
@@ -212,14 +212,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-base",
+    "text-sm",
     "font-semibold",
     "text-text",
-    "line-clamp-2",
+    "line-clamp-1",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-2"
+    "mb-1"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -227,10 +227,9 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-sm",
-    "line-clamp-3",
-    "flex-grow",
-    "mb-4"
+    "text-xs",
+    "line-clamp-2",
+    "flex-grow"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
@@ -239,7 +238,7 @@ function createCardElement(fileInfo, index) {
   authorDiv.classList.add(
     "flex",
     "items-center",
-    "space-x-3",
+    "space-x-2",
     "mt-auto"
   );
 
@@ -247,8 +246,8 @@ function createCardElement(fileInfo, index) {
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(
-    "w-6",
-    "h-6",
+    "w-4",
+    "h-4",
     "rounded-full",
     "object-cover"
   );
@@ -256,7 +255,7 @@ function createCardElement(fileInfo, index) {
 
   const author = document.createElement("p");
   author.classList.add(
-    "text-sm",
+    "text-xs",
     "text-textSecondary",
     "font-medium"
   );
@@ -265,7 +264,7 @@ function createCardElement(fileInfo, index) {
 
   const date = document.createElement("p");
   date.classList.add(
-    "text-sm",
+    "text-xs",
     "text-textSecondary",
     "ml-auto"
   );
