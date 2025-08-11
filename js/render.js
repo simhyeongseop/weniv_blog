@@ -247,8 +247,8 @@ function createCardElement(fileInfo, index) {
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(
-    "w-6",
-    "h-6",
+    "w-5",
+    "h-5",
     "rounded-full",
     "object-cover"
   );
@@ -258,7 +258,8 @@ function createCardElement(fileInfo, index) {
   author.classList.add(
     "text-xs",
     "text-textSecondary",
-    "font-medium"
+    "font-medium",
+    "whitespace-nowrap"
   );
   author.textContent = users[fileInfo.author]["username"];
   authorDiv.appendChild(author);
@@ -267,7 +268,8 @@ function createCardElement(fileInfo, index) {
   date.classList.add(
     "text-xs",
     "text-textSecondary",
-    "ml-auto"
+    "ml-auto",
+    "whitespace-nowrap"
   );
   date.textContent = formatDate(fileInfo.date);
   authorDiv.appendChild(date);
