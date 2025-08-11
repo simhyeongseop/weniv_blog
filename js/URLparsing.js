@@ -103,15 +103,32 @@ window.addEventListener("popstate", (event) => {
     postInfo = extractFileInfo(postNameDecode);
     if (!postInfo) {
       alert("잘못된 포스트입니다.");
+      // 잘못된 포스트일 때 메인 페이지로 리다이렉트
+      const mainUrl = new URL(window.location.origin + window.location.pathname);
+      window.history.pushState({}, "", mainUrl);
+      renderBlogList();
       return;
     }
     fetch(origin + "blog/" + postNameDecode)
-      .then((response) => response.text())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Post not found');
+        }
+        return response.text();
+      })
       .then((text) =>
         postInfo.fileType === "md"
           ? styleMarkdown("post", text, postInfo)
           : styleJupyter("post", text, postInfo)
-      );
+      )
+      .catch((error) => {
+        console.error('Error loading post:', error);
+        alert("포스트를 불러올 수 없습니다.");
+        // 오류 발생 시 메인 페이지로 리다이렉트
+        const mainUrl = new URL(window.location.origin + window.location.pathname);
+        window.history.pushState({}, "", mainUrl);
+        renderBlogList();
+      });
   } else {
     alert("잘못된 URL입니다.");
   }

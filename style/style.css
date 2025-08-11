@@ -433,12 +433,8 @@ body {
 
 /* ── Right Category Menu Styling ── */
 .category-aside {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  max-height: 60vh;
+  z-index: 30 !important;
+  max-height: 80vh;
   overflow-y: auto;
 }
 
@@ -500,11 +496,11 @@ body {
 /* ── Random Card List Layout ── */
 .windows-tile-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  grid-auto-rows: minmax(300px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: minmax(350px, auto);
   grid-gap: 2rem;
   width: 100%;
-  height: calc(100vh - 300px);
+  max-height: calc(100vh - 300px);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
@@ -552,7 +548,7 @@ body {
 /* ── Large Card Layout ── */
 .blog-card {
   width: 100%;
-  min-height: 300px;
+  min-height: 350px;
   height: auto;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -568,15 +564,15 @@ body {
 
 .blog-card .card-image {
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .blog-card .card-content {
   height: auto;
-  min-height: 150px;
-  padding: 1.5rem;
+  min-height: 200px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

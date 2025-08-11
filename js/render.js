@@ -222,8 +222,7 @@ function createCardElement(fileInfo, index) {
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-3",
-    "line-clamp-2"
+    "mb-3"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -233,8 +232,7 @@ function createCardElement(fileInfo, index) {
     "text-textSecondary",
     "text-base",
     "flex-grow",
-    "mb-4",
-    "line-clamp-3"
+    "mb-4"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);

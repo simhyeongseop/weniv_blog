@@ -13,9 +13,11 @@ const searchContainer = document.getElementById("search-container");
 window.addEventListener("click", (event) => {
     if (event.target === menuButton) {
         // 모바일 카테고리 메뉴 닫기
-        mobileCategory.innerHTML = "";
+        if (mobileCategory) {
+            mobileCategory.innerHTML = "";
+        }
         
-        if (mobileMenu.innerHTML === "") {
+        if (mobileMenu && mobileMenu.innerHTML === "") {
             mobileMenu.innerHTML = menu.innerHTML;
             const menuItems = mobileMenu.querySelectorAll("a");
             menuItems.forEach((item, index) => {
@@ -25,14 +27,16 @@ window.addEventListener("click", (event) => {
                 }
                 item.style.animation = `slideDown forwards ${index * 0.2}s`;
             });
-        } else {
+        } else if (mobileMenu) {
             mobileMenu.innerHTML = "";
         }
     } else if (event.target === categoryToggle) {
         // 모바일 메뉴 닫기
-        mobileMenu.innerHTML = "";
+        if (mobileMenu) {
+            mobileMenu.innerHTML = "";
+        }
         
-        if (mobileCategory.innerHTML === "") {
+        if (mobileCategory && mobileCategory.innerHTML === "") {
             // 카테고리 렌더링 함수 호출
             renderBlogCategory();
             const categoryAside = document.querySelector('.category-aside aside');
@@ -47,19 +51,23 @@ window.addEventListener("click", (event) => {
                     item.style.animation = `slideDown forwards ${index * 0.2}s`;
                 });
             }
-        } else {
+        } else if (mobileCategory) {
             mobileCategory.innerHTML = "";
         }
     } else if (event.target === searchButton) {
         // 모바일 메뉴와 카테고리 메뉴 닫기
-        mobileMenu.innerHTML = "";
-        mobileCategory.innerHTML = "";
+        if (mobileMenu) {
+            mobileMenu.innerHTML = "";
+        }
+        if (mobileCategory) {
+            mobileCategory.innerHTML = "";
+        }
         
         // 검색창 토글
-        if (searchContainer.classList.contains('hidden')) {
+        if (searchContainer && searchContainer.classList.contains('hidden')) {
             searchContainer.classList.remove('hidden');
             searchContainer.classList.add('block');
-        } else {
+        } else if (searchContainer) {
             searchContainer.classList.add('hidden');
             searchContainer.classList.remove('block');
         }
@@ -68,7 +76,10 @@ window.addEventListener("click", (event) => {
 
         if (event.target.innerText + ".md" === "blog.md") {
             // contents 영역 숨기기
-            document.getElementById("contents").style.display = "none";
+            const contents = document.getElementById("contents");
+            if (contents) {
+                contents.style.display = "none";
+            }
             
             if (blogList.length === 0) {
                 // 블로그 리스트 로딩
@@ -82,22 +93,32 @@ window.addEventListener("click", (event) => {
             const url = new URL(origin);
             url.searchParams.set("menu", event.target.innerText + ".md");
             window.history.pushState({}, "", url);
-            mobileMenu.innerHTML = "";
+            if (mobileMenu) {
+                mobileMenu.innerHTML = "";
+            }
         } else {
             renderOtherContents(event.target.innerText + ".md");
-            mobileMenu.innerHTML = "";
+            if (mobileMenu) {
+                mobileMenu.innerHTML = "";
+            }
         }
     } else if (event.target.parentNode === mobileCategory) {
         // 모바일 카테고리 클릭 이벤트
         event.preventDefault();
         const categoryName = event.target.innerText.split('(')[0].trim();
         search(categoryName, "category");
-        mobileCategory.innerHTML = "";
+        if (mobileCategory) {
+            mobileCategory.innerHTML = "";
+        }
     } else {
-        mobileMenu.innerHTML = "";
-        mobileCategory.innerHTML = "";
+        if (mobileMenu) {
+            mobileMenu.innerHTML = "";
+        }
+        if (mobileCategory) {
+            mobileCategory.innerHTML = "";
+        }
         // 검색창 외부 클릭 시 닫기
-        if (!searchContainer.contains(event.target) && event.target !== searchButton) {
+        if (searchContainer && !searchContainer.contains(event.target) && event.target !== searchButton) {
             searchContainer.classList.add('hidden');
             searchContainer.classList.remove('block');
         }
