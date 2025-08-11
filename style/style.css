@@ -4,10 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8d9299;
+  background-color: #86868B;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   -webkit-mask-image: url("../img/icon/icon-dropdown-menu.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -18,7 +18,8 @@
   mask-position: center center;
 }
 #menu-button:hover, #menu-button.active {
-  background-color: #121314;
+  background-color: #1D1D1F;
+  transform: scale(1.05);
 }
 
 #search-button {
@@ -27,10 +28,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8d9299;
+  background-color: #86868B;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -41,7 +42,8 @@
   mask-position: center center;
 }
 #search-button:hover, #search-button.active {
-  background-color: #121314;
+  background-color: #1D1D1F;
+  transform: scale(1.05);
 }
 
 #category-toggle {
@@ -50,10 +52,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #8d9299;
+  background-color: #86868B;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   -webkit-mask-image: url("../img/icon/icon-chapter.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -65,7 +67,8 @@
 }
 
 #category-toggle:hover, #category-toggle.active {
-  background-color: #121314;
+  background-color: #1D1D1F;
+  transform: scale(1.05);
 }
 
 .search-inp-btn {
@@ -73,7 +76,10 @@
   height: 1.3125rem;
   display: flex;
   align-items: center;
-  background-color: #d9dbe0;
+  background-color: #D2D2D7;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
   -webkit-mask-image: url("../img/icon/icon-search.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -85,11 +91,12 @@
 }
 @media screen and (min-width: 768px) {
   .search-inp-btn {
-    background-color: #47494d;
+    background-color: #86868B;
   }
 }
 .search-inp-btn:hover, .search-inp-btn.active {
-  background-color: #47494d;
+  background-color: #1D1D1F;
+  transform: scale(1.05);
 }
 
 .reset-inp-btn {
@@ -97,14 +104,24 @@
   height: 1rem;
   display: flex;
   align-items: center;
-  background-color: #d9dbe0;
-  border-radius: 50%;
+  background-color: #D2D2D7;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  -webkit-mask-image: url("../img/icon/icon-X.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-X.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
 }
 .reset-inp-btn::after {
   content: "";
-  width: 100%;
-  height: 100%;
-  background-color: #f3f5fa;
+  width: 1rem;
+  height: 1rem;
+  background-color: #D2D2D7;
   -webkit-mask-image: url("../img/icon/icon-X.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -115,24 +132,29 @@
   mask-position: center center;
 }
 .reset-inp-btn:hover, .reset-inp-btn.active {
-  background-color: #47494d;
+  background-color: #1D1D1F;
+  transform: scale(1.05);
 }
 
 #copy-button {
-  width: 2.625rem;
-  height: 2.625rem;
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #86868B;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 #copy-button:hover::after, #copy-button.active::after {
-  background-color: #121314;
+  background-color: #1D1D1F;
 }
 #copy-button::after {
   content: "";
-  width: 100%;
-  height: 100%;
-  background-color: #8d9299;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #86868B;
   -webkit-mask-image: url("../img/icon/icon-copy.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -141,40 +163,41 @@
   mask-size: 100%;
   mask-repeat: no-repeat;
   mask-position: center center;
+  transition: all 0.2s ease;
 }
 
 #aside-button {
-  margin-left: auto;
-  width: -moz-fit-content;
-  width: fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 1.5rem;
+  height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #86868B;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 #aside-button:active, #aside-button:focus {
-  outline: none;
+  background-color: #1D1D1F;
 }
 #aside-button::after {
   content: "";
-  width: 24px;
-  height: 24px;
-  margin: 13px;
-  border: 1px solid red;
-  background-color: #47494d;
-  -webkit-mask-image: url("../img/icon/icon-chapter.svg");
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #86868B;
+  -webkit-mask-image: url("../img/icon/icon-side-close-right.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
   -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-chapter.svg");
+  mask-image: url("../img/icon/icon-side-close-right.svg");
   mask-size: 100%;
   mask-repeat: no-repeat;
   mask-position: center center;
+  transition: all 0.2s ease;
 }
 
 .active #aside-button::after {
-  background-color: #8d9299;
+  background-color: #1D1D1F;
   -webkit-mask-image: url("../img/icon/icon-side-close-right.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -192,7 +215,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: #8d9299;
+  background-color: #86868B;
   -webkit-mask-image: url("../img/icon/icon-prev.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -201,9 +224,10 @@
   mask-size: 100%;
   mask-repeat: no-repeat;
   mask-position: center center;
+  transition: all 0.2s ease;
 }
 #page-prev:hover::after {
-  background-color: #47494d;
+  background-color: #1D1D1F;
   -webkit-mask-image: url("../img/icon/icon-prev.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -212,9 +236,10 @@
   mask-size: 100%;
   mask-repeat: no-repeat;
   mask-position: center center;
+  transform: scale(1.05);
 }
 #page-prev:disabled::after {
-  background-color: #d9dbe0;
+  background-color: #D2D2D7;
   -webkit-mask-image: url("../img/icon/icon-prev.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -232,7 +257,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: #8d9299;
+  background-color: #86868B;
   -webkit-mask-image: url("../img/icon/icon-next.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -241,9 +266,22 @@
   mask-size: 100%;
   mask-repeat: no-repeat;
   mask-position: center center;
+  transition: all 0.2s ease;
 }
 #page-next:hover::after {
-  background-color: #47494d;
+  background-color: #1D1D1F;
+  -webkit-mask-image: url("../img/icon/icon-next.svg");
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center center;
+  mask-image: url("../img/icon/icon-next.svg");
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  transform: scale(1.05);
+}
+#page-next:disabled::after {
+  background-color: #D2D2D7;
   -webkit-mask-image: url("../img/icon/icon-next.svg");
   -webkit-mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
@@ -253,31 +291,18 @@
   mask-repeat: no-repeat;
   mask-position: center center;
 }
-#page-next:disabled::after {
-  background-color: #d9dbe0;
-  -webkit-mask-image: url("../img/icon/icon-next.svg");
-  -webkit-mask-size: 100%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center center;
-  mask-image: url("../img/icon/icon-next.svg");
-  mask-size: 100%;
-  mask-repeat: no-repeat;
-  mask-position: center center;
-}/*# sourceMappingURL=style.css.map */
 
-
-/* ── 배경 이미지 적용 ── */
-/* ── 배경 이미지 고정 & 꽉 채우기 ── */
+/* ── iMac Style Background ── */
 body {
-  background-image: url("../img/background.jpg");
+  background: linear-gradient(135deg, #F5F5F7 0%, #E5E5E7 50%, #F0F0F2 100%);
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
-
-/* ── Header Sparkle Animation ── */
+/* ── iMac Style Header Animation ── */
 @keyframes sparkle {
   0%   { transform: translateX(-100%) skewX(-20deg); }
   50%  { transform: translateX(200%) skewX(-20deg); }
@@ -285,7 +310,7 @@ body {
 }
 
 header {
-  position: relative;    /* ::after 절대위치 기준 */
+  position: relative;
   overflow: hidden;
 }
 
@@ -297,7 +322,7 @@ header::after {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255,255,255,0.5),
+    rgba(255,255,255,0.6),
     transparent
   );
   transform: skewX(-20deg);
@@ -307,4 +332,53 @@ header::after {
 header:hover::after {
   width: 150%;
   animation: sparkle 3.2s ease-in-out;
+}
+
+/* ── iMac Style Card Hover Effects ── */
+.blog-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* ── iMac Style Menu Items ── */
+#menu a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+#menu a:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ── iMac Style Search Input ── */
+#search-input {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#search-input:focus {
+  transform: scale(1.02);
+}
+
+/* ── iMac Style Category Aside ── */
+.category-aside {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-aside:hover {
+  transform: translateX(-4px);
+}
+
+/* ── iMac Style Bottom Menu Bar ── */
+.bottom-menu-bar {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(210, 210, 215, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }

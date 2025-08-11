@@ -62,17 +62,21 @@ async function renderMenu() {
     // 메뉴 링크 생성
     const link = document.createElement("a");
 
-    // (static) index.html: <div id="contents" class="mt-6 grid-cols-3"></div>
+    // iMac style bottom menu bar styling
     link.classList.add(
-      ...menuListStyle.split(" "),
-      `${menu.name}`,                    // 기존 메뉴명 클래스
-      "flex",              // 수직 스택용 flex 컨테이너
-      "flex-col",          // 위 ↓ 아래 방향
-      "items-center",      // 수평 중앙 정렬             // 줄바꿈 방지
-      "text-sm",                         // 글자 크기 축소
-      "font-bold",                       // 볼드체
-      "text-gray-800",                   // 기본 텍스트 색
-      "hover:text-primary"               // 호버 시 primary 컬러
+      "flex",              // 가로 배치용 flex 컨테이너
+      "items-center",      // 수직 중앙 정렬
+      "space-x-2",         // 아이콘과 텍스트 사이 간격
+      "px-3",              // 좌우 패딩
+      "py-2",              // 상하 패딩
+      "rounded-xl",        // 둥근 모서리
+      "text-xs",           // 작은 글자 크기
+      "font-medium",       // 중간 굵기
+      "text-text",         // 기본 텍스트 색
+      "hover:text-primary", // 호버 시 primary 컬러
+      "transition-all",    // 부드러운 전환
+      "duration-200",      // 전환 시간
+      "cursor-pointer"     // 커서 포인터
     );
 
     link.href = menu.download_url;
@@ -81,8 +85,8 @@ async function renderMenu() {
     link.innerHTML = `
       <img src="img/icon/${menuName.toLowerCase()}.svg"
             alt="${menuName}"
-            class="w-8 h-8">            <!-- 아이콘 크기 20×20px -->
-      <span>${menuName}</span>
+            class="w-5 h-5 opacity-80">  <!-- 아이콘 크기 축소 -->
+      <span class="hidden sm:inline">${menuName}</span>  <!-- 모바일에서는 텍스트 숨김 -->
     `;
 
     link.onclick = (event) => {
@@ -111,77 +115,25 @@ async function renderMenu() {
     document.getElementById("menu").appendChild(link);
   });
 
-  // 검색 버튼 클릭 시 검색창 출력
-  const searchButton = document.getElementById("search-button");
-  const searchCont = document.querySelector(".search-cont");
-
-  let searchInputShow = false;
-
-  window.addEventListener("click", (event) => {
-    // 화면의 크기가 md 보다 작을 때만 동작
-    if (window.innerWidth <= 768) {
-      if (event.target == searchButton) {
-        searchInputShow = !searchInputShow;
-        if (searchInputShow) {
-          searchButton.classList.add("active");
-          searchCont.classList.remove("hidden");
-          searchCont.classList.add("block");
-        } else {
-          searchButton.classList.remove("active");
-          searchCont.classList.add("hidden");
-          searchInputShow = false;
-        }
-      } else if (event.target == searchCont) {
-      } else {
-        searchButton.classList.remove("active");
-        searchCont.classList.add("hidden");
-        searchInputShow = false;
-      }
-    }
-  });
-
-  window.addEventListener("resize", (event) => {
-    if (window.innerWidth > 768) {
-      searchButton.classList.add("active");
-      searchCont.classList.remove("hidden");
-      searchInputShow = true;
-    } else {
-      searchButton.classList.remove("active");
-      searchCont.classList.add("hidden");
-    }
-  });
-
+  // 검색 입력 이벤트 설정
   const searchInput = document.getElementById("search-input");
-  searchInput.onkeyup = (event) => {
-    if (event.key === "Enter") {
-      // 엔터키 입력 시 검색 실행
-      search();
-    }
-  };
-
-  searchInput.onclick = (event) => {
-    event.stopPropagation();
-  };
-
-  const searchInputButton = document.querySelector(".search-inp-btn");
-  searchInputButton.onclick = (event) => {
-    event.stopPropagation();
-    search();
-  };
-
-  const resetInputButton = document.querySelector(".reset-inp-btn");
-  searchInput.addEventListener("input", () => {
-    // 초기화 버튼 보이기
-    if (searchInput.value) {
-      resetInputButton.classList.remove("hidden");
+  
+  searchInput.addEventListener("input", (event) => {
+    const keyword = event.target.value;
+    if (keyword.trim() === "") {
+      // 검색어가 비어있으면 전체 블로그 리스트 표시
+      renderBlogList();
     } else {
-      resetInputButton.classList.add("hidden");
+      // 검색 실행
+      search(keyword);
     }
   });
-  resetInputButton.addEventListener("click", (event) => {
-    event.stopPropagation();
-    searchInput.value = "";
-    resetInputButton.classList.add("hidden");
+
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      const keyword = event.target.value;
+      search(keyword);
+    }
   });
 }
 
@@ -190,29 +142,66 @@ function createCardElement(fileInfo, index) {
     정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
     */
   const card = document.createElement("div");
+  
+  // iMac style card styling
+  card.classList.add(
+    "blog-card",           // 호버 효과용 클래스
+    "bg-card",             // 아이맥 스타일 배경
+    "backdrop-blur-sm",    // 글래스 효과
+    "border",              // 테두리
+    "border-border/20",    // 테두리 색상
+    "rounded-2xl",         // 둥근 모서리
+    "shadow-lg",           // 그림자
+    "overflow-hidden",     // 오버플로우 숨김
+    "cursor-pointer",      // 커서 포인터
+    "transition-all",      // 부드러운 전환
+    "duration-300"         // 전환 시간
+  );
+  
   if (index === 0) {
-    card.classList.add(...bloglistFirstCardStyle.split(" "));
-  } else {
-    card.classList.add(...bloglistCardStyle.split(" "));
+    card.classList.add("md:col-span-2", "md:row-span-2"); // 첫 번째 카드는 더 크게
   }
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
     img.alt = fileInfo.title;
-    if (index === 0) {
-      img.classList.add(...bloglistFirstCardImgStyle.split(" "));
-    } else {
-      img.classList.add(...bloglistCardImgStyle.split(" "));
-    }
+    img.classList.add(
+      "w-full",
+      "h-48",
+      "object-cover",
+      "transition-transform",
+      "duration-300",
+      "hover:scale-105"
+    );
     card.appendChild(img);
   }
 
   const cardBody = document.createElement("div");
-  cardBody.classList.add(...bloglistCardBodyStyle.split(" "));
+  cardBody.classList.add(
+    "p-6",
+    "flex",
+    "flex-col",
+    "h-full"
+  );
 
   const category = document.createElement("span");
-  category.classList.add(...bloglistCardCategoryStyle.split(" "));
+  category.classList.add(
+    "inline-block",
+    "px-3",
+    "py-1",
+    "bg-primary/10",
+    "text-primary",
+    "text-xs",
+    "font-medium",
+    "rounded-full",
+    "mb-3",
+    "self-start",
+    "cursor-pointer",
+    "hover:bg-primary/20",
+    "transition-colors",
+    "duration-200"
+  );
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
 
@@ -224,36 +213,65 @@ function createCardElement(fileInfo, index) {
   };
 
   const title = document.createElement("h2");
-  title.classList.add(...bloglistCardTitleStyle.split(" "));
+  title.classList.add(
+    "text-lg",
+    "font-semibold",
+    "text-text",
+    "mb-2",
+    "line-clamp-2",
+    "hover:text-primary",
+    "transition-colors",
+    "duration-200"
+  );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
 
   const description = document.createElement("p");
-  if (index == 0) {
-    description.classList.add(...bloglistFirstCardDescriptionStyle.split(" "));
-  } else {
-    description.classList.add(...bloglistCardDescriptionStyle.split(" "));
-  }
+  description.classList.add(
+    "text-textSecondary",
+    "text-sm",
+    "line-clamp-3",
+    "mb-4",
+    "flex-grow"
+  );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
 
   const authorDiv = document.createElement("div");
-  authorDiv.classList.add(...bloglistCardAuthorDivStyle.split(" "));
+  authorDiv.classList.add(
+    "flex",
+    "items-center",
+    "space-x-2",
+    "mt-auto"
+  );
   cardBody.appendChild(authorDiv);
 
   const authorImg = document.createElement("img");
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
-  authorImg.classList.add(...bloglistCardAuthorImgStyle.split(" "));
+  authorImg.classList.add(
+    "w-6",
+    "h-6",
+    "rounded-full",
+    "object-cover"
+  );
   authorDiv.appendChild(authorImg);
 
   const author = document.createElement("p");
-  author.classList.add(...bloglistCardAuthorStyle.split(" "));
+  author.classList.add(
+    "text-xs",
+    "text-textSecondary",
+    "font-medium"
+  );
   author.textContent = users[fileInfo.author]["username"];
   authorDiv.appendChild(author);
 
   const date = document.createElement("p");
-  date.classList.add(...bloglistCardDateStyle.split(" "));
+  date.classList.add(
+    "text-xs",
+    "text-textSecondary",
+    "ml-auto"
+  );
   date.textContent = formatDate(fileInfo.date);
   cardBody.appendChild(date);
 
@@ -447,7 +465,9 @@ function renderBlogCategory() {
 
   const categoryContainer = document.querySelector(".category-aside > aside");
   categoryContainer.innerHTML = "";
-  categoryContainer.classList.add(...categoryContainerStyle.split(" "));
+  categoryContainer.classList.add(
+    "space-y-2"
+  );
 
   const categoryWrapper = document.querySelector(".category-aside");
   const categoryTitle = categoryWrapper.querySelector(".aside-tit");
@@ -479,48 +499,78 @@ function renderBlogCategory() {
 
     if (categoryList[category]) {
       categoryItem.classList.add(
-        ...categoryItemStyle.split(" "),
-        "bg-transparent",         // 기본엔 투명
-        "border",                 // 1px 테두리
-        "border-white/25",
-        "rounded-lg",
-        "p-3",
-        "mb-3",
-        "text-base",
-        "font-semibold",
-        "hover:bg-white",         // hover 시 흰 배경
-        "transition-colors",      // 배경 색 부드럽게 전환
-        "duration-200"
+        "flex",
+        "items-center",
+        "justify-between",
+        "px-4",
+        "py-3",
+        "bg-card",
+        "backdrop-blur-sm",
+        "border",
+        "border-border/20",
+        "rounded-xl",
+        "text-sm",
+        "font-medium",
+        "text-text",
+        "hover:bg-white/50",
+        "hover:border-primary/30",
+        "transition-all",
+        "duration-200",
+        "cursor-pointer"
       );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
         search(category, "category");
       };
 
-      categoryCount.classList.add(...categoryItemCountStyle.split(" "));
-      categoryCount.textContent = `(${categoryList[category]})`;
+      categoryCount.classList.add(
+        "text-xs",
+        "text-textSecondary",
+        "bg-primary/10",
+        "text-primary",
+        "px-2",
+        "py-1",
+        "rounded-full",
+        "font-medium"
+      );
+      categoryCount.textContent = categoryList[category];
     } else {
       categoryItem.classList.add(
-      ...categoryItemStyle.split(" "),
-      "bg-transparent",         // 기본엔 투명
-      "border",                 // 1px 테두리
-      "border-white/25",
-      "rounded-lg",
-      "p-3",
-      "mb-3",
-      "text-base",
-      "font-semibold",
-      "hover:bg-white",         // hover 시 흰 배경
-      "transition-colors",      // 배경 색 부드럽게 전환
-      "duration-200"
-    );
+        "flex",
+        "items-center",
+        "justify-between",
+        "px-4",
+        "py-3",
+        "bg-card",
+        "backdrop-blur-sm",
+        "border",
+        "border-border/20",
+        "rounded-xl",
+        "text-sm",
+        "font-medium",
+        "text-text",
+        "hover:bg-white/50",
+        "hover:border-primary/30",
+        "transition-all",
+        "duration-200",
+        "cursor-pointer"
+      );
       categoryItem.textContent = category;
       categoryItem.onclick = (event) => {
         search();
       };
 
-      categoryCount.classList.add(...categoryItemCountStyle.split(" "));
-      categoryCount.textContent = `(${blogList.length})`;
+      categoryCount.classList.add(
+        "text-xs",
+        "text-textSecondary",
+        "bg-primary/10",
+        "text-primary",
+        "px-2",
+        "py-1",
+        "rounded-full",
+        "font-medium"
+      );
+      categoryCount.textContent = blogList.length;
     }
 
     categoryItem.appendChild(categoryCount);
@@ -533,17 +583,45 @@ function initPagination(totalPage) {
 
   pagination.style.display = "flex";
 
-  pagination.classList.add(...paginationStyle.split(" "));
+  // iMac style pagination
+  pagination.classList.add(
+    "justify-center",
+    "items-center",
+    "space-x-2",
+    "mt-8",
+    "mb-8"
+  );
 
   const prevButton = document.createElement("button");
   prevButton.setAttribute("id", "page-prev");
-  prevButton.classList.add(...pageMoveButtonStyle.split(" "));
-  const pageNav =
-    pagination.querySelector("nav") || document.createElement("nav");
-  pageNav.innerHTML = "";
-
+  prevButton.classList.add(
+    "flex",
+    "items-center",
+    "justify-center",
+    "w-10",
+    "h-10",
+    "rounded-xl",
+    "bg-card",
+    "backdrop-blur-sm",
+    "border",
+    "border-border/20",
+    "text-textSecondary",
+    "hover:text-text",
+    "hover:bg-white/50",
+    "transition-all",
+    "duration-200",
+    "disabled:opacity-50",
+    "disabled:cursor-not-allowed"
+  );
+  
+  const pageNav = document.createElement("nav");
   pageNav.setAttribute("id", "pagination-list");
-  pageNav.classList.add(...pageNumberListStyle.split(" "));
+  pageNav.classList.add(
+    "flex",
+    "items-center",
+    "space-x-1"
+  );
+  
   const docFrag = document.createDocumentFragment();
   for (let i = 0; i < totalPage; i++) {
     if (i === 7) {
@@ -551,14 +629,49 @@ function initPagination(totalPage) {
     }
 
     const page = document.createElement("button");
-    page.classList.add(...pageNumberStyle.split(" "));
+    page.classList.add(
+      "flex",
+      "items-center",
+      "justify-center",
+      "w-10",
+      "h-10",
+      "rounded-xl",
+      "bg-card",
+      "backdrop-blur-sm",
+      "border",
+      "border-border/20",
+      "text-textSecondary",
+      "hover:text-text",
+      "hover:bg-white/50",
+      "transition-all",
+      "duration-200",
+      "font-medium"
+    );
     docFrag.appendChild(page);
   }
   pageNav.appendChild(docFrag);
 
   const nextButton = document.createElement("button");
   nextButton.setAttribute("id", "page-next");
-  nextButton.classList.add(...pageMoveButtonStyle.split(" "));
+  nextButton.classList.add(
+    "flex",
+    "items-center",
+    "justify-center",
+    "w-10",
+    "h-10",
+    "rounded-xl",
+    "bg-card",
+    "backdrop-blur-sm",
+    "border",
+    "border-border/20",
+    "text-textSecondary",
+    "hover:text-text",
+    "hover:bg-white/50",
+    "transition-all",
+    "duration-200",
+    "disabled:opacity-50",
+    "disabled:cursor-not-allowed"
+  );
 
   if (!pagination.innerHTML) {
     pagination.append(prevButton, pageNav, nextButton);
@@ -572,6 +685,7 @@ function initPagination(totalPage) {
 function renderPagination(totalPage, currentPage, targetList = null) {
   const prevButton = document.getElementById("page-prev");
   const nextButton = document.getElementById("page-next");
+  
   if (currentPage === 1) {
     prevButton.setAttribute("disabled", true);
     nextButton.removeAttribute("disabled");
@@ -582,6 +696,7 @@ function renderPagination(totalPage, currentPage, targetList = null) {
     prevButton.removeAttribute("disabled");
     nextButton.removeAttribute("disabled");
   }
+  
   prevButton.onclick = (event) => {
     event.preventDefault();
     renderBlogList(targetList, currentPage - 1);
@@ -600,79 +715,65 @@ function renderPagination(totalPage, currentPage, targetList = null) {
     pageList.forEach((page, index) => {
       page.textContent = index + 1;
       if (index + 1 === currentPage) {
-        page.classList.remove("font-normal");
-        page.classList.add(...pageNumberActiveStyle.split(" "));
+        page.classList.remove("text-textSecondary", "bg-card");
+        page.classList.add(
+          "bg-primary",
+          "text-white",
+          "border-primary"
+        );
       } else {
-        page.classList.remove(...pageNumberActiveStyle.split(" "));
-        page.classList.add("font-normal");
+        page.classList.remove("bg-primary", "text-white", "border-primary");
+        page.classList.add("text-textSecondary", "bg-card");
       }
+      
       page.onclick = (event) => {
+        event.preventDefault();
         renderBlogList(targetList, index + 1);
         renderPagination(totalPage, index + 1, targetList);
       };
     });
   } else {
-    if (currentPage <= 4) {
-      ellipsisPagination(
-        pageList,
-        [1, 2, 3, 4, 5, "...", totalPage],
-        targetList
-      );
-    } else if (currentPage > totalPage - 4) {
-      ellipsisPagination(
-        pageList,
-        [
-          1,
-          "...",
-          totalPage - 4,
-          totalPage - 3,
-          totalPage - 2,
-          totalPage - 1,
-          totalPage,
-        ],
-        targetList
-      );
+    ellipsisPagination(pageList, totalPage, targetList);
+  }
+}
+
+function ellipsisPagination(pageList, totalPage, targetList = null) {
+  const currentPage = parseInt(document.querySelector("#pagination button.bg-primary")?.textContent) || 1;
+  
+  let indexList;
+  if (currentPage <= 4) {
+    indexList = [1, 2, 3, 4, 5, "...", totalPage];
+  } else if (currentPage > totalPage - 4) {
+    indexList = [1, "...", totalPage - 4, totalPage - 3, totalPage - 2, totalPage - 1, totalPage];
+  } else {
+    indexList = [1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPage];
+  }
+
+  pageList.forEach((page, index) => {
+    page.textContent = indexList[index];
+    
+    if (indexList[index] === currentPage) {
+      page.classList.remove("text-textSecondary", "bg-card");
+      page.classList.add("bg-primary", "text-white", "border-primary");
     } else {
-      ellipsisPagination(
-        pageList,
-        [
-          1,
-          "...",
-          currentPage - 1,
-          currentPage,
-          currentPage + 1,
-          "...",
-          totalPage,
-        ],
-        targetList
-      );
+      page.classList.remove("bg-primary", "text-white", "border-primary");
+      page.classList.add("text-textSecondary", "bg-card");
     }
-  }
-
-  function ellipsisPagination(pageList, indexList, targetList = null) {
-    pageList.forEach((page, index) => {
-      page.textContent = indexList[index];
-      if (indexList[index] === currentPage) {
-        page.classList.remove("font-normal");
-        page.classList.add(...pageNumberActiveStyle.split(" "));
-      } else {
-        page.classList.remove(...pageNumberActiveStyle.split(" "));
-        page.classList.add("font-normal");
-      }
-      if (indexList[index] === "...") {
-        page.style.pointerEvents = "none";
-        page.onclick = (event) => {
-          event.preventDefault();
-        };
-      } else {
-        page.style.pointerEvents = "all";
-
-        page.onclick = (event) => {
-          renderPagination(totalPage, indexList[index], targetList);
-        };
-      }
-    });
-  }
+    
+    if (indexList[index] === "...") {
+      page.style.pointerEvents = "none";
+      page.onclick = (event) => {
+        event.preventDefault();
+      };
+    } else {
+      page.style.pointerEvents = "all";
+      page.onclick = (event) => {
+        event.preventDefault();
+        renderBlogList(targetList, indexList[index]);
+        renderPagination(totalPage, indexList[index], targetList);
+      };
+    }
+  });
 }
 
 async function initialize() {
