@@ -410,6 +410,12 @@ body {
   opacity: 1;
 }
 
+/* ── Header and Search Bar Z-Index ── */
+header {
+  z-index: 100 !important;
+  position: relative;
+}
+
 /* ── Left Menu Styling ── */
 .left-menu {
   backdrop-filter: blur(20px);
@@ -518,14 +524,15 @@ body {
 
 /* ── Card List Layout ── */
 .windows-tile-layout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  grid-gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   width: 100%;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 200px);
   overflow-x: hidden;
   overflow-y: auto;
+  justify-content: flex-start;
+  padding: 1rem;
 }
 
 /* Scrollbar styling */
@@ -549,7 +556,7 @@ body {
 
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
-  width: 100%;
+  width: calc((100% - 3rem) / 3);
   height: auto;
   min-height: 320px;
   position: relative;
