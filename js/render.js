@@ -186,18 +186,19 @@ function createCardElement(fileInfo, index) {
   const category = document.createElement("span");
   category.classList.add(
     "inline-block",
-    "px-2",
-    "py-1",
+    "px-3",
+    "py-1.5",
     "bg-primary/10",
     "text-primary",
-    "text-xs",
+    "text-sm",
     "font-medium",
     "rounded-full",
     "self-start",
     "cursor-pointer",
     "hover:bg-primary/20",
     "transition-colors",
-    "duration-200"
+    "duration-200",
+    "mb-3"
   );
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
@@ -211,13 +212,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-sm",
+    "text-base",
     "font-semibold",
     "text-text",
     "line-clamp-2",
     "hover:text-primary",
     "transition-colors",
-    "duration-200"
+    "duration-200",
+    "mb-2"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -225,9 +227,10 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-xs",
-    "line-clamp-2",
-    "flex-grow"
+    "text-sm",
+    "line-clamp-3",
+    "flex-grow",
+    "mb-4"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
@@ -236,7 +239,7 @@ function createCardElement(fileInfo, index) {
   authorDiv.classList.add(
     "flex",
     "items-center",
-    "space-x-2",
+    "space-x-3",
     "mt-auto"
   );
 
@@ -244,8 +247,8 @@ function createCardElement(fileInfo, index) {
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(
-    "w-4",
-    "h-4",
+    "w-6",
+    "h-6",
     "rounded-full",
     "object-cover"
   );
@@ -253,7 +256,7 @@ function createCardElement(fileInfo, index) {
 
   const author = document.createElement("p");
   author.classList.add(
-    "text-xs",
+    "text-sm",
     "text-textSecondary",
     "font-medium"
   );
@@ -262,7 +265,7 @@ function createCardElement(fileInfo, index) {
 
   const date = document.createElement("p");
   date.classList.add(
-    "text-xs",
+    "text-sm",
     "text-textSecondary",
     "ml-auto"
   );
