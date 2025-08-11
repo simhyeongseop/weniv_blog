@@ -190,7 +190,7 @@ function createCardElement(fileInfo, index) {
     "py-1",
     "bg-primary/10",
     "text-primary",
-    "text-sm",
+    "text-xs",
     "font-medium",
     "rounded-full",
     "self-start",
@@ -212,13 +212,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-lg",
-    "font-semibold",
+    "text-xl",
+    "font-bold",
     "text-text",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-3"
+    "mb-3",
+    "line-clamp-2"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -226,9 +227,10 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-base",
+    "text-sm",
     "flex-grow",
-    "mb-4"
+    "mb-4",
+    "line-clamp-3"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
@@ -254,7 +256,7 @@ function createCardElement(fileInfo, index) {
 
   const author = document.createElement("p");
   author.classList.add(
-    "text-sm",
+    "text-xs",
     "text-textSecondary",
     "font-medium"
   );
@@ -263,7 +265,7 @@ function createCardElement(fileInfo, index) {
 
   const date = document.createElement("p");
   date.classList.add(
-    "text-sm",
+    "text-xs",
     "text-textSecondary",
     "ml-auto"
   );
