@@ -160,10 +160,14 @@ function createCardElement(fileInfo, index) {
     "duration-300"         // 전환 시간
   );
 
-  // Prism overlay 추가
+  // Add prism effect overlay
   const prismOverlay = document.createElement("div");
   prismOverlay.classList.add("prism-overlay");
   card.appendChild(prismOverlay);
+
+  // Add random height for masonry effect
+  const randomHeight = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
+  card.style.gridRow = `span ${randomHeight}`;
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
@@ -215,7 +219,6 @@ function createCardElement(fileInfo, index) {
     "text-base",
     "font-semibold",
     "text-text",
-    "line-clamp-2",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
@@ -228,7 +231,6 @@ function createCardElement(fileInfo, index) {
   description.classList.add(
     "text-textSecondary",
     "text-sm",
-    "line-clamp-3",
     "flex-grow",
     "mb-3"
   );

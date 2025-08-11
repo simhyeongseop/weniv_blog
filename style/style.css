@@ -497,17 +497,38 @@ body {
   }
 }
 
-/* ── Windows 8 Style Tile Layout ── */
+/* ── Random Masonry Layout ── */
 .windows-tile-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: minmax(250px, auto);
   grid-gap: 1.5rem;
   width: 100%;
-  height: calc(100vh - 200px);
+  max-height: calc(100vh - 200px);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+}
+
+/* Random layout variations */
+.blog-card:nth-child(3n) {
+  grid-row: span 1;
+}
+
+.blog-card:nth-child(3n+1) {
+  grid-row: span 2;
+}
+
+.blog-card:nth-child(3n+2) {
+  grid-row: span 1;
+}
+
+.blog-card:nth-child(5n) {
+  grid-row: span 3;
+}
+
+.blog-card:nth-child(7n) {
+  grid-row: span 2;
 }
 
 .windows-tile-layout::-webkit-scrollbar {
@@ -528,7 +549,7 @@ body {
   background: rgba(255, 255, 255, 0.5);
 }
 
-/* ── Windows 8 Style Card ── */
+/* ── Random Card Layout ── */
 .blog-card {
   width: 100%;
   min-height: 250px;
