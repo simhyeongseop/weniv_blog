@@ -850,6 +850,9 @@ async function initialize() {
       // console.log(postNameDecode);
       postInfo = extractFileInfo(postNameDecode);
       try {
+        if (!postInfo) {
+          throw new Error("Post info is null");
+        }
         fetch(origin + "blog/" + postNameDecode)
           .then((response) => response.text())
           .then((text) =>

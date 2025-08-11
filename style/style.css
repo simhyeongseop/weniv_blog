@@ -316,7 +316,8 @@ body {
   break-inside: avoid;
   margin-bottom: 1rem;
   height: fit-content;
-  min-height: 300px;
+  min-height: 400px;
+  display: block;
 }
 
 /* ── Horizontal Scroll on Mouse Wheel ── */
@@ -324,20 +325,21 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
+  min-height: 600px;
 }
 
 #blog-posts::-webkit-scrollbar {
-  height: 8px;
+  height: 12px;
 }
 
 #blog-posts::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 #blog-posts::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 #blog-posts::-webkit-scrollbar-thumb:hover {
@@ -371,7 +373,8 @@ body {
   aspect-ratio: auto;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 400px;
+  min-height: 500px;
+  display: block;
 }
 
 .blog-card:hover {
@@ -381,15 +384,15 @@ body {
 
 .blog-card .card-image {
   width: 100%;
-  height: 220px;
+  height: 250px;
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
 }
 
 .blog-card .card-content {
   height: auto;
-  min-height: 180px;
-  padding: 1.5rem;
+  min-height: 250px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

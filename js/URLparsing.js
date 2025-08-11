@@ -101,6 +101,10 @@ window.addEventListener("popstate", (event) => {
     postNameDecode = decodeURI(url.search.split("=")[1]).replaceAll("+", " ");
     // console.log(postNameDecode);
     postInfo = extractFileInfo(postNameDecode);
+    if (!postInfo) {
+      alert("잘못된 포스트입니다.");
+      return;
+    }
     fetch(origin + "blog/" + postNameDecode)
       .then((response) => response.text())
       .then((text) =>
