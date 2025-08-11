@@ -165,6 +165,10 @@ function createCardElement(fileInfo, index) {
   prismOverlay.classList.add("prism-overlay");
   cardElement.appendChild(prismOverlay);
 
+  // Add random height for masonry effect
+  const randomHeight = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
+  cardElement.style.gridRow = `span ${randomHeight}`;
+
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
     img.src = fileInfo.thumbnail;
@@ -186,11 +190,11 @@ function createCardElement(fileInfo, index) {
   const category = document.createElement("span");
   category.classList.add(
     "inline-block",
-    "px-2",
+    "px-3",
     "py-1",
     "bg-primary/10",
     "text-primary",
-    "text-xs",
+    "text-sm",
     "font-medium",
     "rounded-full",
     "self-start",
@@ -198,7 +202,7 @@ function createCardElement(fileInfo, index) {
     "hover:bg-primary/20",
     "transition-colors",
     "duration-200",
-    "mb-2"
+    "mb-3"
   );
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
@@ -212,13 +216,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-base",
+    "text-lg",
     "font-semibold",
     "text-text",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-2"
+    "mb-3",
+    "line-clamp-2"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -226,9 +231,10 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-sm",
+    "text-base",
     "flex-grow",
-    "mb-3"
+    "mb-4",
+    "line-clamp-3"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
@@ -237,7 +243,7 @@ function createCardElement(fileInfo, index) {
   authorDiv.classList.add(
     "flex",
     "items-center",
-    "space-x-2",
+    "space-x-3",
     "mt-auto"
   );
 
@@ -245,8 +251,8 @@ function createCardElement(fileInfo, index) {
   authorImg.src = users[fileInfo.author]["img"];
   authorImg.alt = users[fileInfo.author]["username"];
   authorImg.classList.add(
-    "w-4",
-    "h-4",
+    "w-6",
+    "h-6",
     "rounded-full",
     "object-cover"
   );
@@ -254,7 +260,7 @@ function createCardElement(fileInfo, index) {
 
   const author = document.createElement("p");
   author.classList.add(
-    "text-xs",
+    "text-sm",
     "text-textSecondary",
     "font-medium"
   );
@@ -263,7 +269,7 @@ function createCardElement(fileInfo, index) {
 
   const date = document.createElement("p");
   date.classList.add(
-    "text-xs",
+    "text-sm",
     "text-textSecondary",
     "ml-auto"
   );
