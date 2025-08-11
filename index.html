@@ -111,11 +111,10 @@
         </div>
       </div>
 
-      <!-- 블로그 포스트 리스트 영역 -->
+      <!-- 블로그 포스트 리스트 영역 (벽돌 쌓기 레이아웃) -->
       <div
         id="blog-posts"
-        class="flex overflow-x-auto gap-6 pb-6 mx-auto px-4 md:px-0 scrollbar-hide ml-20"
-        style="scrollbar-width: none; -ms-overflow-style: none;"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-6 mx-auto px-4 md:px-0 ml-20 masonry-layout"
       ></div>
       <!-- // 블로그 포스트 리스트 영역-->
 
@@ -126,7 +125,7 @@
       ></div>
       <!-- // contents 영역-->
 
-      <!-- pagination (hidden for horizontal layout) -->
+      <!-- pagination (hidden for masonry layout) -->
       <div id="pagination" class="hidden"></div>
     </main>
 
@@ -152,9 +151,27 @@
       </div>
     </div>
 
+    <!-- 검색 결과 팝업 -->
+    <div id="search-popup" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-card backdrop-blur-xl border border-border/30 rounded-2xl p-6 shadow-2xl max-w-md w-full">
+          <h3 class="text-lg font-semibold text-text mb-4">검색 결과</h3>
+          <p class="text-textSecondary mb-6">검색어 "<span id="search-keyword"></span>" 영역으로 바로 이동하시겠습니까?</p>
+          <div class="flex space-x-3">
+            <button id="go-to-search" class="flex-1 bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary/90 transition-colors duration-200">
+              이동하기
+            </button>
+            <button id="close-popup" class="flex-1 bg-gray-200 text-text px-4 py-2 rounded-xl hover:bg-gray-300 transition-colors duration-200">
+              취소
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- category 검색 영역 -->
     <section
-      class="category-aside hidden lg:flex flex-col fixed top-32 right-8 overflow-y-auto w-fit h-fit bg-glass backdrop-blur-xl hover:backdrop-blur-2xl transition-all duration-300 border border-border/30 rounded-2xl p-4 shadow-2xl z-20"
+      class="category-aside hidden lg:flex flex-col fixed top-1/2 transform -translate-y-1/2 right-8 overflow-y-auto w-fit h-fit bg-glass backdrop-blur-xl hover:backdrop-blur-2xl transition-all duration-300 border border-border/30 rounded-2xl p-4 shadow-2xl z-20"
     >
       <aside class="bg-transparent rounded-xl p-4 mt-2 space-y-2"
       >

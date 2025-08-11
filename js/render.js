@@ -145,10 +145,9 @@ function createCardElement(fileInfo, index) {
     */
   const card = document.createElement("div");
    
-  // iMac style card styling for horizontal layout
+  // iMac style card styling for masonry layout
   card.classList.add(
     "blog-card",           // 호버 효과용 클래스
-    "horizontal",          // 가로 레이아웃용 클래스
     "bg-card",             // 아이맥 스타일 배경
     "backdrop-blur-sm",    // 글래스 효과
     "border",              // 테두리
@@ -276,6 +275,81 @@ function createCardElement(fileInfo, index) {
   return card;
 }
 
+// 검색어 강조 함수
+function highlightSearchTerm(element, searchTerm) {
+  if (!searchTerm) return;
+  
+  const regex = new RegExp(`(${searchTerm})`, 'gi');
+  const text = element.textContent;
+  const highlightedText = text.replace(regex, '<span class="search-highlight">$1</span>');
+  element.innerHTML = highlightedText;
+}
+
+// 검색 결과 팝업 표시
+function showSearchPopup(searchTerm, postInfo) {
+  const popup = document.getElementById("search-popup");
+  const keywordSpan = document.getElementById("search-keyword");
+  const goToButton = document.getElementById("go-to-search");
+  const closeButton = document.getElementById("close-popup");
+  
+  keywordSpan.textContent = searchTerm;
+  popup.classList.remove("hidden");
+  
+  // 이동하기 버튼 클릭 시
+  goToButton.onclick = () => {
+    popup.classList.add("hidden");
+    // 해당 포스트로 이동
+    renderPostContent(postInfo);
+  };
+  
+  // 취소 버튼 클릭 시
+  closeButton.onclick = () => {
+    popup.classList.add("hidden");
+  };
+  
+  // 팝업 외부 클릭 시 닫기
+  popup.onclick = (e) => {
+    if (e.target === popup) {
+      popup.classList.add("hidden");
+    }
+  };
+}
+
+// 포스트 내용 렌더링
+function renderPostContent(postInfo) {
+  document.getElementById("contents").style.display = "block";
+  document.getElementById("blog-posts").style.display = "none";
+  
+  document.getElementById("contents").innerHTML = "";
+  
+  fetch(postInfo.download_url)
+    .then((response) => response.text())
+    .then((text) =>
+      postInfo.fileType === "md"
+        ? styleMarkdown("post", text, postInfo)
+        : styleJupyter("post", text, postInfo)
+    )
+    .then(() => {
+      // 검색어가 있으면 해당 부분으로 스크롤
+      const searchTerm = document.getElementById("search-input").value;
+      if (searchTerm) {
+        setTimeout(() => {
+          const highlightedElements = document.querySelectorAll('.search-highlight');
+          if (highlightedElements.length > 0) {
+            highlightedElements[0].scrollIntoView({ 
+              behavior: 'smooth', 
+              block: 'center' 
+            });
+          }
+        }, 500);
+      }
+      
+      const url = new URL(origin);
+      url.searchParams.set("post", postInfo.name);
+      window.history.pushState({}, "", url);
+    });
+}
+
 function renderBlogList(searchResult = null, currentPage = 1) {
   /*
     blog의 main 영역에 블로그 포스트 목록을 렌더링
@@ -283,10 +357,11 @@ function renderBlogList(searchResult = null, currentPage = 1) {
     2. 검색을 했을 때만 searchResult에 목록이 담겨 들어옴
     */
   const postsToRender = searchResult || blogList;
+  const searchTerm = document.getElementById("search-input").value;
 
   if (searchResult) {
     // 검색 keyword가 있을 경우
-    document.getElementById("blog-posts").style.display = "flex";
+    document.getElementById("blog-posts").style.display = "grid";
     document.getElementById("blog-posts").innerHTML = "";
     document.getElementById("pagination").style.display = "none";
 
@@ -294,31 +369,24 @@ function renderBlogList(searchResult = null, currentPage = 1) {
       const postInfo = extractFileInfo(post.name);
       if (postInfo) {
         const cardElement = createCardElement(postInfo, index);
+        
+        // 검색어 강조
+        if (searchTerm) {
+          const titleElement = cardElement.querySelector("h2");
+          const descriptionElement = cardElement.querySelector("p");
+          highlightSearchTerm(titleElement, searchTerm);
+          highlightSearchTerm(descriptionElement, searchTerm);
+        }
 
         cardElement.onclick = (event) => {
-          // 블로그 게시글 링크 클릭 시 이벤트 중지 후 post 내용을 읽어와 contents 영역에 렌더링
           event.preventDefault();
-          // contents 영역을 보이게 처리
-          document.getElementById("contents").style.display = "block";
-          // blog-posts 영역을 보이지 않게 처리
-          document.getElementById("blog-posts").style.display = "none";
           
-          // contents 영역 내용 초기화
-          document.getElementById("contents").innerHTML = "";
-          
-          fetch(post.download_url)
-            .then((response) => response.text())
-            .then((text) =>
-              postInfo.fileType === "md"
-                ? styleMarkdown("post", text, postInfo)
-                : styleJupyter("post", text, postInfo)
-            )
-            .then(() => {
-              // 렌더링 후에는 URL 변경(query string으로 블로그 포스트 이름 추가)
-              const url = new URL(origin);
-              url.searchParams.set("post", post.name);
-              window.history.pushState({}, "", url);
-            });
+          // 검색어가 있으면 팝업 표시
+          if (searchTerm) {
+            showSearchPopup(searchTerm, postInfo);
+          } else {
+            renderPostContent(postInfo);
+          }
         };
         document.getElementById("blog-posts").appendChild(cardElement);
       }
@@ -327,7 +395,7 @@ function renderBlogList(searchResult = null, currentPage = 1) {
     document.getElementById("contents").style.display = "none";
   } else {
     // 검색 keyword가 없을 경우
-    document.getElementById("blog-posts").style.display = "flex";
+    document.getElementById("blog-posts").style.display = "grid";
     document.getElementById("pagination").style.display = "none";
     document.getElementById("blog-posts").innerHTML = "";
 
@@ -337,39 +405,8 @@ function renderBlogList(searchResult = null, currentPage = 1) {
         const cardElement = createCardElement(postInfo, index);
 
         cardElement.onclick = (event) => {
-          // 블로그 게시글 링크 클릭 시 이벤트 중지 후 post 내용을 읽어와 contents 영역에 렌더링
           event.preventDefault();
-          // contents 영역을 보이게 처리
-          document.getElementById("contents").style.display = "block";
-          // blog-posts 영역을 보이지 않게 처리
-          document.getElementById("blog-posts").style.display = "none";
-          
-          // contents 영역 내용 초기화
-          document.getElementById("contents").innerHTML = "";
-
-          let postDownloadUrl;
-          if (!isLocal && localDataUsing) {
-            postDownloadUrl = `${url.origin}/${siteConfig.repositoryName}${post.download_url}`;
-          } else {
-            postDownloadUrl = post.download_url;
-          }
-          try {
-            fetch(postDownloadUrl)
-              .then((response) => response.text())
-              .then((text) =>
-                postInfo.fileType === "md"
-                  ? styleMarkdown("post", text, postInfo)
-                  : styleJupyter("post", text, postInfo)
-              )
-              .then(() => {
-                // 렌더링 후에는 URL 변경(query string으로 블로그 포스트 이름 추가)
-                const url = new URL(origin);
-                url.searchParams.set("post", post.name);
-                window.history.pushState({}, "", url);
-              });
-          } catch (error) {
-            styleMarkdown("post", "# Error입니다. 파일명을 확인해주세요.");
-          }
+          renderPostContent(postInfo);
         };
         document.getElementById("blog-posts").appendChild(cardElement);
       }
@@ -754,6 +791,17 @@ function ellipsisPagination(pageList, totalPage, targetList = null) {
   });
 }
 
+// 마우스 휠로 좌우 스크롤 기능
+function initWheelScroll() {
+  const blogPosts = document.getElementById("blog-posts");
+  
+  blogPosts.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    blogPosts.scrollLeft += e.deltaY;
+  });
+}
+
+// 초기화 함수에 휠 스크롤 추가
 async function initialize() {
   /*
     최초 실행 함수, URLparsing은 이 영역에서 담당하지 않고 index.html에서 로드 될 때 실행, blogList와 blogMenu는 initData.js에서 정의되고 로드될 때 실행. 다만 함수의 흐름을 파악하고자 이곳으로 옮겨올 필요성이 있음
@@ -816,6 +864,9 @@ async function initialize() {
       }
     }
   }
+  
+  // 휠 스크롤 초기화
+  initWheelScroll();
 }
 
 initialize();
