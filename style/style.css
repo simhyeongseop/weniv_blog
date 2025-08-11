@@ -497,27 +497,21 @@ body {
   }
 }
 
-/* ── Random Card List Layout ── */
+/* ── Card List Layout ── */
 .windows-tile-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-auto-rows: minmax(300px, auto);
   grid-gap: 2rem;
   width: 100%;
-  max-height: calc(100vh - 300px);
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-}
-
-/* Dynamic height based on column count */
-.windows-tile-layout {
-  grid-auto-rows: 1fr;
+  height: calc(100vh - 300px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Scrollbar styling */
 .windows-tile-layout::-webkit-scrollbar {
-  height: 8px;
+  width: 8px;
 }
 
 .windows-tile-layout::-webkit-scrollbar-track {

@@ -318,30 +318,13 @@ function showSearchPopup(searchTerm, postInfo) {
 
 // 포스트 내용 렌더링
 function renderPostContent(postInfo) {
-  // postInfo null 체크
-  if (!postInfo) {
-    alert("잘못된 포스트입니다.");
-    return;
-  }
-
-  // download_url 체크
-  if (!postInfo.download_url) {
-    alert("포스트 URL을 찾을 수 없습니다.");
-    return;
-  }
-
   document.getElementById("contents").style.display = "block";
   document.getElementById("blog-posts").style.display = "none";
   
   document.getElementById("contents").innerHTML = "";
   
   fetch(postInfo.download_url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Post not found');
-      }
-      return response.text();
-    })
+    .then((response) => response.text())
     .then((text) =>
       postInfo.fileType === "md"
         ? styleMarkdown("post", text, postInfo)
@@ -365,14 +348,6 @@ function renderPostContent(postInfo) {
       const url = new URL(origin);
       url.searchParams.set("post", postInfo.name);
       window.history.pushState({}, "", url);
-    })
-    .catch((error) => {
-      console.error('Error loading post:', error);
-      alert("포스트를 불러올 수 없습니다.");
-      // 오류 발생 시 메인 페이지로 리다이렉트
-      const mainUrl = new URL(window.location.origin + window.location.pathname);
-      window.history.pushState({}, "", mainUrl);
-      renderBlogList();
     });
 }
 
@@ -817,19 +792,7 @@ function ellipsisPagination(pageList, totalPage, targetList = null) {
   });
 }
 
-// 마우스 휠로 좌우 스크롤 기능
-function initWheelScroll() {
-  const blogPosts = document.getElementById("blog-posts");
-  
-  if (blogPosts) {
-    blogPosts.addEventListener("wheel", (e) => {
-      e.preventDefault();
-      blogPosts.scrollLeft += e.deltaY;
-    });
-  }
-}
-
-// 초기화 함수에 휠 스크롤 추가
+// 초기화 함수
 async function initialize() {
   /*
     최초 실행 함수, URLparsing은 이 영역에서 담당하지 않고 index.html에서 로드 될 때 실행, blogList와 blogMenu는 initData.js에서 정의되고 로드될 때 실행. 다만 함수의 흐름을 파악하고자 이곳으로 옮겨올 필요성이 있음
@@ -895,114 +858,6 @@ async function initialize() {
       }
     }
   }
-  
-  // 휠 스크롤 초기화
-  initWheelScroll();
 }
 
 initialize();
-
-// 드래그 스크롤 기능 추가
-function initDragScroll() {
-  const blogPosts = document.getElementById("blog-posts");
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-
-  blogPosts.addEventListener("mousedown", (e) => {
-    isDown = true;
-    blogPosts.style.cursor = "grabbing";
-    startX = e.pageX - blogPosts.offsetLeft;
-    scrollLeft = blogPosts.scrollLeft;
-  });
-
-  blogPosts.addEventListener("mouseleave", () => {
-    isDown = false;
-    blogPosts.style.cursor = "grab";
-  });
-
-  blogPosts.addEventListener("mouseup", () => {
-    isDown = false;
-    blogPosts.style.cursor = "grab";
-  });
-
-  blogPosts.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - blogPosts.offsetLeft;
-    const walk = (x - startX) * 2; // 스크롤 속도 조정
-    blogPosts.scrollLeft = scrollLeft - walk;
-  });
-
-  // 터치 디바이스 지원
-  blogPosts.addEventListener("touchstart", (e) => {
-    isDown = true;
-    startX = e.touches[0].pageX - blogPosts.offsetLeft;
-    scrollLeft = blogPosts.scrollLeft;
-  });
-
-  blogPosts.addEventListener("touchend", () => {
-    isDown = false;
-  });
-
-  blogPosts.addEventListener("touchmove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.touches[0].pageX - blogPosts.offsetLeft;
-    const walk = (x - startX) * 2;
-    blogPosts.scrollLeft = scrollLeft - walk;
-  });
-}
-
-// 드래그 스크롤 초기화
-initDragScroll();
-
-;(function() {
-  const sidebarEl = document.querySelector(".category-aside");
-  const contentsEl  = document.getElementById("contents");
-  const postsEl     = document.getElementById("blog-posts");
-  if (!sidebarEl) return;
-
-  function rectsIntersect(r1, r2) {
-    return !(
-      r2.top    > r1.bottom ||
-      r2.bottom < r1.top    ||
-      r2.left   > r1.right  ||
-      r2.right  < r1.left
-    );
-  }
-
-  function checkSidebarVisibility() {
-    // 1) 작은 화면(<768px)이면 무조건 숨긴다
-    if (window.innerWidth < 768) {
-      sidebarEl.style.display = "none";
-      return;
-    }
-
-    const sbRect = sidebarEl.getBoundingClientRect();
-    let shouldHide = false;
-
-    // 2) 포스트 상세 컨텐츠와 겹치는지 체크
-    if (contentsEl) {
-      const cRect = contentsEl.getBoundingClientRect();
-      if (rectsIntersect(sbRect, cRect)) shouldHide = true;
-    }
-    // 3) 카드 리스트와 겹치는지 체크 (포스트와 안 겹칠 때만)
-    if (postsEl && !shouldHide) {
-      const pRect = postsEl.getBoundingClientRect();
-      if (rectsIntersect(sbRect, pRect)) shouldHide = true;
-    }
-
-    // 4) 최종 결과 반영
-    sidebarEl.style.display = shouldHide ? "none" : "";
-  }
-
-  // 이벤트 바인딩
-  window.addEventListener("scroll",  checkSidebarVisibility);
-  window.addEventListener("resize", checkSidebarVisibility);
-  // (선택) orientation change 대응
-  window.addEventListener("orientationchange", checkSidebarVisibility);
-
-  // 최초 한 번 실행
-  checkSidebarVisibility();
-})();
