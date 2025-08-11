@@ -500,14 +500,13 @@ body {
 /* ── Card List Layout ── */
 .windows-tile-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 320px));
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(200px, auto);
   grid-gap: 1.5rem;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 200px);
   overflow-x: hidden;
   overflow-y: auto;
-  justify-content: center;
 }
 
 /* Scrollbar styling */
@@ -531,7 +530,7 @@ body {
 
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
-  width: 320px;
+  width: 100%;
   height: auto;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -577,7 +576,7 @@ body {
 
 .blog-card .card-image {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   border-radius: 1rem 1rem 0 0;
   position: relative;
