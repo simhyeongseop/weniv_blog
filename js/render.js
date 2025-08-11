@@ -212,14 +212,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-sm",
+    "text-base",
     "font-semibold",
     "text-text",
-    "line-clamp-1",
+    "line-clamp-2",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-1"
+    "mb-2"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -227,9 +227,10 @@ function createCardElement(fileInfo, index) {
   const description = document.createElement("p");
   description.classList.add(
     "text-textSecondary",
-    "text-xs",
-    "line-clamp-2",
-    "flex-grow"
+    "text-sm",
+    "line-clamp-3",
+    "flex-grow",
+    "mb-3"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
