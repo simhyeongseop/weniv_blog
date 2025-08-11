@@ -143,10 +143,10 @@ function createCardElement(fileInfo, index) {
   /*
     정규표현식으로 파싱된 파일정보 fileInfo를 기반으로 blog의 card 생성, index를 받는 이유는 첫번째 카드는 넓이를 크게 차지해야 하기 때문
     */
-  const card = document.createElement("div");
+  const cardElement = document.createElement("div");
    
   // Windows 8 style card styling
-  card.classList.add(
+  cardElement.classList.add(
     "blog-card",           // 호버 효과용 클래스
     "bg-card",             // 아이맥 스타일 배경
     "backdrop-blur-sm",    // 글래스 효과
@@ -163,11 +163,7 @@ function createCardElement(fileInfo, index) {
   // Add prism effect overlay
   const prismOverlay = document.createElement("div");
   prismOverlay.classList.add("prism-overlay");
-  card.appendChild(prismOverlay);
-
-  // Add random height for masonry effect
-  const randomHeight = Math.floor(Math.random() * 3) + 1; // 1, 2, or 3
-  card.style.gridRow = `span ${randomHeight}`;
+  cardElement.appendChild(prismOverlay);
 
   if (fileInfo.thumbnail) {
     const img = document.createElement("img");
@@ -179,7 +175,7 @@ function createCardElement(fileInfo, index) {
       "duration-300",
       "hover:scale-105"
     );
-    card.appendChild(img);
+    cardElement.appendChild(img);
   }
 
   const cardBody = document.createElement("div");
@@ -275,9 +271,9 @@ function createCardElement(fileInfo, index) {
   authorDiv.appendChild(date);
 
   cardBody.appendChild(authorDiv);
-  card.appendChild(cardBody);
+  cardElement.appendChild(cardBody);
 
-  return card;
+  return cardElement;
 }
 
 // 검색어 강조 함수
