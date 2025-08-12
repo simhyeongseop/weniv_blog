@@ -450,11 +450,11 @@ header {
   right: 1rem !important;
   width: auto;
   min-height: 300px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 1rem;
-  padding: 1rem;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 1rem !important;
+  padding: 1rem !important;
 }
 
 .category-aside::-webkit-scrollbar {
