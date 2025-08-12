@@ -100,7 +100,7 @@
       </nav>
     </header>
 
-    <main class="container p-4 md:p-8 pb-32 w-full mx-auto pt-12 min-h-screen">
+    <main class="container p-4 md:p-8 pb-32 w-full mx-auto pt-4 min-h-screen">
       <!-- 좌측 고정 메뉴 -->
       <div class="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
         <div class="bg-glass backdrop-blur-xl border border-border/30 rounded-2xl px-4 py-3 shadow-2xl">
@@ -129,6 +129,16 @@
 
       <!-- pagination (hidden for masonry layout) -->
       <div id="pagination" class="hidden"></div>
+
+      <!-- category 검색 영역 -->
+      <div
+        class="category-aside flex flex-col fixed top-1/2 transform -translate-y-1/2 overflow-y-auto"
+      >
+        <aside class="bg-transparent rounded-xl p-4 mt-2 space-y-2"
+        >
+          <!-- 여기 renderBlogCategory()가 카테고리 아이템을 append -->
+        </aside>
+      </div>
     </main>
 
     <!-- iMac Style Bottom Menu Bar -->
@@ -170,16 +180,6 @@
         </div>
       </div>
     </div>
-
-    <!-- category 검색 영역 -->
-    <section
-      class="category-aside flex flex-col fixed top-1/2 transform -translate-y-1/2 overflow-y-auto"
-    >
-      <aside class="bg-transparent rounded-xl p-4 mt-2 space-y-2"
-      >
-        <!-- 여기 renderBlogCategory()가 카테고리 아이템을 append -->
-      </aside>
-    </section>
 
     <!-- utils -->
     <script src="js/utils.js"></script>
