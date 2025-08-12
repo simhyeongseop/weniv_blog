@@ -483,7 +483,7 @@ function renderBlogCategory() {
   const categoryArray = Object.keys(categoryList);
   categoryArray.sort();
 
-  const categoryContainer = document.querySelector(".category-aside > aside");
+  const categoryContainer = document.querySelector("#category-menu");
   categoryContainer.innerHTML = "";
   categoryContainer.classList.add(
     "space-y-2"
