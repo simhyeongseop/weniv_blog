@@ -526,13 +526,7 @@ header {
 .windows-tile-layout {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  width: 100%;
-  height: calc(100vh - 200px);
-  overflow-x: hidden;
   overflow-y: auto;
-  justify-content: flex-start;
-  padding: 1rem;
 }
 
 /* Scrollbar styling */
