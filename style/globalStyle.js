@@ -57,15 +57,15 @@ const notebookdownloadButtonStyle = 'download-button px-5 py-[11px] mb-4 text-sm
 // bloglist 목록 스타일
 const bloglistFirstCardStyle = 'w-full lg:col-span-3 md:col-span-2 col-span-1 h-auto rounded-none md:rounded-lg overflow-hidden bg-white/50 hover:bg-white/80 backdrop-blur-lg shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 flex flex-col md:flex-row flex-1 md:mb-8 cursor-pointer';
 const bloglistFirstCardImgStyle = 'w-full object-cover object-center overflow-hidden md:h-auto h-[200px] md:w-[49%] lg:w-[52%] shrink-0 mr-8 transition duration-300 ease-in-out transform hover:scale-102';
-const bloglistFirstCardDescriptionStyle = 'text-gray-700 text-base font-normal leading-snug md:max-h-40 md:line-clamp-[7] line-clamp-3 mb-3';
+const bloglistFirstCardDescriptionStyle = 'text-gray-700 text-base font-normal leading-snug mb-3';
 
-const bloglistCardStyle = 'w-full h-[450px] overflow-hidden bg-white/50 hover:bg-white/80 backdrop-blur-lg shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer col-span-1 rounded-lg flex flex-col';
+const bloglistCardStyle = 'w-full h-auto overflow-visible bg-white/50 hover:bg-white/80 backdrop-blur-lg shadow-xl hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer col-span-1 rounded-lg flex flex-col';
 const bloglistCardImgStyle = 'w-full h-[220px] object-cover object-center overflow-hidden transition duration-300 ease-in-out transform hover:scale-102';
 
 const bloglistCardBodyStyle = 'px-6 py-4 flex-grow flex flex-col';
-const bloglistCardTitleStyle = 'text-gray-800 font-bold text-lg mb-2 hover:text-primary transition duration-200 ease-in-out line-clamp-2';
+const bloglistCardTitleStyle = 'text-gray-800 font-bold text-lg mb-2 hover:text-primary transition duration-200 ease-in-out';
 const bloglistCardCategoryStyle = 'inline-block bg-activation text-primary text-sm font-medium mb-2 px-3 py-1.5 rounded-lg transition duration-200 ease-in-out hover:bg-primary hover:text-white';
-const bloglistCardDescriptionStyle = 'text-gray-700 text-sm font-normal leading-snug h-auto line-clamp-3 mb-2 flex-grow';
+const bloglistCardDescriptionStyle = 'text-gray-700 text-sm font-normal leading-snug h-auto mb-2 flex-grow';
 const bloglistCardAuthorDivStyle = 'inline-block mt-auto';
 const bloglistCardAuthorImgStyle = 'inline w-8 h-8 rounded-full object-cover object-center mr-2 border border-graylv2 overflow-hidden';
 const bloglistCardAuthorStyle = 'inline text-sm font-semibold text-gray-800 mr-2';
