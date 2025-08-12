@@ -526,7 +526,10 @@ header {
 .windows-tile-layout {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
+  justify-content: flex-start;
 }
 
 /* Scrollbar styling */
@@ -550,7 +553,7 @@ header {
 
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
-  width: calc((100% - 3rem) / 3);
+  width: calc((100% - 0.5rem) / 3);
   height: auto;
   min-height: 320px;
   position: relative;
