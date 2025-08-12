@@ -524,12 +524,12 @@ header {
 
 /* ── Card List Layout ── */
 .windows-tile-layout {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  justify-content: flex-start;
 }
 
 /* Scrollbar styling */
@@ -553,8 +553,7 @@ header {
 
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
-  width: calc((100% - 1rem) / 3);
-  margin: 0.125rem;
+  width: 100%;
   height: auto;
   min-height: 320px;
   position: relative;
