@@ -447,7 +447,7 @@ header {
   position: fixed !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  right: 0.25rem !important;
+  right: 1rem !important;
   width: auto;
   min-height: 300px;
 }
