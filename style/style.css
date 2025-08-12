@@ -537,7 +537,7 @@ header {
 }
 
 main {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 /* 제목 영역도 고정 */
@@ -551,7 +551,7 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   width: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 180px);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -593,7 +593,7 @@ main {
 .blog-card {
   width: 100%;
   height: auto;
-  min-height: 280px;
+  min-height: 350px;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -647,8 +647,8 @@ main {
 
 .blog-card .card-content {
   height: auto;
-  min-height: 100px;
-  padding: 1.25rem;
+  min-height: 150px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
