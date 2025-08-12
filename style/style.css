@@ -554,7 +554,6 @@ main {
   height: calc(100vh - 200px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 1rem;
 }
 
 /* Scrollbar styling */
