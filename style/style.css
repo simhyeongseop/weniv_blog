@@ -553,7 +553,8 @@ header {
 
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
-  width: calc((100% - 0.5rem) / 3);
+  width: calc((100% - 1rem) / 3);
+  margin: 0.125rem;
   height: auto;
   min-height: 320px;
   position: relative;
