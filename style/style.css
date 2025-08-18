@@ -502,12 +502,60 @@ main {
 /* ── Card List Layout ── */
 .windows-tile-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 1rem;
   width: 100%;
-  height: calc(100vh - 180px);
+  min-height: calc(100vh - 180px);
+  height: auto;
   overflow-x: hidden;
   overflow-y: auto;
+  align-items: start;
+}
+
+/* 2-3-2-3 반복 패턴 */
+.windows-tile-layout .blog-card:nth-child(6n+1) {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+2) {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+3) {
+  grid-column: span 2;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+4) {
+  grid-column: span 2;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+5) {
+  grid-column: span 2;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+6) {
+  grid-column: span 2;
+}
+
+/* 마지막 카드가 홀수 번째일 때 (2개만 남은 경우) */
+.windows-tile-layout .blog-card:nth-child(6n+1):last-child {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+2):last-child {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+3):last-child {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+4):last-child {
+  grid-column: span 3;
+}
+
+.windows-tile-layout .blog-card:nth-child(6n+5):last-child {
+  grid-column: span 3;
 }
 
 @media (max-width: 768px) {
@@ -515,12 +563,22 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
+  
+  /* 태블릿에서는 2열로 단순화 */
+  .windows-tile-layout .blog-card {
+    grid-column: span 1 !important;
+  }
 }
 
 @media (max-width: 480px) {
   .windows-tile-layout {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+  
+  /* 모바일에서는 1열로 단순화 */
+  .windows-tile-layout .blog-card {
+    grid-column: span 1 !important;
   }
 }
 
@@ -546,9 +604,8 @@ main {
 /* ── Card Layout with Prism Effect ── */
 .blog-card {
   width: 100%;
+  min-height: 320px;
   height: auto;
-  min-height: 300px;
-  max-height: none;
   position: relative;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
@@ -587,7 +644,7 @@ main {
 }
 
 .blog-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -603,7 +660,7 @@ main {
 .blog-card .card-content {
   height: auto;
   min-height: 120px;
-  padding: 1.5rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -614,3 +671,5 @@ main {
   z-index: 2;
   overflow: visible;
 }
+
+

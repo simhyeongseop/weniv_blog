@@ -198,7 +198,7 @@ function createCardElement(fileInfo, index) {
     "hover:bg-primary/20",
     "transition-colors",
     "duration-200",
-    "mb-3"
+    "mb-2"
   );
   category.textContent = fileInfo.category;
   cardBody.appendChild(category);
@@ -212,14 +212,14 @@ function createCardElement(fileInfo, index) {
 
   const title = document.createElement("h2");
   title.classList.add(
-    "text-xl",
+    "text-lg",
     "font-bold",
     "text-text",
     "hover:text-primary",
     "transition-colors",
     "duration-200",
-    "mb-3",
-    "line-clamp-2"
+    "mb-2",
+    "leading-tight"
   );
   title.textContent = fileInfo.title;
   cardBody.appendChild(title);
@@ -229,8 +229,8 @@ function createCardElement(fileInfo, index) {
     "text-textSecondary",
     "text-sm",
     "flex-grow",
-    "mb-4",
-    "line-clamp-3"
+    "mb-3",
+    "leading-relaxed"
   );
   description.textContent = fileInfo.description;
   cardBody.appendChild(description);
@@ -240,7 +240,8 @@ function createCardElement(fileInfo, index) {
     "flex",
     "items-center",
     "space-x-3",
-    "mt-auto"
+    "mt-auto",
+    "pt-3"
   );
 
   const authorImg = document.createElement("img");
